@@ -1,0 +1,28 @@
+---
+import { withBase } from '../utils/paths';
+
+interface Props {
+  label?: string;
+  title: string;
+  intro?: string;
+  image?: string;
+  imageAlt?: string;
+}
+
+const { label, title, intro, image, imageAlt = '' } = Astro.props;
+const imageSrc = image ? withBase(image) : undefined;
+---
+
+<header class:list={['page-intro', { 'page-intro--image': image }]}>
+  <div class="page-intro__copy">
+    {label && <p class="section-label">{label}</p>}
+    <h1>{title}</h1>
+    {intro && <p>{intro}</p>}
+  </div>
+  {image && (
+    <figure>
+      <img src={imageSrc} alt={imageAlt} />
+      <figcaption>Foto Christian Palm</figcaption>
+    </figure>
+  )}
+</header>

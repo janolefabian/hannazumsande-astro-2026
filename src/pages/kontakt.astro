@@ -1,0 +1,33 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import PageIntro from '../components/PageIntro.astro';
+import settings from '../data/settings.json';
+
+const phoneHref = settings.phone.replace(/\s/g, '');
+const managementPhoneHref = settings.managementPhone.replace(/\s/g, '');
+---
+
+<BaseLayout title="Kontakt" description="Kontakt zu Hanna Zumsande und ihrem Management für Konzertanfragen und Zusammenarbeit.">
+  <PageIntro
+    label="Anfragen"
+    title="Kontakt"
+    intro="Für Konzertanfragen, Programme, Presseinformationen und weitere Zusammenarbeit."
+    image="/media/portrait-palm-022.jpg"
+    imageAlt="Hanna Zumsande"
+  />
+
+  <div class="contact-grid">
+    <section class="contact-card">
+      <small>Direktkontakt</small>
+      <h2>{settings.name}</h2>
+      <a href={`mailto:${settings.email}`}>{settings.email}</a>
+      <a href={`tel:${phoneHref}`}>{settings.phone}</a>
+    </section>
+    <section class="contact-card">
+      <small>Management</small>
+      <h2>{settings.management}</h2>
+      <a href={`mailto:${settings.managementEmail}`}>{settings.managementEmail}</a>
+      <a href={`tel:${managementPhoneHref}`}>{settings.managementPhone}</a>
+    </section>
+  </div>
+</BaseLayout>

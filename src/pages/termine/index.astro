@@ -1,0 +1,34 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import PageIntro from '../../components/PageIntro.astro';
+import EventList from '../../components/EventList.astro';
+
+const today = new Date().toISOString().slice(0, 10);
+const allEvents = (await getCollection('termine', ({ data }) => data.published))
+  .sort((a, b) => a.data.date.getTime() - b.data.date.getTime());
+const upcoming = allEvents.filter((event) => event.data.date.toISOString().slice(0, 10) >= today);
+const archive = allEvents.filter((event) => event.data.date.toISOString().slice(0, 10) < today).reverse();
+---
+
+<BaseLayout title="Termine" description="Aktuelle Konzerttermine und Veranstaltungsorte der Sopranistin Hanna Zumsande.">
+  <PageIntro
+    label="Kalender"
+    title="Termine"
+    intro="Konzerte, Oratorien und weitere Auftritte von Hanna Zumsande."
+  />
+
+  <section class="calendar-wrap" aria-labelledby="aktuelle-termine">
+    <div class="calendar-head">
+      <h2 id="aktuelle-termine">Aktuelle Termine</h2>
+    </div>
+    {upcoming.length > 0 ? <EventList events={upcoming} /> : <p class="empty-state">Neue Termine folgen.</p>}
+  </section>
+
+  <section class="calendar-wrap calendar-archive" aria-labelledby="vergangene-termine">
+    <div class="calendar-head">
+      <h2 id="vergangene-termine">Vergangene Termine</h2>
+    </div>
+    {archive.length > 0 ? <EventList events={archive} /> : <p class="empty-state">Noch keine vergangenen Termine.</p>}
+  </section>
+</BaseLayout>

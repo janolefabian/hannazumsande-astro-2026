@@ -1,0 +1,32 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import PageIntro from '../components/PageIntro.astro';
+import settings from '../data/settings.json';
+---
+
+<BaseLayout title="Impressum" description="Impressum der Website von Hanna Zumsande.">
+  <PageIntro label="Rechtliches" title="Impressum" />
+
+  <p class="notice"><strong>Vor Veröffentlichung prüfen:</strong> Die Anschrift und die Rechtstexte stammen aus der bisherigen Website. Eine vollständige Straßenanschrift war dort nicht angegeben.</p>
+
+  <div class="content-grid">
+    <aside class="content-aside">Angaben zum Anbieter</aside>
+    <article class="prose">
+      <h2>Hanna Zumsande</h2>
+      <p>22299 Hamburg<br />Deutschland</p>
+      <p>E Mail: <a href={`mailto:${settings.email}`}>{settings.email}</a></p>
+
+      <h2>Bildnachweise</h2>
+      <p>Christian Palm<br />Annemone Taake<br />Katharina Kühl</p>
+
+      <h2>Webdesign und technische Betreuung</h2>
+      <p><a href="https://janolefabian.de">janolefabian.de</a></p>
+
+      <h2>Haftung für Inhalte und Links</h2>
+      <p>Die Inhalte dieser Website wurden mit Sorgfalt erstellt. Für externe Websites, auf die verlinkt wird, sind ausschließlich deren jeweilige Betreiber verantwortlich.</p>
+
+      <h2>Urheberrecht</h2>
+      <p>Die auf dieser Website veröffentlichten Inhalte und Werke unterliegen dem deutschen Urheberrecht. Downloads und Kopien sind nur im jeweils angegebenen Umfang gestattet.</p>
+    </article>
+  </div>
+</BaseLayout>

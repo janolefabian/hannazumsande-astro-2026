@@ -1,0 +1,34 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import PageIntro from '../../components/PageIntro.astro';
+import { withBase } from '../../utils/paths';
+---
+
+<BaseLayout title="Repertoire" description="Das Konzert, Opern und Liedrepertoire der Sopranistin Hanna Zumsande.">
+  <PageIntro
+    label="Werke und Programme"
+    title="Repertoire"
+    intro="Drei eigenständige Bereiche mit vollständigen Listen aus der bisherigen Website."
+  />
+
+  <nav class="landing-grid" aria-label="Repertoirebereiche">
+    <a class="landing-card" href={withBase('/repertoire/konzert/')}>
+      <small>01</small>
+      <h2>Konzert</h2>
+      <p>Oratorien, Passionen, Messen und sinfonische Werke</p>
+      <span>Werke ansehen</span>
+    </a>
+    <a class="landing-card" href={withBase('/repertoire/oper/')}>
+      <small>02</small>
+      <h2>Oper</h2>
+      <p>Partien und Produktionen von Monteverdi bis zur Moderne</p>
+      <span>Rollen ansehen</span>
+    </a>
+    <a class="landing-card" href={withBase('/repertoire/lied/')}>
+      <small>03</small>
+      <h2>Lied</h2>
+      <p>Komponisten und Programme für Liederabende</p>
+      <span>Auswahl ansehen</span>
+    </a>
+  </nav>
+</BaseLayout>

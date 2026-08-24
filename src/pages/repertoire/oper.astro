@@ -1,0 +1,25 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import PageIntro from '../../components/PageIntro.astro';
+import { operaRepertoire } from '../../data/site';
+---
+
+<BaseLayout title="Opernrepertoire" description="Opernpartien von Hanna Zumsande, von Monteverdi und Händel bis Strauss, Strawinsky, Verdi und Wagner.">
+  <PageIntro
+    label="Repertoire"
+    title="Oper"
+    intro="Ausgewählte Partien aus Barock, Klassik, Romantik und Moderne."
+  />
+
+  <table class="opera-table">
+    <thead>
+      <tr><th>Komponist</th><th>Werk</th><th>Partie</th></tr>
+    </thead>
+    <tbody>
+      {operaRepertoire.map(([composer, work, role]) => (
+        <tr><td>{composer}</td><td>{work}</td><td>{role}</td></tr>
+      ))}
+    </tbody>
+  </table>
+  <p class="page-note">* In Auszügen gesungen oder studiert</p>
+</BaseLayout>

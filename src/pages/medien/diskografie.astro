@@ -1,0 +1,25 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import PageIntro from '../../components/PageIntro.astro';
+import { discography } from '../../data/site';
+---
+
+<BaseLayout title="Diskografie" description="Diskografie von Hanna Zumsande mit Aufnahmen bei cpo, harmonia mundi, carus, DHM, Aparte und weiteren Labels.">
+  <PageIntro
+    label="Medien"
+    title="Diskografie"
+    intro="Einspielungen von Händel, Telemann, Monteverdi, C. P. E. Bach und weiteren Komponisten."
+  />
+
+  <div class="disc-grid">
+    {discography.map((disc) => (
+      <article class="disc-card">
+        <img src={disc.cover} alt={`Cover ${disc.title}`} loading="lazy" />
+        <h2>{disc.title}</h2>
+        {disc.subtitle && <p>{disc.subtitle}</p>}
+        <p>{disc.artists}</p>
+        {disc.label && <p>{disc.label}</p>}
+      </article>
+    ))}
+  </div>
+</BaseLayout>

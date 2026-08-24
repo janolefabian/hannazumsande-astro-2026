@@ -1,0 +1,32 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import PageIntro from '../../components/PageIntro.astro';
+import { audioTracks, videos } from '../../data/site';
+---
+
+<BaseLayout title="Audio und Video" description="Hörbeispiele und Videoaufnahmen der Sopranistin Hanna Zumsande mit Werken von Bach, Haydn, Telemann, Graun und Ravel.">
+  <PageIntro
+    label="Medien"
+    title="Audio und Video"
+    intro="Ausgewählte Live Mitschnitte, Arien und Produktionen aus der bisherigen Website."
+  />
+
+  <section class="audio-list" aria-label="Hörbeispiele">
+    {audioTracks.map((track) => (
+      <article class="audio-row">
+        <div><h2>{track.title}</h2><p>{track.work}</p></div>
+        <audio controls preload="none" src={track.src}>Ihr Browser kann diese Audiodatei nicht abspielen.</audio>
+      </article>
+    ))}
+  </section>
+
+  <section class="video-list" aria-label="Videos">
+    {videos.map((video) => (
+      <a class="video-card" href={video.href} target="_blank" rel="noreferrer">
+        <small>Video auf YouTube</small>
+        <h2>{video.title}</h2>
+        <p>{video.details}</p>
+      </a>
+    ))}
+  </section>
+</BaseLayout>

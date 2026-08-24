@@ -1,0 +1,26 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import PageIntro from '../../components/PageIntro.astro';
+import { liedComposers } from '../../data/site';
+import { withBase } from '../../utils/paths';
+---
+
+<BaseLayout title="Liedrepertoire" description="Liedrepertoire von Hanna Zumsande mit Werken von Brahms, Debussy, Mahler, Ravel, Schubert, Schumann, Strauss und Wolf.">
+  <PageIntro
+    label="Repertoire"
+    title="Lied"
+    intro="Liederabende und Programme werden passend zu Anlass und Besetzung zusammengestellt."
+  />
+
+  <ul class="composer-cloud" aria-label="Komponisten im Liedrepertoire">
+    {liedComposers.map((composer) => <li>{composer}</li>)}
+  </ul>
+
+  <div class="content-grid">
+    <aside class="content-aside">Programme</aside>
+    <div class="prose">
+      <p>Das Repertoire umfasst Lieder dieser und weiterer Komponisten. Konkrete Programme sind auf Anfrage erhältlich.</p>
+      <a class="button" href={withBase('/kontakt/')}>Programm anfragen</a>
+    </div>
+  </div>
+</BaseLayout>

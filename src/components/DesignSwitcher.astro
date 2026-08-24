@@ -1,0 +1,26 @@
+<aside class="design-switcher" aria-label="Designentwürfe">
+  <span>Entwurf</span>
+  <div role="group" aria-label="Design auswählen">
+    <button type="button" data-design-choice="atelier" aria-label="Entwurf 1, Atelier">1</button>
+    <button type="button" data-design-choice="programm" aria-label="Entwurf 2, Partitur">2</button>
+    <button type="button" data-design-choice="editorial" aria-label="Entwurf 3, Raleway">3</button>
+  </div>
+  <output data-design-label aria-live="polite">Atelier</output>
+</aside>
+
+<script is:inline>
+  const names = { atelier: 'Atelier', programm: 'Partitur', editorial: 'Raleway' };
+  const choices = document.querySelectorAll('[data-design-choice]');
+  const output = document.querySelector('[data-design-label]');
+
+  function selectDesign(value) {
+    const design = names[value] ? value : 'atelier';
+    document.documentElement.dataset.design = design;
+    localStorage.setItem('hanna-design', design);
+    choices.forEach((button) => button.setAttribute('aria-pressed', String(button.dataset.designChoice === design)));
+    if (output) output.textContent = names[design];
+  }
+
+  choices.forEach((button) => button.addEventListener('click', () => selectDesign(button.dataset.designChoice)));
+  selectDesign(document.documentElement.dataset.design);
+</script>

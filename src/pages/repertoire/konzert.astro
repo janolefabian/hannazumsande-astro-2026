@@ -1,0 +1,24 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import PageIntro from '../../components/PageIntro.astro';
+import { concertRepertoire } from '../../data/site';
+---
+
+<BaseLayout title="Konzertrepertoire" description="Konzertrepertoire von Hanna Zumsande mit Werken von Bach, Händel, Haydn, Mendelssohn und weiteren Komponisten.">
+  <PageIntro
+    label="Repertoire"
+    title="Konzert"
+    intro="Passionen, Oratorien, Messen, Kantaten und sinfonische Werke vom Barock bis in die Moderne."
+  />
+
+  <div class="repertoire-list">
+    {concertRepertoire.map((entry) => (
+      <section class="repertoire-item">
+        <h2>{entry.composer}</h2>
+        <ul>
+          {entry.works.map((work) => <li>{work}</li>)}
+        </ul>
+      </section>
+    ))}
+  </div>
+</BaseLayout>

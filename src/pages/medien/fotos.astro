@@ -1,0 +1,22 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import PageIntro from '../../components/PageIntro.astro';
+import { gallery } from '../../data/site';
+---
+
+<BaseLayout title="Fotos" description="Ausgewählte Presse und Porträtfotos der Sopranistin Hanna Zumsande.">
+  <PageIntro
+    label="Medien"
+    title="Fotos"
+    intro="Vorhandene Porträts von Christian Palm und Annemone Taake. Für die Veröffentlichung bitte die jeweiligen Credits beibehalten."
+  />
+
+  <div class="gallery-grid">
+    {gallery.map((image) => (
+      <figure>
+        <a href={image.src} download><img src={image.src} alt={image.alt} loading="lazy" /></a>
+        <figcaption>Foto {image.credit}, zum Download auf das Bild klicken</figcaption>
+      </figure>
+    ))}
+  </div>
+</BaseLayout>

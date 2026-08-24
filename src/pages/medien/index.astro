@@ -1,0 +1,40 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import PageIntro from '../../components/PageIntro.astro';
+import { withBase } from '../../utils/paths';
+---
+
+<BaseLayout title="Medien" description="Audioaufnahmen, Videos, Pressefotos, Downloads und Diskografie der Sopranistin Hanna Zumsande." bodyClass="media-page">
+  <PageIntro
+    label="Hören und sehen"
+    title="Medien"
+    intro="Aufnahmen, Porträts und Veröffentlichungen, geordnet auf eigenen Seiten."
+  />
+
+  <section class="media-overview" aria-label="Medienbereiche">
+    <a class="media-feature" href={withBase('/medien/audio/')}>
+      <img src={withBase('/media/portrait-palm-022.jpg')} alt="" loading="eager" />
+      <div class="media-feature__copy">
+        <small>Hörbeispiele und Aufnahmen</small>
+        <h2>Audio und Video</h2>
+        <p>Live Mitschnitte, Arien und ausgewählte Produktionen</p>
+        <span>Anhören und ansehen</span>
+      </div>
+    </a>
+
+    <nav class="media-paths" aria-label="Weitere Medienbereiche">
+      <a href={withBase('/medien/fotos/')}>
+        <div><small>Porträts und Pressefotos</small><h2>Fotos</h2><p>Aufnahmen von Christian Palm und Annemone Taake</p></div>
+        <span>Ansehen</span>
+      </a>
+      <a href={withBase('/medien/diskografie/')}>
+        <div><small>Veröffentlichungen</small><h2>Diskografie</h2><p>CD Produktionen und Einspielungen</p></div>
+        <span>Entdecken</span>
+      </a>
+      <a href={withBase('/medien/downloads/')}>
+        <div><small>Für Veranstalter und Presse</small><h2>Downloads</h2><p>Vita und ausgewählte Porträts</p></div>
+        <span>Herunterladen</span>
+      </a>
+    </nav>
+  </section>
+</BaseLayout>

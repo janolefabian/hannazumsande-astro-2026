@@ -1,0 +1,74 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '../layouts/BaseLayout.astro';
+import EventList from '../components/EventList.astro';
+import settings from '../data/settings.json';
+import { withBase } from '../utils/paths';
+
+const today = new Date().toISOString().slice(0, 10);
+const events = (await getCollection('termine', ({ data }) => data.published))
+  .filter((event) => event.data.date.toISOString().slice(0, 10) >= today)
+  .sort((a, b) => a.data.date.getTime() - b.data.date.getTime())
+  .slice(0, 3);
+---
+
+<BaseLayout title={settings.name} description={`${settings.name} ist Sopranistin aus Hamburg. Termine, Vita, Repertoire, Hörbeispiele und Kontakt.`} bodyClass="home-page">
+  <section class="home-hero">
+    <div class="home-hero__copy">
+      <span class="hero-monogram" aria-hidden="true">HZ</span>
+      <p class="section-label">Sopranistin aus Hamburg</p>
+      <h1><span>Hanna</span>{' '}<span>Zumsande</span></h1>
+      <p class="lead">{settings.intro}</p>
+      <div class="button-row">
+        <a class="button" href={withBase('/termine/')}>Termine ansehen</a>
+        <a class="quiet-link" href={withBase('/medien/audio/')}>Hörbeispiele</a>
+      </div>
+    </div>
+    <figure class="home-hero__image">
+      <img src={withBase('/media/hanna-hero.jpg')} alt="Hanna Zumsande in einer Heidelandschaft" fetchpriority="high" />
+      <figcaption>Foto Christian Palm</figcaption>
+    </figure>
+  </section>
+
+  <section class="home-block" aria-labelledby="naechste-termine">
+    <div class="home-block__head">
+      <h2 id="naechste-termine">Nächste Termine</h2>
+      <a class="quiet-link" href={withBase('/termine/')}>Zum vollständigen Kalender</a>
+    </div>
+    {events.length > 0 ? <EventList events={events} compact /> : <p class="empty-state">Neue Termine folgen.</p>}
+  </section>
+
+  <section class="home-block home-profile">
+    <img src={withBase('/media/portrait-palm-004.jpg')} alt="Porträt von Hanna Zumsande" loading="lazy" />
+    <div class="home-profile__copy">
+      <p class="section-label">Vita</p>
+      <h2>Von der Alten Musik bis in die Moderne</h2>
+      <p class="large-copy">Als Konzertsolistin arbeitet Hanna Zumsande mit Orchestern, Ensembles und Dirigenten im In und Ausland zusammen.</p>
+      <p>Engagements führten sie zu Festivals und in Konzertsäle wie das Concertgebouw Amsterdam, die Tonhalle Zürich, das Konzerthaus Berlin und die Hamburger Laeiszhalle.</p>
+      <a class="quiet-link" href={withBase('/vita/')}>Vollständige Vita lesen</a>
+    </div>
+  </section>
+
+  <section class="home-block" aria-labelledby="bereiche">
+    <div class="home-block__head">
+      <h2 id="bereiche">Mehr entdecken</h2>
+    </div>
+    <div class="route-list">
+      <a href={withBase('/repertoire/')}>
+        <span>01</span>
+        <h3>Repertoire</h3>
+        <p>Konzert, Oper und Lied</p>
+      </a>
+      <a href={withBase('/medien/')}>
+        <span>02</span>
+        <h3>Medien</h3>
+        <p>Audio, Videos, Fotos und Diskografie</p>
+      </a>
+      <a href={withBase('/kontakt/')}>
+        <span>03</span>
+        <h3>Kontakt</h3>
+        <p>Anfragen und Management</p>
+      </a>
+    </div>
+  </section>
+</BaseLayout>

@@ -1,0 +1,31 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import PageIntro from '../components/PageIntro.astro';
+import settings from '../data/settings.json';
+---
+
+<BaseLayout title="Datenschutz" description="Hinweise zum Datenschutz auf der Website von Hanna Zumsande.">
+  <PageIntro label="Rechtliches" title="Datenschutz" />
+
+  <p class="notice"><strong>Vorläufiger Stand:</strong> Diese Hinweise müssen vor Veröffentlichung mit dem tatsächlichen Hosting und allen später ergänzten Diensten abgeglichen werden.</p>
+
+  <div class="content-grid">
+    <aside class="content-aside">Datenschutzhinweise</aside>
+    <article class="prose">
+      <h2>Verantwortliche Stelle</h2>
+      <p>Hanna Zumsande, 22299 Hamburg<br />E Mail: <a href={`mailto:${settings.email}`}>{settings.email}</a></p>
+
+      <h2>Aufruf der Website</h2>
+      <p>Beim Aufruf einer Website verarbeitet der Hostinganbieter technisch erforderliche Verbindungsdaten. Dazu können die IP Adresse, Datum und Uhrzeit des Zugriffs, die aufgerufene Seite sowie Angaben zum Browser gehören. Die konkrete Ausgestaltung richtet sich nach dem später eingesetzten Hosting.</p>
+
+      <h2>Keine Formulare und keine Analyse</h2>
+      <p>Diese Fassung der Website verwendet kein Kontaktformular und keine Analysedienste. Die Kontaktaufnahme erfolgt über einen normalen E Mail Link oder telefonisch.</p>
+
+      <h2>Externe Links</h2>
+      <p>Audio und Videoseiten enthalten Links zu externen Angeboten wie YouTube und jpc. Eine Verbindung zu diesen Diensten entsteht erst, wenn ein solcher Link geöffnet wird. Videos werden nicht direkt in diese Website eingebettet.</p>
+
+      <h2>Kontakt</h2>
+      <p>Bei Fragen zum Datenschutz wenden Sie sich bitte an <a href={`mailto:${settings.email}`}>{settings.email}</a>.</p>
+    </article>
+  </div>
+</BaseLayout>

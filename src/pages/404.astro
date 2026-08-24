@@ -1,0 +1,10 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import PageIntro from '../components/PageIntro.astro';
+import { withBase } from '../utils/paths';
+---
+
+<BaseLayout title="Seite nicht gefunden" description="Die gesuchte Seite wurde nicht gefunden.">
+  <PageIntro label="Fehler 404" title="Seite nicht gefunden" intro="Die gesuchte Adresse existiert nicht oder wurde verschoben." />
+  <div class="calendar-wrap"><a class="button" href={withBase('/')}>Zur Startseite</a></div>
+</BaseLayout>

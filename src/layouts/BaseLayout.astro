@@ -1,0 +1,60 @@
+---
+import '../styles/global.css';
+import settings from '../data/settings.json';
+import SiteHeader from '../components/SiteHeader.astro';
+import SiteFooter from '../components/SiteFooter.astro';
+import { withBase } from '../utils/paths';
+
+interface Props {
+  title: string;
+  description: string;
+  image?: string;
+  bodyClass?: string;
+}
+
+const { title, description, image = '/media/hanna-hero.jpg', bodyClass } = Astro.props;
+const pageTitle = title === settings.name ? `${settings.name}, ${settings.role}` : `${title} | ${settings.name}`;
+const canonical = new URL(Astro.url.pathname, Astro.site);
+const socialImage = new URL(withBase(image), Astro.site);
+const isPreview = Astro.site?.hostname.endsWith('github.io') ?? false;
+const personSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'Person',
+  name: settings.name,
+  jobTitle: settings.role,
+  url: new URL(withBase('/'), Astro.site).toString(),
+  homeLocation: settings.location,
+  email: settings.email,
+};
+---
+
+<!doctype html>
+<html lang="de" data-design="atelier">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width" />
+    <meta name="generator" content={Astro.generator} />
+    <meta name="description" content={description} />
+    {isPreview && <meta name="robots" content="noindex, nofollow" />}
+    <meta name="theme-color" content="#6d725d" />
+    <link rel="icon" href={withBase('/favicon.ico')} />
+    <link rel="canonical" href={canonical} />
+    <meta property="og:type" content="website" />
+    <meta property="og:locale" content="de_DE" />
+    <meta property="og:title" content={pageTitle} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonical} />
+    <meta property="og:image" content={socialImage} />
+    <meta name="twitter:card" content="summary_large_image" />
+    <title>{pageTitle}</title>
+    <script type="application/ld+json" set:html={JSON.stringify(personSchema)} />
+  </head>
+  <body class={bodyClass}>
+    <a class="skip-link" href="#inhalt">Zum Inhalt</a>
+    <SiteHeader />
+    <main id="inhalt">
+      <slot />
+    </main>
+    <SiteFooter />
+  </body>
+</html>

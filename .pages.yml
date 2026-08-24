@@ -1,0 +1,93 @@
+media:
+  - name: images
+    label: Bilder
+    input: public/media
+    output: /media
+    categories: [image]
+    rename: safe
+  - name: audio
+    label: Audio
+    input: public/media/audio
+    output: /media/audio
+    categories: [audio]
+    rename: safe
+  - name: documents
+    label: Dokumente
+    input: public/downloads
+    output: /downloads
+    categories: [document]
+    rename: safe
+
+content:
+  - name: termine
+    label: Termine
+    type: collection
+    path: src/content/termine
+    format: yaml-frontmatter
+    filename:
+      template: "{date}-{title}.md"
+      field: create
+    view:
+      fields: [title, date, time, venue, city, published]
+      primary: title
+      sort: [date, title]
+      default:
+        sort: date
+        order: asc
+    fields:
+      - name: title
+        label: Titel
+        type: string
+        required: true
+      - name: date
+        label: Datum
+        type: date
+        required: true
+        options:
+          format: yyyy-MM-dd
+      - name: time
+        label: Uhrzeit
+        type: string
+        required: true
+      - name: venue
+        label: Veranstaltungsort
+        type: string
+        required: true
+      - name: city
+        label: Stadt
+        type: string
+      - name: link
+        label: Link zu weiteren Informationen
+        type: string
+      - name: featured
+        label: Auf der Startseite hervorheben
+        type: boolean
+      - name: published
+        label: Veröffentlicht
+        type: boolean
+        required: true
+      - name: body
+        label: Weitere Informationen
+        type: rich-text
+        options:
+          media: false
+
+  - name: website
+    label: Grunddaten
+    type: file
+    path: src/data/settings.json
+    format: json
+    fields:
+      - { name: name, label: Name, type: string, required: true }
+      - { name: role, label: Beruf, type: string, required: true }
+      - { name: location, label: Ort, type: string }
+      - { name: intro, label: Text auf der Startseite, type: text, required: true }
+      - { name: email, label: E Mail, type: string, required: true }
+      - { name: phone, label: Telefon, type: string }
+      - { name: management, label: Management, type: string }
+      - { name: managementEmail, label: E Mail Management, type: string }
+      - { name: managementPhone, label: Telefon Management, type: string }
+
+settings:
+  commit:
+    identity: user

@@ -1,0 +1,18 @@
+---
+import settings from '../data/settings.json';
+import { withBase } from '../utils/paths';
+---
+
+<footer class="site-footer">
+  <div>
+    <a class="footer-name" href={withBase('/')}>{settings.name}</a>
+    <span>{settings.role}</span>
+  </div>
+  <nav aria-label="Fußnavigation">
+    <a href={withBase('/kontakt/')}>Kontakt</a>
+    <a href={withBase('/impressum/')}>Impressum</a>
+    <a href={withBase('/datenschutz/')}>Datenschutz</a>
+    <a href={withBase('/links/')}>Links</a>
+  </nav>
+  <small>© {new Date().getFullYear()} {settings.name}</small>
+</footer>
