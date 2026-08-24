@@ -1,0 +1,68 @@
+{
+  "hero": {
+    "src": "/media/hanna-hero.jpg",
+    "alt": "Hanna Zumsande in einer Heidelandschaft",
+    "credit": "Christian Palm"
+  },
+  "homePortrait": {
+    "src": "/media/portrait-palm-004.jpg",
+    "alt": "Porträt von Hanna Zumsande",
+    "credit": "Christian Palm"
+  },
+  "pagePortrait": {
+    "src": "/media/portrait-palm-022.jpg",
+    "alt": "Porträt der Sopranistin Hanna Zumsande",
+    "credit": "Christian Palm"
+  },
+  "gallery": [
+    {
+      "src": "/media/gallery/palm-006.jpg",
+      "alt": "Porträt von Hanna Zumsande",
+      "credit": "Christian Palm"
+    },
+    {
+      "src": "/media/gallery/palm-012.jpg",
+      "alt": "Hanna Zumsande im Freien",
+      "credit": "Christian Palm"
+    },
+    {
+      "src": "/media/gallery/palm-020.jpg",
+      "alt": "Porträt von Hanna Zumsande in der Natur",
+      "credit": "Christian Palm"
+    },
+    {
+      "src": "/media/gallery/palm-028.jpg",
+      "alt": "Hanna Zumsande, Sopranistin",
+      "credit": "Christian Palm"
+    },
+    {
+      "src": "/media/gallery/palm-037.jpg",
+      "alt": "Künstlerporträt von Hanna Zumsande",
+      "credit": "Christian Palm"
+    },
+    {
+      "src": "/media/gallery/taake-1336.jpg",
+      "alt": "Porträt von Hanna Zumsande",
+      "credit": "Annemone Taake"
+    }
+  ],
+  "pressPhotos": [
+    {
+      "label": "Porträt",
+      "src": "/media/portrait-palm-004.jpg",
+      "alt": "Porträt Hanna Zumsande",
+      "credit": "Christian Palm"
+    },
+    {
+      "label": "Porträt",
+      "src": "/media/portrait-kuehl.jpg",
+      "alt": "Porträt Hanna Zumsande",
+      "credit": "Katharina Kühl"
+    }
+  ],
+  "documentPreview": {
+    "src": "/media/portrait-018.jpg",
+    "alt": "Porträt Hanna Zumsande",
+    "credit": ""
+  }
+}

@@ -1,6 +1,7 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 import PageIntro from '../components/PageIntro.astro';
+import { imageSettings } from '../data/images';
 import { withBase } from '../utils/paths';
 ---
 
@@ -9,8 +10,8 @@ import { withBase } from '../utils/paths';
     label="Hanna Zumsande"
     title="Vita"
     intro="Eine vielseitige Konzertsolistin mit einem Repertoire von der Alten Musik bis in die Moderne."
-    image="/media/portrait-palm-022.jpg"
-    imageAlt="Porträt der Sopranistin Hanna Zumsande"
+    image={imageSettings.pagePortrait.src}
+    imageAlt={imageSettings.pagePortrait.alt}
   />
 
   <div class="content-grid">

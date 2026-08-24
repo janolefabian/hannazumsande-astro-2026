@@ -1,6 +1,7 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import PageIntro from '../../components/PageIntro.astro';
+import { imageSettings } from '../../data/images';
 import { withBase } from '../../utils/paths';
 ---
 
@@ -13,7 +14,7 @@ import { withBase } from '../../utils/paths';
 
   <section class="media-overview" aria-label="Medienbereiche">
     <a class="media-feature" href={withBase('/medien/audio/')}>
-      <img src={withBase('/media/portrait-palm-022.jpg')} alt="" loading="eager" />
+      <img src={withBase(imageSettings.pagePortrait.src)} alt="" loading="eager" />
       <div class="media-feature__copy">
         <small>Hörbeispiele und Aufnahmen</small>
         <h2>Audio und Video</h2>

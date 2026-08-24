@@ -1,6 +1,7 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 import PageIntro from '../components/PageIntro.astro';
+import { imageSettings } from '../data/images';
 import settings from '../data/settings.json';
 
 const phoneHref = settings.phone.replace(/\s/g, '');
@@ -12,8 +13,8 @@ const managementPhoneHref = settings.managementPhone.replace(/\s/g, '');
     label="Anfragen"
     title="Kontakt"
     intro="Für Konzertanfragen, Programme, Presseinformationen und weitere Zusammenarbeit."
-    image="/media/portrait-palm-022.jpg"
-    imageAlt="Hanna Zumsande"
+    image={imageSettings.pagePortrait.src}
+    imageAlt={imageSettings.pagePortrait.alt}
   />
 
   <div class="contact-grid">

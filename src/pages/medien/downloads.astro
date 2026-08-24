@@ -1,6 +1,7 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import PageIntro from '../../components/PageIntro.astro';
+import { imageSettings, pressPhotos } from '../../data/images';
 import { withBase } from '../../utils/paths';
 ---
 
@@ -12,20 +13,16 @@ import { withBase } from '../../utils/paths';
   />
 
   <div class="download-list">
+    {pressPhotos.map((photo) => (
+      <article class="download-card">
+        <img src={photo.src} alt={photo.alt} />
+        <h2>{photo.label}</h2>
+        <p>Foto {photo.credit}</p>
+        <a class="quiet-link" href={photo.src} download>Foto herunterladen</a>
+      </article>
+    ))}
     <article class="download-card">
-      <img src={withBase('/media/portrait-palm-004.jpg')} alt="Porträt Hanna Zumsande, Christian Palm" />
-      <h2>Porträt</h2>
-      <p>Foto Christian Palm</p>
-      <a class="quiet-link" href={withBase('/media/portrait-palm-004.jpg')} download>Foto herunterladen</a>
-    </article>
-    <article class="download-card">
-      <img src={withBase('/media/portrait-kuehl.jpg')} alt="Porträt Hanna Zumsande, Katharina Kühl" />
-      <h2>Porträt</h2>
-      <p>Foto Katharina Kühl</p>
-      <a class="quiet-link" href={withBase('/media/portrait-kuehl.jpg')} download>Foto herunterladen</a>
-    </article>
-    <article class="download-card">
-      <img src={withBase('/media/portrait-018.jpg')} alt="Porträt Hanna Zumsande" />
+      <img src={withBase(imageSettings.documentPreview.src)} alt={imageSettings.documentPreview.alt} />
       <h2>Vita als PDF</h2>
       <p>Dokument aus der bisherigen Website</p>
       <a class="quiet-link" href={withBase('/downloads/vita-hanna-zumsande.pdf')}>PDF herunterladen</a>

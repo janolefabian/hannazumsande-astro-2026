@@ -1,6 +1,6 @@
 media:
   - name: images
-    label: Bilder
+    label: Bildarchiv
     input: public/media
     output: /media
     categories: [image]
@@ -77,6 +77,8 @@ content:
     type: file
     path: src/data/settings.json
     format: json
+    operations:
+      delete: false
     fields:
       - { name: name, label: Name, type: string, required: true }
       - { name: role, label: Beruf, type: string, required: true }
@@ -87,6 +89,104 @@ content:
       - { name: management, label: Management, type: string }
       - { name: managementEmail, label: E Mail Management, type: string }
       - { name: managementPhone, label: Telefon Management, type: string }
+
+  - name: websiteImages
+    label: Fotos auf der Webseite
+    type: file
+    path: src/data/images.json
+    format: json
+    operations:
+      delete: false
+    fields:
+      - name: hero
+        label: Großes Bild auf der Startseite
+        type: object
+        required: true
+        fields:
+          - name: src
+            label: Bild
+            type: image
+            required: true
+            options:
+              media: images
+          - { name: alt, label: Bildbeschreibung, type: string, required: true }
+          - { name: credit, label: Fotocredit, type: string, required: true }
+      - name: homePortrait
+        label: Porträt im unteren Bereich der Startseite
+        type: object
+        required: true
+        fields:
+          - name: src
+            label: Bild
+            type: image
+            required: true
+            options:
+              media: images
+          - { name: alt, label: Bildbeschreibung, type: string, required: true }
+          - { name: credit, label: Fotocredit, type: string, required: true }
+      - name: pagePortrait
+        label: Porträt für Vita, Kontakt und Medien
+        type: object
+        required: true
+        fields:
+          - name: src
+            label: Bild
+            type: image
+            required: true
+            options:
+              media: images
+          - { name: alt, label: Bildbeschreibung, type: string, required: true }
+          - { name: credit, label: Fotocredit, type: string, required: true }
+      - name: gallery
+        label: Bilder in der Fotogalerie
+        type: object
+        list:
+          min: 1
+          max: 20
+          collapsible:
+            collapsed: true
+            summary: "{credit}, Bild {index}"
+        fields:
+          - name: src
+            label: Bild
+            type: image
+            required: true
+            options:
+              media: images
+          - { name: alt, label: Bildbeschreibung, type: string, required: true }
+          - { name: credit, label: Fotocredit, type: string, required: true }
+      - name: pressPhotos
+        label: Pressefotos im Downloadbereich
+        type: object
+        list:
+          min: 1
+          max: 10
+          collapsible:
+            collapsed: true
+            summary: "{label}, Foto {credit}"
+        fields:
+          - { name: label, label: Bezeichnung, type: string, required: true }
+          - name: src
+            label: Bild
+            type: image
+            required: true
+            options:
+              media: images
+          - { name: alt, label: Bildbeschreibung, type: string, required: true }
+          - { name: credit, label: Fotocredit, type: string, required: true }
+      - name: documentPreview
+        label: Vorschaubild für den Vita Download
+        type: object
+        required: true
+        fields:
+          - name: src
+            label: Bild
+            type: image
+            required: true
+            options:
+              media: images
+          - { name: alt, label: Bildbeschreibung, type: string, required: true }
+          - { name: credit, label: Fotocredit, type: string, required: true }
 
 settings:
   commit:

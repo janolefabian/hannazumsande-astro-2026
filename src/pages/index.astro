@@ -3,6 +3,7 @@ import { getCollection } from 'astro:content';
 import BaseLayout from '../layouts/BaseLayout.astro';
 import EventList from '../components/EventList.astro';
 import settings from '../data/settings.json';
+import { imageSettings } from '../data/images';
 import { withBase } from '../utils/paths';
 
 const today = new Date().toISOString().slice(0, 10);
@@ -25,8 +26,8 @@ const events = (await getCollection('termine', ({ data }) => data.published))
       </div>
     </div>
     <figure class="home-hero__image">
-      <img src={withBase('/media/hanna-hero.jpg')} alt="Hanna Zumsande in einer Heidelandschaft" fetchpriority="high" />
-      <figcaption>Foto Christian Palm</figcaption>
+      <img src={withBase(imageSettings.hero.src)} alt={imageSettings.hero.alt} fetchpriority="high" />
+      <figcaption>Foto {imageSettings.hero.credit}</figcaption>
     </figure>
   </section>
 
@@ -39,7 +40,7 @@ const events = (await getCollection('termine', ({ data }) => data.published))
   </section>
 
   <section class="home-block home-profile">
-    <img src={withBase('/media/portrait-palm-004.jpg')} alt="Porträt von Hanna Zumsande" loading="lazy" />
+    <img src={withBase(imageSettings.homePortrait.src)} alt={imageSettings.homePortrait.alt} loading="lazy" />
     <div class="home-profile__copy">
       <p class="section-label">Vita</p>
       <h2>Von der Alten Musik bis in die Moderne</h2>

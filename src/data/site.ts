@@ -9,15 +9,6 @@ export const navigation = [
   { href: withBase('/kontakt/'), label: 'Kontakt' },
 ];
 
-export const gallery = [
-  { src: '/media/gallery/palm-006.jpg', alt: 'Porträt von Hanna Zumsande', credit: 'Christian Palm' },
-  { src: '/media/gallery/palm-012.jpg', alt: 'Hanna Zumsande im Freien', credit: 'Christian Palm' },
-  { src: '/media/gallery/palm-020.jpg', alt: 'Porträt von Hanna Zumsande in der Natur', credit: 'Christian Palm' },
-  { src: '/media/gallery/palm-028.jpg', alt: 'Hanna Zumsande, Sopranistin', credit: 'Christian Palm' },
-  { src: '/media/gallery/palm-037.jpg', alt: 'Künstlerporträt von Hanna Zumsande', credit: 'Christian Palm' },
-  { src: '/media/gallery/taake-1336.jpg', alt: 'Porträt von Hanna Zumsande', credit: 'Annemone Taake' },
-].map((image) => ({ ...image, src: withBase(image.src) }));
-
 export const audioTracks = [
   {
     title: 'Nun beut die Flur das frische Grün',
