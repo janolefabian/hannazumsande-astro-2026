@@ -186,7 +186,7 @@ content:
             options:
               media: images
           - { name: alt, label: Bildbeschreibung, type: string, required: true }
-          - { name: credit, label: Fotocredit, type: string, required: true }
+          - { name: credit, label: Fotocredit, type: string }
 
 settings:
   commit:
