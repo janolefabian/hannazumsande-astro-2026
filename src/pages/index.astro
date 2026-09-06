@@ -13,16 +13,15 @@ const events = (await getCollection('termine', ({ data }) => data.published))
   .slice(0, 3);
 ---
 
-<BaseLayout title={settings.name} description={`${settings.name} ist Sopranistin aus Hamburg. Termine, Vita, Repertoire, Hörbeispiele und Kontakt.`} bodyClass="home-page">
+<BaseLayout title={settings.name} description={`${settings.name}, ${settings.role} aus Hamburg. Termine, Vita, Repertoire, Hörbeispiele und Kontakt.`} bodyClass="home-page">
   <section class="home-hero">
     <div class="home-hero__copy">
       <span class="hero-monogram" aria-hidden="true">HZ</span>
-      <p class="section-label">Sopranistin aus Hamburg</p>
+      <p class="section-label">{settings.role}</p>
       <h1><span>Hanna</span>{' '}<span>Zumsande</span></h1>
       <p class="lead">{settings.intro}</p>
       <div class="button-row">
-        <a class="button" href={withBase('/termine/')}>Termine ansehen</a>
-        <a class="quiet-link" href={withBase('/medien/audio/')}>Hörbeispiele</a>
+        <a class="button" href={withBase('/termine/')}>Kalender ansehen</a>
       </div>
     </div>
     <figure class="home-hero__image">
@@ -31,10 +30,10 @@ const events = (await getCollection('termine', ({ data }) => data.published))
     </figure>
   </section>
 
-  <section class="home-block" aria-labelledby="naechste-termine">
+  <section class="home-block" aria-labelledby="naechste-auftritte">
     <div class="home-block__head">
-      <h2 id="naechste-termine">Nächste Termine</h2>
-      <a class="quiet-link" href={withBase('/termine/')}>Zum vollständigen Kalender</a>
+      <h2 id="naechste-auftritte">Nächste Auftritte</h2>
+      <a class="button" href={withBase('/termine/')}>Zum vollständigen Kalender</a>
     </div>
     {events.length > 0 ? <EventList events={events} compact /> : <p class="empty-state">Neue Termine folgen.</p>}
   </section>
@@ -45,7 +44,7 @@ const events = (await getCollection('termine', ({ data }) => data.published))
       <p class="section-label">Vita</p>
       <h2>Von der Alten Musik bis in die Moderne</h2>
       <p class="large-copy">Als Konzertsolistin arbeitet Hanna Zumsande mit Orchestern, Ensembles und Dirigenten im In und Ausland zusammen.</p>
-      <p>Engagements führten sie zu Festivals und in Konzertsäle wie das Concertgebouw Amsterdam, die Tonhalle Zürich, das Konzerthaus Berlin und die Hamburger Laeiszhalle.</p>
+      <p class="home-profile__engagements">Engagements führten sie zu Festivals und in Konzertsäle wie das Concertgebouw Amsterdam, die Tonhalle Zürich, das Konzerthaus Berlin und die Hamburger Laeiszhalle.</p>
       <a class="quiet-link" href={withBase('/vita/')}>Vollständige Vita lesen</a>
     </div>
   </section>
@@ -54,19 +53,14 @@ const events = (await getCollection('termine', ({ data }) => data.published))
     <div class="home-block__head">
       <h2 id="bereiche">Mehr entdecken</h2>
     </div>
-    <div class="route-list">
-      <a href={withBase('/repertoire/')}>
-        <span>01</span>
-        <h3>Repertoire</h3>
-        <p>Konzert, Oper und Lied</p>
-      </a>
+    <div class="route-list route-list--pair">
       <a href={withBase('/medien/')}>
-        <span>02</span>
+        <span>01</span>
         <h3>Medien</h3>
-        <p>Audio, Videos, Fotos und Diskografie</p>
+        <p>Audio und Video, Fotos, Diskografie, Downloads</p>
       </a>
       <a href={withBase('/kontakt/')}>
-        <span>03</span>
+        <span>02</span>
         <h3>Kontakt</h3>
         <p>Anfragen und Management</p>
       </a>

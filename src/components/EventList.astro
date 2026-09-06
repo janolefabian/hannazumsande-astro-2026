@@ -1,5 +1,7 @@
 ---
 import type { CollectionEntry } from 'astro:content';
+import { eventDetailPath, hasEventDetails } from '../utils/events';
+import { withBase } from '../utils/paths';
 
 interface Props {
   events: CollectionEntry<'termine'>[];
@@ -12,16 +14,20 @@ const dateFormatter = new Intl.DateTimeFormat('de-DE', { day: '2-digit', month: 
 
 <div class:list={['event-list', { 'event-list--compact': compact }]}>
   {events.map((event) => (
-    <article class="event-row">
+    <article class:list={['event-row', { 'event-row--linked': hasEventDetails(event) }]}>
       <time datetime={event.data.date.toISOString().slice(0, 10)}>
         <strong>{dateFormatter.format(event.data.date)}</strong>
         <span>{event.data.time}</span>
       </time>
       <div>
-        <h2>{event.data.title}</h2>
+        <h2>
+          {hasEventDetails(event) ? (
+            <a class="event-link" href={withBase(eventDetailPath(event))}>{event.data.title}</a>
+          ) : event.data.title}
+        </h2>
         <p>{event.data.venue}{event.data.city ? `, ${event.data.city}` : ''}</p>
       </div>
-      {event.data.link && <a class="quiet-link" href={event.data.link}>Details</a>}
+      {hasEventDetails(event) && <span class="event-more" aria-hidden="true">Mehr erfahren <span>↗</span></span>}
     </article>
   ))}
 </div>

@@ -7,3 +7,19 @@ city: Lüneburg
 featured: true
 published: true
 ---
+
+## Programm
+
+F. Mendelssohn Bartholdy: „Elias“
+
+## Mitwirkende
+
+Hanna Zumsande, Sopran
+
+Weitere Solistinnen und Solisten, Chor, Orchester und musikalische Leitung werden ergänzt.
+
+## Karten
+
+Informationen zu Karten und Einlass folgen.
+
+*Beispielinhalt für den Entwurf. Die Angaben zur Besetzung und zu den Karten werden noch ergänzt.*

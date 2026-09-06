@@ -20,7 +20,7 @@ media:
 
 content:
   - name: termine
-    label: Termine
+    label: Kalender
     type: collection
     path: src/content/termine
     format: yaml-frontmatter
@@ -57,8 +57,23 @@ content:
         label: Stadt
         type: string
       - name: link
-        label: Link zu weiteren Informationen
+        label: Link zum Veranstalter oder zu Tickets
         type: string
+        description: "Optional. Bitte die vollständige Adresse mit https:// eintragen."
+      - name: photo
+        label: Foto
+        type: image
+        description: "Optional. Foto auswählen oder hochladen. Auch ein Foto allein macht den Auftritt anklickbar."
+        options:
+          media: images
+      - name: photoAlt
+        label: Bildbeschreibung
+        type: string
+        description: "Kurz beschreiben, was auf dem Foto zu sehen ist."
+      - name: photoCredit
+        label: Fotocredit
+        type: string
+        description: "Name der Fotografin oder des Fotografen, falls erforderlich."
       - name: featured
         label: Auf der Startseite hervorheben
         type: boolean
@@ -69,8 +84,31 @@ content:
       - name: body
         label: Weitere Informationen
         type: rich-text
+        description: "Optional, zum Beispiel Programm, weitere Solistinnen und Solisten oder Ensembles. Mit Informationen, Foto oder Veranstalterlink wird der Auftritt anklickbar. Ohne diese Angaben erscheint er nur in der Übersicht."
         options:
           media: false
+
+  - name: vitaDownloads
+    label: Vita Downloads
+    type: file
+    path: src/data/downloads.json
+    format: json
+    operations:
+      delete: false
+    fields:
+      - name: vitaLong
+        label: Vita lang
+        type: file
+        options:
+          media: documents
+          extensions: [pdf]
+      - name: vitaShort
+        label: Vita kurz
+        type: file
+        description: "Hier die Kurzfassung als PDF auswählen, sobald sie vorliegt."
+        options:
+          media: documents
+          extensions: [pdf]
 
   - name: website
     label: Grunddaten
@@ -174,19 +212,6 @@ content:
               media: images
           - { name: alt, label: Bildbeschreibung, type: string, required: true }
           - { name: credit, label: Fotocredit, type: string, required: true }
-      - name: documentPreview
-        label: Vorschaubild für den Vita Download
-        type: object
-        required: true
-        fields:
-          - name: src
-            label: Bild
-            type: image
-            required: true
-            options:
-              media: images
-          - { name: alt, label: Bildbeschreibung, type: string, required: true }
-          - { name: credit, label: Fotocredit, type: string }
 
 settings:
   commit:

@@ -11,24 +11,20 @@ const upcoming = allEvents.filter((event) => event.data.date.toISOString().slice
 const archive = allEvents.filter((event) => event.data.date.toISOString().slice(0, 10) < today).reverse();
 ---
 
-<BaseLayout title="Termine" description="Aktuelle Konzerttermine und Veranstaltungsorte der Sopranistin Hanna Zumsande.">
-  <PageIntro
-    label="Kalender"
-    title="Termine"
-    intro="Konzerte, Oratorien und weitere Auftritte von Hanna Zumsande."
-  />
+<BaseLayout title="Kalender" description="Nächste und vergangene Auftritte von Hanna Zumsande, Sopran." bodyClass="calendar-page">
+  <PageIntro title="Kalender" />
 
-  <section class="calendar-wrap" aria-labelledby="aktuelle-termine">
+  <section class="calendar-wrap" aria-labelledby="naechste-auftritte">
     <div class="calendar-head">
-      <h2 id="aktuelle-termine">Aktuelle Termine</h2>
+      <h2 id="naechste-auftritte">Nächste Auftritte</h2>
     </div>
     {upcoming.length > 0 ? <EventList events={upcoming} /> : <p class="empty-state">Neue Termine folgen.</p>}
   </section>
 
-  <section class="calendar-wrap calendar-archive" aria-labelledby="vergangene-termine">
+  <section class="calendar-wrap calendar-archive" aria-labelledby="vergangene-auftritte">
     <div class="calendar-head">
-      <h2 id="vergangene-termine">Vergangene Termine</h2>
+      <h2 id="vergangene-auftritte">Vergangene Auftritte</h2>
     </div>
-    {archive.length > 0 ? <EventList events={archive} /> : <p class="empty-state">Noch keine vergangenen Termine.</p>}
+    {archive.length > 0 ? <EventList events={archive} /> : <p class="empty-state">Noch keine vergangenen Auftritte.</p>}
   </section>
 </BaseLayout>

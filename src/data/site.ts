@@ -3,8 +3,7 @@ import { withBase } from '../utils/paths';
 export const navigation = [
   { href: withBase('/'), label: 'Start' },
   { href: withBase('/vita/'), label: 'Vita' },
-  { href: withBase('/termine/'), label: 'Termine' },
-  { href: withBase('/repertoire/'), label: 'Repertoire' },
+  { href: withBase('/termine/'), label: 'Kalender' },
   { href: withBase('/medien/'), label: 'Medien' },
   { href: withBase('/kontakt/'), label: 'Kontakt' },
 ];

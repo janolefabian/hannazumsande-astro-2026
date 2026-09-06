@@ -1,11 +1,17 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import PageIntro from '../../components/PageIntro.astro';
-import { imageSettings, pressPhotos } from '../../data/images';
+import { pressPhotos } from '../../data/images';
+import downloads from '../../data/downloads.json';
 import { withBase } from '../../utils/paths';
+
+const biographies = [
+  { id: 'vita-long', label: 'Vita lang', src: downloads.vitaLong },
+  { id: 'vita-short', label: 'Vita kurz', src: downloads.vitaShort },
+];
 ---
 
-<BaseLayout title="Downloads" description="Vita und Pressefotos der Sopranistin Hanna Zumsande zum Download.">
+<BaseLayout title="Downloads" description="Vita und Pressefotos von Hanna Zumsande, Sopran, zum Download.">
   <PageIntro
     label="Medien"
     title="Downloads"
@@ -21,11 +27,18 @@ import { withBase } from '../../utils/paths';
         <a class="quiet-link" href={photo.src} download>Foto herunterladen</a>
       </article>
     ))}
-    <article class="download-card">
-      <img src={withBase(imageSettings.documentPreview.src)} alt={imageSettings.documentPreview.alt} />
+    <article class="download-card download-card--vita">
       <h2>Vita als PDF</h2>
-      <p>Dokument aus der bisherigen Website</p>
-      <a class="quiet-link" href={withBase('/downloads/vita-hanna-zumsande.pdf')}>PDF herunterladen</a>
+      <div class="vita-downloads">
+        {biographies.map((biography) => biography.src ? (
+          <a class="button" href={withBase(biography.src)} download>{biography.label}</a>
+        ) : (
+          <div>
+            <button class="button" type="button" disabled aria-describedby={biography.id + '-status'}>{biography.label}</button>
+            <p id={biography.id + '-status'} class="download-status">In Kürze verfügbar</p>
+          </div>
+        ))}
+      </div>
     </article>
   </div>
 </BaseLayout>

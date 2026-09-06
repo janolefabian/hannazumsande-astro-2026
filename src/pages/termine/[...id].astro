@@ -1,0 +1,58 @@
+---
+import { getCollection, render, type CollectionEntry } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { eventLink, eventPhoto, hasEventDescription, hasEventDetails } from '../../utils/events';
+import { withBase } from '../../utils/paths';
+
+export async function getStaticPaths() {
+  const events = await getCollection('termine', ({ data }) => data.published);
+  return events.filter(hasEventDetails).map((event) => ({
+    params: { id: event.id },
+    props: { event },
+  }));
+}
+
+interface Props {
+  event: CollectionEntry<'termine'>;
+}
+
+const { event } = Astro.props;
+const { Content } = await render(event);
+const date = new Intl.DateTimeFormat('de-DE', {
+  day: '2-digit', month: 'long', year: 'numeric', timeZone: 'UTC',
+}).format(event.data.date);
+const location = [event.data.venue, event.data.city].filter(Boolean).join(', ');
+const link = eventLink(event);
+const photo = eventPhoto(event);
+const hasDescription = hasEventDescription(event);
+const photoAlt = event.data.photoAlt?.trim() || 'Foto zum Auftritt ' + event.data.title;
+const photoCredit = event.data.photoCredit?.trim();
+---
+
+<BaseLayout title={event.data.title} description={event.data.title + ', ' + date + ', ' + location + '. Ein Auftritt von Hanna Zumsande.'} image={photo}>
+  <article class="event-detail">
+    <a class="quiet-link event-detail__back" href={withBase('/termine/')}>Zurück zum Kalender</a>
+    <header class="event-detail__header">
+      <p class="section-label">Auftritt</p>
+      <h1>{event.data.title}</h1>
+      <div class="event-detail__meta">
+        <time datetime={event.data.date.toISOString().slice(0, 10)}>{date}<span>{event.data.time}</span></time>
+        <p>{location}</p>
+      </div>
+    </header>
+    <div class:list={['event-detail__content', { 'event-detail__content--image': photo && (hasDescription || link) }]}>
+      {(hasDescription || link) && (
+        <div>
+          {hasDescription && <div class="event-detail__body"><Content /></div>}
+          {link && <div class="button-row"><a class="button" href={link} rel="noopener noreferrer">Zur Veranstaltungsseite</a></div>}
+        </div>
+      )}
+      {photo && (
+        <figure class="event-detail__photo">
+          <img src={withBase(photo)} alt={photoAlt} />
+          {photoCredit && <figcaption>Foto {photoCredit}</figcaption>}
+        </figure>
+      )}
+    </div>
+  </article>
+</BaseLayout>

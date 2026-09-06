@@ -20,7 +20,11 @@ const isActive = (href: string) => href === homeHref ? currentPath === homeHref 
     ))}
   </nav>
 
-  <details class="mobile-nav">
+  <button class="mobile-menu-toggle" type="button" aria-haspopup="dialog" aria-controls="mobile-menu" aria-expanded="false" hidden>
+    <span>Menü</span><span class="mobile-menu-icon" aria-hidden="true"></span>
+  </button>
+
+  <details class="mobile-nav" data-menu-fallback>
     <summary>Menü</summary>
     <nav aria-label="Mobile Navigation">
       {navigation.map((item) => (
@@ -29,3 +33,30 @@ const isActive = (href: string) => href === homeHref ? currentPath === homeHref 
     </nav>
   </details>
 </header>
+
+<dialog id="mobile-menu" class="mobile-menu" aria-label="Hauptmenü">
+  <div class="mobile-menu__inner">
+    <div class="mobile-menu__head">
+      <a class="mobile-menu__brand" href={homeHref}>
+        <span>{settings.name}</span><small>{settings.role}</small>
+      </a>
+      <form method="dialog">
+        <button class="mobile-menu__close" type="submit" autofocus>
+          <span>Schließen</span><span class="mobile-menu-icon mobile-menu-icon--close" aria-hidden="true"></span>
+        </button>
+      </form>
+    </div>
+    <nav class="mobile-menu__links" aria-label="Mobile Navigation">
+      {navigation.map((item) => (
+        <a href={item.href} aria-current={isActive(item.href) ? 'page' : undefined}>
+          <span>{item.label}</span>
+        </a>
+      ))}
+    </nav>
+  </div>
+</dialog>
+
+<script>
+  import { setupMobileMenu } from '../scripts/mobile-menu.js';
+  setupMobileMenu();
+</script>

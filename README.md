@@ -18,6 +18,12 @@ Die Termine liegen einzeln im Ordner `src/content/termine`. Nach dem Hochladen d
 
 Pages CMS liest dafür die Datei `.pages.yml`. Änderungen werden als normaler GitHub Commit gespeichert und lösen automatisch eine neue Veröffentlichung aus. Ein täglicher geplanter Build sorgt dafür, dass vergangene Termine ohne manuelle Arbeit in das Archiv wechseln.
 
+Unter „Kalender“ sind „Weitere Informationen“, „Foto“ und der Veranstalterlink optional. Sobald eines dieser Felder ausgefüllt ist, erhält der veröffentlichte Auftritt eine eigene Detailseite und wird in der Übersicht sowie auf der Startseite anklickbar. Ohne diese Angaben bleibt er ein einfacher Eintrag. Nicht veröffentlichte Auftritte erhalten keine öffentliche Detailseite.
+
+Das optionale Foto kann aus dem Bildarchiv ausgewählt oder direkt hochgeladen werden. „Bildbeschreibung“ und „Fotocredit“ werden beim selben Termin gepflegt. Das Foto erscheint nur auf der Detailseite und wird vollständig ohne Beschnitt dargestellt. Ein Fotocredit erscheint nur, wenn er ausgefüllt ist. Beim ersten Beispieltermin ist ein vorhandenes Porträt hinterlegt.
+
+Unter „Vita Downloads“ lassen sich die lange und kurze Fassung als PDF auswählen. Die Auswahl liegt in `src/data/downloads.json`. Bis Hanna beide Fassungen bereitstellt, verwendet „Vita lang“ das vorhandene PDF; „Vita kurz“ ist vorbereitet und noch deaktiviert. Fehlende Dateien werden nicht durch doppelte oder leere Downloadlinks ersetzt.
+
 ## Veröffentlichung
 
 Der Ablauf in `.github/workflows/deploy.yml` baut die Website bei jeder Änderung am Hauptzweig und veröffentlicht sie auf GitHub Pages. In den Einstellungen des GitHub Repositorys muss unter Pages einmalig GitHub Actions als Quelle gewählt werden.
