@@ -4,28 +4,54 @@ import settings from '../data/settings.json';
 import imageSettings from '../data/images.json';
 import SiteHeader from '../components/SiteHeader.astro';
 import SiteFooter from '../components/SiteFooter.astro';
-import { withBase } from '../utils/paths';
+import { withBase, withoutBase } from '../utils/paths';
+import { pageMeta } from '../data/seo';
+import { allowIndexing, jsonLd } from '../utils/seo';
+import { imageDimensions } from '../utils/imageMetadata';
 
 interface Props {
   title: string;
   description: string;
-  image?: string;
+  image?: string | null;
+  imageAlt?: string;
+  noindex?: boolean;
   bodyClass?: string;
 }
 
-const { title, description, image = imageSettings.hero.src, bodyClass } = Astro.props;
-const pageTitle = title === settings.name ? `${settings.name}, ${settings.role}` : `${title} | ${settings.name}`;
-const canonical = new URL(Astro.url.pathname, Astro.site);
-const socialImage = new URL(withBase(image), Astro.site);
-const isPreview = Astro.site?.hostname.endsWith('github.io') ?? false;
+const { title, description, image = imageSettings.hero.src, imageAlt = imageSettings.hero.alt, noindex = false, bodyClass } = Astro.props;
+const routePath = withoutBase(Astro.url.pathname);
+const path = routePath === '/404/' ? '/404.html' : routePath;
+const meta = pageMeta[path];
+const pageTitle = meta?.title ?? `${title} | ${settings.name}`;
+const pageDescription = meta?.description ?? description;
+const canonical = new URL(withBase(path), Astro.site);
+const socialImage = image ? new URL(withBase(image), Astro.site) : undefined;
+const dimensions = image ? await imageDimensions(image) : undefined;
+const indexable = allowIndexing(Astro.site) && !noindex && meta?.index !== false;
+const home = new URL(withBase('/'), Astro.site).href;
 const personSchema = {
-  '@context': 'https://schema.org',
   '@type': 'Person',
+  '@id': home + '#hanna-zumsande',
   name: settings.name,
   jobTitle: settings.role,
-  url: new URL(withBase('/'), Astro.site).toString(),
-  homeLocation: settings.location,
+  url: home,
+  image: new URL(withBase(imageSettings.homePortrait.src), Astro.site).href,
+  homeLocation: { '@type': 'Place', name: settings.location },
   email: settings.email,
+};
+const structuredData = {
+  '@context': 'https://schema.org',
+  '@graph': [
+    personSchema,
+    { '@type': 'WebSite', '@id': home + '#website', url: home, name: `${settings.name}, ${settings.role}`, inLanguage: 'de', publisher: { '@id': personSchema['@id'] } },
+    {
+      '@type': meta?.type ?? 'WebPage', '@id': canonical.href + '#webpage', url: canonical.href,
+      name: pageTitle, description: pageDescription, inLanguage: 'de',
+      isPartOf: { '@id': home + '#website' }, about: { '@id': personSchema['@id'] },
+      ...(meta?.type === 'ProfilePage' ? { mainEntity: { '@id': personSchema['@id'] } } : {}),
+      ...(socialImage ? { primaryImageOfPage: { '@type': 'ImageObject', url: socialImage.href, ...dimensions } } : {}),
+    },
+  ],
 };
 ---
 
@@ -35,20 +61,36 @@ const personSchema = {
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width" />
     <meta name="generator" content={Astro.generator} />
-    <meta name="description" content={description} />
-    {isPreview && <meta name="robots" content="noindex, nofollow" />}
-    <meta name="theme-color" content="#6d725d" />
-    <link rel="icon" href={withBase('/favicon.ico')} />
+    <meta name="description" content={pageDescription} />
+    <meta name="robots" content={indexable ? 'index, follow, max-image-preview:large' : 'noindex, follow'} />
+    <meta name="theme-color" content="#515746" />
+    <link rel="icon" href={withBase('/favicon.ico')} sizes="16x16 32x32 48x48" />
+    <link rel="icon" type="image/png" href={withBase('/favicon-96.png')} sizes="96x96" />
+    <link rel="icon" type="image/svg+xml" href={withBase('/favicon.svg')} sizes="any" />
+    <link rel="apple-touch-icon" href={withBase('/apple-touch-icon.png')} sizes="180x180" />
+    {indexable && <link rel="sitemap" type="application/xml" href={withBase('/sitemap.xml')} />}
     <link rel="canonical" href={canonical} />
     <meta property="og:type" content="website" />
     <meta property="og:locale" content="de_DE" />
     <meta property="og:title" content={pageTitle} />
-    <meta property="og:description" content={description} />
+    <meta property="og:description" content={pageDescription} />
     <meta property="og:url" content={canonical} />
-    <meta property="og:image" content={socialImage} />
-    <meta name="twitter:card" content="summary_large_image" />
+    <meta property="og:site_name" content={`${settings.name}, ${settings.role}`} />
+    {socialImage && <>
+      <meta property="og:image" content={socialImage} />
+      <meta property="og:image:alt" content={imageAlt} />
+      {dimensions && <>
+        <meta property="og:image:width" content={dimensions.width} />
+        <meta property="og:image:height" content={dimensions.height} />
+      </>}
+      <meta name="twitter:image" content={socialImage} />
+      <meta name="twitter:image:alt" content={imageAlt} />
+    </>}
+    <meta name="twitter:card" content={socialImage ? 'summary_large_image' : 'summary'} />
+    <meta name="twitter:title" content={pageTitle} />
+    <meta name="twitter:description" content={pageDescription} />
     <title>{pageTitle}</title>
-    <script type="application/ld+json" set:html={JSON.stringify(personSchema)} />
+    <script type="application/ld+json" set:html={jsonLd(structuredData)} />
   </head>
   <body class={bodyClass}>
     <a class="skip-link" href="#inhalt">Zum Inhalt</a>

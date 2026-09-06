@@ -1,0 +1,9 @@
+---
+import type { HTMLAttributes } from 'astro/types';
+import { imageDimensions } from '../utils/imageMetadata';
+import { withBase } from '../utils/paths';
+interface Props extends Omit<HTMLAttributes<'img'>, 'src' | 'alt'> { src: string; alt: string }
+const { src, alt, loading = 'lazy', decoding = 'async', ...attributes } = Astro.props;
+const dimensions = await imageDimensions(src);
+---
+<img src={withBase(src)} alt={alt} {...dimensions} loading={loading} decoding={decoding} {...attributes} />

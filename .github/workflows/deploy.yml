@@ -16,6 +16,11 @@ concurrency:
   group: pages
   cancel-in-progress: true
 
+env:
+  SITE_URL: ${{ vars.SITE_URL }}
+  SITE_BASE: ${{ vars.SITE_BASE }}
+  PUBLIC_ALLOW_INDEXING: ${{ vars.PUBLIC_ALLOW_INDEXING || 'false' }}
+
 jobs:
   build:
     runs-on: ubuntu-latest

@@ -5,5 +5,10 @@ export const withBase = (path: string) => {
     return path;
   }
 
-  return `${base}${path.startsWith('/') ? path : `/${path}`}`;
+  const normalized = path.startsWith('/') ? path : `/${path}`;
+  if (base && (normalized === base || normalized.startsWith(base + '/'))) return normalized;
+  return `${base}${normalized}`;
 };
+
+export const withoutBase = (path: string) =>
+  base && (path === base || path.startsWith(base + '/')) ? path.slice(base.length) || '/' : path;

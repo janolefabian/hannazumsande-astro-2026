@@ -6,7 +6,7 @@ const repository = process.env.GITHUB_REPOSITORY?.split('/')[1] ?? 'hannazumsand
 
 // https://astro.build/config
 export default defineConfig({
-	site: isGitHubPages ? 'https://janolefabian.github.io' : 'https://www.hannazumsande.de',
-	base: isGitHubPages ? `/${repository}` : '/',
+	site: process.env.SITE_URL || (isGitHubPages ? 'https://janolefabian.github.io' : 'https://www.hannazumsande.de'),
+	base: process.env.SITE_BASE || (isGitHubPages ? `/${repository}` : '/'),
 	trailingSlash: 'always',
 });

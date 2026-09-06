@@ -6,6 +6,7 @@ venue: St. Johanniskirche
 city: Lüneburg
 featured: true
 published: true
+example: true
 ---
 
 ## Programm

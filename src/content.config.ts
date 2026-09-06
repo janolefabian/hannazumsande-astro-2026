@@ -15,6 +15,7 @@ const termine = defineCollection({
     photoCredit: z.string().nullish(),
     featured: z.boolean().default(false),
     published: z.boolean().default(true),
+    example: z.boolean().default(false),
   }),
 });
 

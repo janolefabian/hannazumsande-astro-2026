@@ -2,6 +2,7 @@
 import { getCollection } from 'astro:content';
 import BaseLayout from '../layouts/BaseLayout.astro';
 import EventList from '../components/EventList.astro';
+import SiteImage from '../components/SiteImage.astro';
 import settings from '../data/settings.json';
 import { imageSettings } from '../data/images';
 import { withBase } from '../utils/paths';
@@ -25,7 +26,7 @@ const events = (await getCollection('termine', ({ data }) => data.published))
       </div>
     </div>
     <figure class="home-hero__image">
-      <img src={withBase(imageSettings.hero.src)} alt={imageSettings.hero.alt} fetchpriority="high" />
+      <SiteImage src={imageSettings.hero.src} alt={imageSettings.hero.alt} loading="eager" fetchpriority="high" />
       <figcaption>Foto {imageSettings.hero.credit}</figcaption>
     </figure>
   </section>
@@ -39,7 +40,7 @@ const events = (await getCollection('termine', ({ data }) => data.published))
   </section>
 
   <section class="home-block home-profile">
-    <img src={withBase(imageSettings.homePortrait.src)} alt={imageSettings.homePortrait.alt} loading="lazy" />
+    <SiteImage src={imageSettings.homePortrait.src} alt={imageSettings.homePortrait.alt} />
     <div class="home-profile__copy">
       <p class="section-label">Vita</p>
       <h2>Von der Alten Musik bis in die Moderne</h2>

@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="64" height="64">
+  <title>Hanna Zumsande</title>
+  <rect width="64" height="64" rx="8" fill="#515746"/>
+  <g fill="#f7f4ed">
+    <path d="M8 16h9v2h-2v12h10V18h-2v-2h9v2h-3v28h3v2h-9v-2h2V33H15v13h2v2H8v-2h3V18H8z"/>
+    <path d="M35 16h21v3L40 45h12l2-6h2v9H34v-3l16-26H39l-2 6h-2z"/>
+  </g>
+</svg>

@@ -1,6 +1,7 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import PageIntro from '../../components/PageIntro.astro';
+import SiteImage from '../../components/SiteImage.astro';
 import { discography } from '../../data/site';
 ---
 
@@ -14,7 +15,7 @@ import { discography } from '../../data/site';
   <div class="disc-grid">
     {discography.map((disc) => (
       <article class="disc-card">
-        <img src={disc.cover} alt={`Cover ${disc.title}`} loading="lazy" />
+        <SiteImage src={disc.cover} alt={`Cover ${disc.title}`} />
         <h2>{disc.title}</h2>
         {disc.subtitle && <p>{disc.subtitle}</p>}
         <p>{disc.artists}</p>

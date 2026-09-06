@@ -1,0 +1,77 @@
+import settings from './settings.json';
+
+type PageMeta = { title: string; description: string; index?: boolean; type?: string };
+export const pageMeta: Record<string, PageMeta> = {
+  '/': {
+    title: `${settings.name} | ${settings.role} für Konzert, Oper und Lied`,
+    description: `${settings.name}, ${settings.role} aus Hamburg: Konzert, Oper und Lied von der Alten Musik bis zur Moderne. Auftritte, Biografie, Hörbeispiele und Kontakt.`,
+  },
+  '/vita/': {
+    title: 'Vita und Biografie | Hanna Zumsande, Sopran',
+    description: 'Hanna Zumsandes künstlerischer Weg: Ausbildung in Hamburg, internationale Konzerttätigkeit, Opernrollen, Aufnahmen und Auszeichnungen.',
+    type: 'ProfilePage',
+  },
+  '/termine/': {
+    title: 'Kalender und Konzerttermine | Hanna Zumsande',
+    description: 'Auftritte von Hanna Zumsande: kommende Konzerte mit Datum und Veranstaltungsort sowie ein Rückblick auf vergangene Auftritte.',
+    type: 'CollectionPage',
+  },
+  '/medien/': {
+    title: 'Musik, Fotos und Presseunterlagen | Hanna Zumsande',
+    description: 'Hanna Zumsande hören und entdecken: Audio und Video, Porträts, Diskografie sowie Vita und Pressefotos zum Herunterladen.',
+    type: 'CollectionPage',
+  },
+  '/medien/audio/': {
+    title: 'Hörbeispiele: Audio und Video | Hanna Zumsande',
+    description: 'Hörbeispiele und Videos mit Hanna Zumsande, Sopran: Arien und Liveaufnahmen mit Musik von Bach, Haydn, Telemann, Graun und Ravel.',
+    type: 'CollectionPage',
+  },
+  '/medien/fotos/': {
+    title: 'Porträts und Pressefotos | Hanna Zumsande',
+    description: 'Porträts und Pressefotos von Hanna Zumsande, Sopran. Bilder ansehen und herunterladen, mit den jeweiligen Angaben zur Fotografie.',
+    type: 'CollectionPage',
+  },
+  '/medien/diskografie/': {
+    title: 'Diskografie und CD-Aufnahmen | Hanna Zumsande',
+    description: 'Aufnahmen mit Hanna Zumsande: Musik von Händel, Telemann, Monteverdi und weiteren Komponisten, mit Ensembles und Informationen zu den Veröffentlichungen.',
+    type: 'CollectionPage',
+  },
+  '/medien/downloads/': {
+    title: 'Vita und Pressefotos zum Download | Hanna Zumsande',
+    description: 'Unterlagen für Veranstalter, Agenturen und Presse: die Vita von Hanna Zumsande als PDF sowie ausgewählte Pressefotos mit Fotocredits.',
+    type: 'CollectionPage',
+  },
+  '/kontakt/': {
+    title: 'Kontakt und Konzertanfragen | Hanna Zumsande',
+    description: 'Kontakt zu Hanna Zumsande und Weiler Artists Management Berlin für Konzerte, Programme, Presseinformationen und künstlerische Zusammenarbeit.',
+    type: 'ContactPage',
+  },
+  '/repertoire/': {
+    title: 'Repertoire: Konzert, Oper und Lied | Hanna Zumsande',
+    description: 'Das Repertoire von Hanna Zumsande, Sopran: Oratorien, Passionen, Messen, Opernpartien und Lieder von der Alten Musik bis zur Moderne.',
+    type: 'CollectionPage',
+  },
+  '/repertoire/konzert/': {
+    title: 'Konzertrepertoire und Oratorien | Hanna Zumsande',
+    description: 'Konzertrepertoire von Hanna Zumsande: Oratorien, Passionen, Messen und sinfonische Werke von Bach, Händel, Haydn, Mendelssohn und weiteren Komponisten.',
+    type: 'CollectionPage',
+  },
+  '/repertoire/oper/': {
+    title: 'Opernrepertoire und Partien | Hanna Zumsande',
+    description: 'Opernpartien im Repertoire von Hanna Zumsande, Sopran, mit Werken von Monteverdi und Händel bis zu Strauss, Strawinsky, Verdi und Wagner.',
+    type: 'CollectionPage',
+  },
+  '/repertoire/lied/': {
+    title: 'Liedrepertoire | Hanna Zumsande, Sopran',
+    description: 'Liedrepertoire von Hanna Zumsande mit Werken von Brahms, Debussy, Mahler, Ravel, Schubert, Schumann, Strauss und Wolf.',
+    type: 'CollectionPage',
+  },
+  '/links/': {
+    title: 'Künstlerische Partner | Hanna Zumsande',
+    description: 'Ausgewählte künstlerische Partner von Hanna Zumsande mit Links zu Ensembles und zur Fotografie.',
+    type: 'CollectionPage',
+  },
+  '/impressum/': { title: 'Impressum | Hanna Zumsande', description: 'Impressum und Bildnachweise der Website von Hanna Zumsande.', index: false },
+  '/datenschutz/': { title: 'Datenschutz | Hanna Zumsande', description: 'Hinweise zum Datenschutz auf der Website von Hanna Zumsande.', index: false },
+  '/404.html': { title: 'Seite nicht gefunden | Hanna Zumsande', description: 'Die gesuchte Seite wurde nicht gefunden.', index: false },
+};

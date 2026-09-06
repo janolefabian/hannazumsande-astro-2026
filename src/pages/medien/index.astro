@@ -1,6 +1,7 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import PageIntro from '../../components/PageIntro.astro';
+import SiteImage from '../../components/SiteImage.astro';
 import { imageSettings } from '../../data/images';
 import { withBase } from '../../utils/paths';
 ---
@@ -9,12 +10,12 @@ import { withBase } from '../../utils/paths';
   <PageIntro
     label="Hören und sehen"
     title="Medien"
-    intro="Aufnahmen, Porträts und Veröffentlichungen, geordnet auf eigenen Seiten."
+    intro="Hörbeispiele, Porträts und Einspielungen von Hanna Zumsande."
   />
 
   <section class="media-overview" aria-label="Medienbereiche">
     <a class="media-feature" href={withBase('/medien/audio/')}>
-      <img src={withBase(imageSettings.pagePortrait.src)} alt="" loading="eager" />
+      <SiteImage src={imageSettings.pagePortrait.src} alt={imageSettings.pagePortrait.alt} loading="eager" />
       <div class="media-feature__copy">
         <small>Hörbeispiele und Aufnahmen</small>
         <h2>Audio und Video</h2>

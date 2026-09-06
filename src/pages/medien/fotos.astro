@@ -1,6 +1,7 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import PageIntro from '../../components/PageIntro.astro';
+import SiteImage from '../../components/SiteImage.astro';
 import { gallery } from '../../data/images';
 ---
 
@@ -8,13 +9,13 @@ import { gallery } from '../../data/images';
   <PageIntro
     label="Medien"
     title="Fotos"
-    intro="Vorhandene Porträts von Christian Palm. Für die Veröffentlichung bitte die jeweiligen Credits beibehalten."
+    intro="Porträts und Pressefotos von Hanna Zumsande. Bitte bei Verwendung die jeweiligen Fotocredits angeben."
   />
 
   <div class="gallery-grid">
     {gallery.map((image) => (
       <figure>
-        <a href={image.src} download><img src={image.src} alt={image.alt} loading="lazy" /></a>
+        <a href={image.src} download><SiteImage src={image.src} alt={image.alt} /></a>
         <figcaption>Foto {image.credit}, zum Download auf das Bild klicken</figcaption>
       </figure>
     ))}

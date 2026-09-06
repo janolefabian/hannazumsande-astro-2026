@@ -87,6 +87,11 @@ content:
         description: "Optional, zum Beispiel Programm, weitere Solistinnen und Solisten oder Ensembles. Mit Informationen, Foto oder Veranstalterlink wird der Auftritt anklickbar. Ohne diese Angaben erscheint er nur in der Übersicht."
         options:
           media: false
+      - name: example
+        label: Enthält noch Beispielinhalt
+        type: boolean
+        default: false
+        description: "Nur für unsere Entwürfe. Diese Detailseite bleibt aus Suchmaschinen und der Sitemap ausgeschlossen. Ausschalten, sobald die Angaben fertig sind."
 
   - name: vitaDownloads
     label: Vita Downloads

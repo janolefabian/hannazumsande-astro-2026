@@ -8,14 +8,14 @@ import { audioTracks, videos } from '../../data/site';
   <PageIntro
     label="Medien"
     title="Audio und Video"
-    intro="Ausgewählte Live Mitschnitte, Arien und Produktionen aus der bisherigen Website."
+    intro="Ausgewählte Liveaufnahmen, Arien und Produktionen mit Hanna Zumsande."
   />
 
   <section class="audio-list" aria-label="Hörbeispiele">
     {audioTracks.map((track) => (
       <article class="audio-row">
         <div><h2>{track.title}</h2><p>{track.work}</p></div>
-        <audio controls preload="none" src={track.src}>Ihr Browser kann diese Audiodatei nicht abspielen.</audio>
+        <audio controls preload="none" src={track.src} aria-label={`Hörbeispiel: ${track.title}`}>Ihr Browser kann diese Audiodatei nicht abspielen.</audio>
       </article>
     ))}
   </section>

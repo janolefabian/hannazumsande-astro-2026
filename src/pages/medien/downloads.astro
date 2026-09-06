@@ -1,6 +1,7 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import PageIntro from '../../components/PageIntro.astro';
+import SiteImage from '../../components/SiteImage.astro';
 import { pressPhotos } from '../../data/images';
 import downloads from '../../data/downloads.json';
 import { withBase } from '../../utils/paths';
@@ -21,7 +22,7 @@ const biographies = [
   <div class="download-list">
     {pressPhotos.map((photo) => (
       <article class="download-card">
-        <img src={photo.src} alt={photo.alt} />
+        <SiteImage src={photo.src} alt={photo.alt} />
         <h2>{photo.label}</h2>
         <p>Foto {photo.credit}</p>
         <a class="quiet-link" href={photo.src} download>Foto herunterladen</a>

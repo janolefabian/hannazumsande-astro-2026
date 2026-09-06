@@ -1,6 +1,7 @@
 ---
 import { getCollection, render, type CollectionEntry } from 'astro:content';
 import BaseLayout from '../../layouts/BaseLayout.astro';
+import SiteImage from '../../components/SiteImage.astro';
 import { eventLink, eventPhoto, hasEventDescription, hasEventDetails } from '../../utils/events';
 import { withBase } from '../../utils/paths';
 
@@ -29,7 +30,7 @@ const photoAlt = event.data.photoAlt?.trim() || 'Foto zum Auftritt ' + event.dat
 const photoCredit = event.data.photoCredit?.trim();
 ---
 
-<BaseLayout title={event.data.title} description={event.data.title + ', ' + date + ', ' + location + '. Ein Auftritt von Hanna Zumsande.'} image={photo}>
+<BaseLayout title={event.data.title} description={event.data.title + ', ' + date + ', ' + location + '. Ein Auftritt von Hanna Zumsande.'} image={photo || null} imageAlt={photoAlt} noindex={event.data.example}>
   <article class="event-detail">
     <a class="quiet-link event-detail__back" href={withBase('/termine/')}>Zurück zum Kalender</a>
     <header class="event-detail__header">
@@ -49,7 +50,7 @@ const photoCredit = event.data.photoCredit?.trim();
       )}
       {photo && (
         <figure class="event-detail__photo">
-          <img src={withBase(photo)} alt={photoAlt} />
+          <SiteImage src={photo} alt={photoAlt} />
           {photoCredit && <figcaption>Foto {photoCredit}</figcaption>}
         </figure>
       )}
