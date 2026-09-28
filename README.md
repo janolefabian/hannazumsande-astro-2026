@@ -22,7 +22,17 @@ Unter „Kalender“ sind „Weitere Informationen“, „Foto“ und der Verans
 
 Das optionale Foto kann aus dem Bildarchiv ausgewählt oder direkt hochgeladen werden. „Bildbeschreibung“ und „Fotocredit“ werden beim selben Termin gepflegt. Das Foto erscheint nur auf der Detailseite und wird vollständig ohne Beschnitt dargestellt. Ein Fotocredit erscheint nur, wenn er ausgefüllt ist. Beim ersten Beispieltermin ist ein vorhandenes Porträt hinterlegt.
 
-Unter „Vita Downloads“ lassen sich die lange und kurze Fassung als PDF auswählen. Die Auswahl liegt in `src/data/downloads.json`. Bis Hanna beide Fassungen bereitstellt, verwendet „Vita lang“ das vorhandene PDF; „Vita kurz“ ist vorbereitet und noch deaktiviert. Fehlende Dateien werden nicht durch doppelte oder leere Downloadlinks ersetzt.
+Unter „Vita Downloads“ lassen sich die lange und kurze Fassung als PDF auswählen. Beide gelieferten Fassungen von September 2026 sind eingebunden. Die Auswahl liegt in `src/data/downloads.json` und erscheint sowohl auf der Vitaseite als auch oberhalb der Pressefotos. Die gelieferten PDFs bleiben inhaltlich unverändert.
+
+Unter „Vita Text“ werden die Überschrift des Vitaabschnitts auf der Startseite und der vollständige Webseitentext gepflegt. Absätze mit einer Leerzeile trennen. Der erste Absatz erscheint automatisch auch auf der Startseite. Eine Änderung dieses Texts verändert nicht die PDF-Downloads. Im neuen freigegebenen Fließtext bleibt „Sopranistin“ erhalten; Header, Footer und strukturierte Berufsbezeichnung verwenden weiterhin „Sopran“.
+
+Unter „Diskografie“ kann Hanna CDs anlegen, bearbeiten, ausblenden und löschen. Die bisherigen 16 Aufnahmen wurden übernommen. Titel und Cover sind Pflichtfelder. Komponist beziehungsweise Werk, Mitwirkende, musikalische Leitung, Label, Jahr und ein externer Link sind optional. Bei „Musikalische Leitung“ nur den Namen eintragen. Neue Erscheinungsjahre stehen automatisch oben, innerhalb desselben Jahres bestimmt die optionale Reihenfolge die Position.
+
+Unter „Fotos auf der Webseite“ sind Startseite, Vita und Medienübersicht getrennt bearbeitbar. Die Fotogalerie unterscheidet Porträts und Konzertfotos. Bei Porträts ist der Originaldownload optional. Pressefotos im Downloadbereich verlinken auf das ausgewählte Original, ersatzweise auf das Bild selbst. Die von Hanna gelieferten Webbilder sind optimierte WebP-Dateien; ausgewählte JPG-Originale liegen getrennt unter `public/downloads/2026`. Beim späteren Hochladen möglichst kleinere Webversionen für die Anzeige verwenden und die volle Auflösung nur als Download hinterlegen.
+
+Die unterschiedlichen Originaldownloads sind bewusst übernommen: Galerie 006, 010, 014, 016; Downloadbereich 006, 010, 012, 018. Die sechs Konzertfotos führen die Credits Simon Redel beziehungsweise Klaus Landry.
+
+Die drei YouTube-Videos verwenden lokal gespeicherte Vorschaubilder. Erst „Video laden“ bindet den Player ein. Ohne JavaScript und als Alternative bleibt der direkte YouTube-Link verfügbar. Es werden keine Einwilligungen gespeichert und vor dem Klick keine YouTube-Ressourcen angefordert.
 
 ## Veröffentlichung
 
@@ -62,6 +72,8 @@ Danach neu bauen und veröffentlichen. Nur mit allen passenden Angaben wird die 
 - HTTPS sowie die Zusammenführung von www und Nicht-www auf eine bevorzugte Adresse prüfen.
 - Domain in Google Search Console bestätigen, Sitemap einreichen und einige Seiten mit der URL-Prüfung kontrollieren.
 - Reale Ladezeiten und mobile Darstellung auf der endgültigen Domain prüfen.
-- Die Beispielinhalte und die fehlende kurze Vita vor der Freigabe abschließen. Veranstaltungs-Rich-Results werden nicht versprochen; dafür wären zusätzlich verlässliche Veranstaltungsangaben einschließlich vollständiger Adressen nötig.
+- Die Beispielinhalte und noch fehlende neue CDs vor der Freigabe ergänzen. Beide Vitae liegen vor. Veranstaltungs-Rich-Results werden nicht versprochen; dafür wären zusätzlich verlässliche Veranstaltungsangaben einschließlich vollständiger Adressen nötig.
 
 Es werden keine Trackingdienste eingebaut und keine Rankings garantiert.
+
+`npm run test:content` prüft zusätzlich die CMS-Konfiguration, Pflichtfelder, CD-Angaben und lokale Bild- und PDF-Verweise.

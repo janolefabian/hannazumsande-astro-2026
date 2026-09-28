@@ -1,15 +1,12 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import PageIntro from '../../components/PageIntro.astro';
+import VideoPlayer from '../../components/VideoPlayer.astro';
 import { audioTracks, videos } from '../../data/site';
 ---
 
 <BaseLayout title="Audio und Video" description="Hörbeispiele und Videoaufnahmen von Hanna Zumsande, Sopran, mit Werken von Bach, Haydn, Telemann, Graun und Ravel.">
-  <PageIntro
-    label="Medien"
-    title="Audio und Video"
-    intro="Ausgewählte Liveaufnahmen, Arien und Produktionen mit Hanna Zumsande."
-  />
+  <PageIntro title="Audio und Video" compact />
 
   <section class="audio-list" aria-label="Hörbeispiele">
     {audioTracks.map((track) => (
@@ -21,12 +18,6 @@ import { audioTracks, videos } from '../../data/site';
   </section>
 
   <section class="video-list" aria-label="Videos">
-    {videos.map((video) => (
-      <a class="video-card" href={video.href} target="_blank" rel="noreferrer">
-        <small>Video auf YouTube</small>
-        <h2>{video.title}</h2>
-        <p>{video.details}</p>
-      </a>
-    ))}
+    {videos.map(video => <VideoPlayer video={video} />)}
   </section>
 </BaseLayout>

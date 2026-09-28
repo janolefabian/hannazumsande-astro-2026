@@ -7,34 +7,28 @@ import { withBase } from '../../utils/paths';
 ---
 
 <BaseLayout title="Medien" description="Audioaufnahmen, Videos, Pressefotos, Downloads und Diskografie von Hanna Zumsande, Sopran." bodyClass="media-page">
-  <PageIntro
-    label="Hören und sehen"
-    title="Medien"
-    intro="Hörbeispiele, Porträts und Einspielungen von Hanna Zumsande."
-  />
+  <PageIntro title="Medien" compact />
 
   <section class="media-overview" aria-label="Medienbereiche">
     <a class="media-feature" href={withBase('/medien/audio/')}>
-      <SiteImage src={imageSettings.pagePortrait.src} alt={imageSettings.pagePortrait.alt} loading="eager" />
+      <SiteImage src={imageSettings.mediaPortrait.src} alt={imageSettings.mediaPortrait.alt} loading="eager" />
       <div class="media-feature__copy">
-        <small>Hörbeispiele und Aufnahmen</small>
         <h2>Audio und Video</h2>
-        <p>Live Mitschnitte, Arien und ausgewählte Produktionen</p>
         <span>Anhören und ansehen</span>
       </div>
     </a>
 
     <nav class="media-paths" aria-label="Weitere Medienbereiche">
       <a href={withBase('/medien/fotos/')}>
-        <div><small>Porträts und Pressefotos</small><h2>Fotos</h2><p>Aufnahmen von Christian Palm und Annemone Taake</p></div>
+        <div><h2>Fotos</h2></div>
         <span>Ansehen</span>
       </a>
       <a href={withBase('/medien/diskografie/')}>
-        <div><small>Veröffentlichungen</small><h2>Diskografie</h2><p>CD Produktionen und Einspielungen</p></div>
+        <div><h2>Diskografie</h2></div>
         <span>Entdecken</span>
       </a>
       <a href={withBase('/medien/downloads/')}>
-        <div><small>Für Veranstalter und Presse</small><h2>Downloads</h2><p>Vita und ausgewählte Porträts</p></div>
+        <div><h2>Downloads</h2></div>
         <span>Herunterladen</span>
       </a>
     </nav>

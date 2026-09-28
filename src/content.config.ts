@@ -19,4 +19,20 @@ const termine = defineCollection({
   }),
 });
 
-export const collections = { termine };
+const cds = defineCollection({
+  loader: glob({ pattern: '**/*.json', base: './src/content/cds' }),
+  schema: z.object({
+    title: z.string().min(1),
+    subtitle: z.string().nullish(),
+    artists: z.string().nullish(),
+    conductor: z.string().nullish(),
+    label: z.string().nullish(),
+    year: z.number().int().min(1900).max(2100).nullish(),
+    cover: z.string().min(1),
+    link: z.string().nullish().refine(value => !value || /^https?:\/\//i.test(value), 'Bitte einen vollständigen Link mit https:// eintragen.'),
+    published: z.boolean().default(true),
+    order: z.number().nullish().transform(value => value ?? 0),
+  }),
+});
+
+export const collections = { termine, cds };

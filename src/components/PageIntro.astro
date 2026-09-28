@@ -7,12 +7,14 @@ interface Props {
   intro?: string;
   image?: string;
   imageAlt?: string;
+  imageCredit?: string;
+  compact?: boolean;
 }
 
-const { label, title, intro, image, imageAlt = '' } = Astro.props;
+const { label, title, intro, image, imageAlt = '', imageCredit, compact = false } = Astro.props;
 ---
 
-<header class:list={['page-intro', { 'page-intro--image': image }]}>
+<header class:list={['page-intro', { 'page-intro--image': image, 'page-intro--compact': compact }]}>
   <div class="page-intro__copy">
     {label && <p class="section-label">{label}</p>}
     <h1>{title}</h1>
@@ -21,7 +23,7 @@ const { label, title, intro, image, imageAlt = '' } = Astro.props;
   {image && (
     <figure>
       <SiteImage src={image} alt={imageAlt} loading="eager" />
-      <figcaption>Foto Christian Palm</figcaption>
+      {imageCredit && <figcaption>Foto {imageCredit}</figcaption>}
     </figure>
   )}
 </header>

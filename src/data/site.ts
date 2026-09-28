@@ -118,22 +118,3 @@ export const operaRepertoire = [
 ] as const;
 
 export const liedComposers = ['Brahms', 'Britten', 'Debussy', 'Dowland', 'Grieg', 'Hindemith', 'Jost', 'Mahler', 'Marx', 'Mendelssohn', 'Mozart', 'Pfitzner', 'Purcell', 'Ravel', 'Reger', 'Schönberg', 'Schubert', 'Schumann', 'Strauss', 'Tippett', 'Wolf'];
-
-export const discography = [
-  { cover: '/media/covers/cd01-brockes.jpg', title: 'Brockes Passion', subtitle: 'G. F. Händel, Passion nach Brockes, HWV 48', artists: 'Concerto Copenhagen, Leitung Lars Ulrik Mortensen', label: 'cpo, 2019' },
-  { cover: '/media/covers/cd02-telemann.jpg', title: 'Einweihungskantaten für Hamburg und Altona', subtitle: 'Georg Philipp Telemann', artists: 'barockwerk Hamburg, Leitung Ira Hochman', label: 'cpo, 2019' },
-  { cover: '/media/covers/cd03-goettinger-stadtmusik.jpg', title: 'Göttinger Stadtmusik', subtitle: 'Werke von W. F. Bach, C. F. Rudorff und C. P. E. Bach', artists: 'Göttinger Barockorchester, Leitung Antonius Adamske', label: 'Coviello, 2019' },
-  { cover: '/media/covers/cd04-graziani.jpg', title: 'Vespro della beata vergine', subtitle: 'Bonifazio Graziani', artists: 'la festa musicale, Collegium Vocale Hannover, Leitung Florian Lohmann', label: 'Arcantus, 2019' },
-  { cover: '/media/covers/cd05-air-music.jpg', title: 'Air Music', subtitle: 'Tales of Flying Creatures and Heavenly Breezes', artists: 'Capella de la Torre, Leitung Katharina Bäuml', label: 'DHM, 2019' },
-  { cover: '/media/covers/cd06-seliges-erwaegen.jpg', title: 'Das selige Erwägen', subtitle: 'G. Ph. Telemann, Passionsoratorium', artists: 'Freiburger Barockorchester, Leitung Gottfried von der Goltz', label: 'Aparte, 2018' },
-  { cover: '/media/covers/cd07-alceste.jpg', title: 'Die getreue Alceste', subtitle: 'Georg Caspar Schürmann', artists: 'barockwerk Hamburg, Leitung Ira Hochman', label: 'cpo, 2018' },
-  { cover: '/media/covers/cd08-selva.jpg', title: 'Selva morale e spirituale', subtitle: 'Claudio Monteverdi', artists: 'Balthasar Neumann Chor und Ensemble, Leitung Pablo Heras Casado', label: 'harmonia mundi, 2017' },
-  { cover: '/media/covers/cd09-telemann-wolken.jpg', title: 'Die dicken Wolken scheiden sich', subtitle: 'G. Ph. Telemann, Festmusiken für Altona', artists: 'barockwerk Hamburg, Leitung Ira Hochman', label: 'cpo, 2017' },
-  { cover: '/media/covers/cd10-cpe-bach.jpg', title: 'Bürgercapitainsmusik 1780', subtitle: 'Carl Philipp Emanuel Bach', artists: 'barockwerk Hamburg, Leitung Ira Hochman', label: 'cpo, 2016' },
-  { cover: '/media/covers/cd11-marienvesper.jpg', title: 'Marienvesper', subtitle: 'Claudio Monteverdi', artists: 'amarcord und Gäste', label: 'carus, 2014' },
-  { cover: '/media/covers/cd12-marienkirche.jpg', title: 'Vokal und Instrumentalmusik aus der Marienkirche zu Lübeck', subtitle: 'Werke von Hasse, Tunder und Buxtehude', artists: 'Capella St. Marien, Leitung Johannes Unger', label: '' },
-  { cover: '/media/covers/cd13-barocke-buehne.jpg', title: 'Musik für die barocke Bühne', subtitle: 'Schauspielmusiken von Schein, Neumark, Widman und anderen', artists: 'Bell’Arte Salzburg, Leitung Annegret Siedel', label: 'Cantate, 2013' },
-  { cover: '/media/covers/cd14-kirchenlieder.jpg', title: 'Wer nur den lieben Gott lässt walten', subtitle: 'Kirchenlieder von Luther bis Bach', artists: 'Leitung Hans Christoph Becker Foss', label: 'Ambiente, 2014' },
-  { cover: '/media/covers/cd15-freu-dich.jpg', title: 'Freu dich sehr, o meine Seele', subtitle: '', artists: 'Leitung Hans Christoph Becker Foss', label: 'Ambiente, 2011' },
-  { cover: '/media/covers/cd16-quartalsmusiken.jpg', title: 'Hamburger Quartalsmusiken', subtitle: 'C. P. E. Bach', artists: 'Himlische Cantorey, Les Amis de Philippe, Leitung Ludger Rémy', label: '' },
-].map((disc) => ({ ...disc, cover: withBase(disc.cover) }));

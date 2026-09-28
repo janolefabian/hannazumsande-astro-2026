@@ -22,7 +22,11 @@ import settings from '../data/settings.json';
       <p>Diese Fassung der Website verwendet kein Kontaktformular und keine Analysedienste. Die Kontaktaufnahme erfolgt über einen normalen E Mail Link oder telefonisch.</p>
 
       <h2>Externe Links</h2>
-      <p>Audio und Videoseiten enthalten Links zu externen Angeboten wie YouTube und jpc. Eine Verbindung zu diesen Diensten entsteht erst, wenn ein solcher Link geöffnet wird. Videos werden nicht direkt in diese Website eingebettet.</p>
+      <p>Die Website enthält Links zu externen Angeboten. Eine Verbindung zum jeweiligen Dienst entsteht, wenn ein solcher Link geöffnet wird.</p>
+
+      <h2 id="youtube">YouTube-Videos</h2>
+      <p>Die Vorschaubilder der Videos werden von dieser Website geladen. Ein YouTube-Player wird erst eingebunden, wenn Sie ausdrücklich auf „Video laden“ klicken. Vor diesem Klick wird durch die Video-Vorschau keine Verbindung zu YouTube hergestellt.</p>
+      <p>Nach dem Klick wird ein Player über youtube-nocookie.com geladen. Dabei werden unter anderem Ihre IP-Adresse und technische Angaben zu Browser und Gerät an YouTube übermittelt. Weitere Informationen finden Sie in der <a href="https://policies.google.com/privacy" rel="noopener noreferrer">Datenschutzerklärung von Google</a>. Alternativ können Sie die Videos über den jeweiligen Link direkt bei YouTube öffnen.</p>
 
       <h2>Kontakt</h2>
       <p>Bei Fragen zum Datenschutz wenden Sie sich bitte an <a href={`mailto:${settings.email}`}>{settings.email}</a>.</p>

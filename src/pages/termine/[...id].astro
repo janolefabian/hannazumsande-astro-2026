@@ -34,7 +34,6 @@ const photoCredit = event.data.photoCredit?.trim();
   <article class="event-detail">
     <a class="quiet-link event-detail__back" href={withBase('/termine/')}>Zurück zum Kalender</a>
     <header class="event-detail__header">
-      <p class="section-label">Auftritt</p>
       <h1>{event.data.title}</h1>
       <div class="event-detail__meta">
         <time datetime={event.data.date.toISOString().slice(0, 10)}>{date}<span>{event.data.time}</span></time>

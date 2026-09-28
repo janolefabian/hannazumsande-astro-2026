@@ -9,17 +9,11 @@ published: true
 example: true
 ---
 
-## Programm
-
 F. Mendelssohn Bartholdy: „Elias“
-
-## Mitwirkende
 
 Hanna Zumsande, Sopran
 
 Weitere Solistinnen und Solisten, Chor, Orchester und musikalische Leitung werden ergänzt.
-
-## Karten
 
 Informationen zu Karten und Einlass folgen.
 

@@ -1,0 +1,25 @@
+---
+import SiteImage from './SiteImage.astro';
+import { withBase } from '../utils/paths';
+interface Props { video: { title: string; details: string; href: string } }
+const { video } = Astro.props;
+const id = new URL(video.href).searchParams.get('v');
+if (!id || !/^[a-zA-Z0-9_-]{11}$/.test(id)) throw new Error('Ungültige YouTube-Adresse: ' + video.href);
+const playerId = 'video-' + id;
+---
+<article class="video-card">
+  <div class="video-frame" id={playerId}>
+    <a class="video-poster" href={video.href} target="_blank" rel="noopener noreferrer" data-video-id={id} data-video-title={video.title} aria-label={'Video auf YouTube ansehen: ' + video.title}>
+      <SiteImage src={'/media/video/' + id + '.webp'} alt={'Vorschaubild: ' + video.title} />
+      <span class="video-play"><span aria-hidden="true">▶</span> Video auf YouTube ansehen</span>
+    </a>
+  </div>
+  <h2>{video.title}</h2>
+  <p>{video.details}</p>
+  <p class="video-consent">Erst mit „Video laden“ wird eine Verbindung zu YouTube hergestellt. Dabei werden Daten an YouTube übermittelt. <a href={withBase('/datenschutz/#youtube')}>Datenschutzhinweis</a></p>
+  <a class="quiet-link" href={video.href} target="_blank" rel="noopener noreferrer">Direkt auf YouTube ansehen <span aria-hidden="true">↗</span></a>
+</article>
+<script>
+  import { setupVideoPlayers } from '../scripts/video-players';
+  setupVideoPlayers();
+</script>

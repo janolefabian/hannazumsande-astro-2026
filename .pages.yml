@@ -18,7 +18,82 @@ media:
     categories: [document]
     rename: safe
 
+  - name: photoDownloads
+    label: Fotos in Originalauflösung
+    input: public/downloads/2026
+    output: /downloads/2026
+    categories: [image]
+    rename: safe
+
 content:
+  - name: biography
+    label: Vita Text
+    type: file
+    path: src/data/biography.json
+    format: json
+    operations:
+      delete: false
+    fields:
+      - name: homeHeading
+        label: Überschrift beim Vitaabschnitt auf der Startseite
+        type: string
+        required: true
+      - name: body
+        label: Vollständige Vita
+        type: text
+        required: true
+        description: "Absätze mit einer Leerzeile trennen. Der erste Absatz erscheint auch auf der Startseite. Die PDF-Dateien werden separat unter Vita Downloads ausgetauscht."
+
+  - name: cds
+    label: Diskografie
+    type: collection
+    path: src/content/cds
+    format: json
+    filename:
+      template: "{title}.json"
+      field: create
+    view:
+      primary: title
+      fields: [title, year, label, published]
+      sort: [year, title]
+      default:
+        sort: year
+        order: desc
+    fields:
+      - { name: title, label: Titel, type: string, required: true }
+      - { name: subtitle, label: Komponist oder Werk, type: string }
+      - name: cover
+        label: CD Cover
+        type: image
+        required: true
+        options:
+          media: images
+      - { name: artists, label: Mitwirkende und Ensembles, type: text }
+      - name: conductor
+        label: Musikalische Leitung
+        type: string
+        description: "Nur den Namen eintragen. Die Beschriftung Leitung wird automatisch ergänzt."
+      - { name: label, label: Plattenlabel, type: string }
+      - name: year
+        label: Erscheinungsjahr
+        type: number
+        options:
+          min: 1900
+          max: 2100
+      - name: link
+        label: Link zur Aufnahme
+        type: string
+        description: "Optional, zum Beispiel zum Label. Vollständige Adresse mit https://."
+        pattern:
+          regex: '^https?://[^ ]+$'
+          message: "Bitte einen Link mit https:// eintragen."
+      - name: order
+        label: Reihenfolge innerhalb eines Jahres
+        type: number
+        default: 0
+        description: "Optional. Kleinere Zahlen stehen weiter oben. Neue Jahre erscheinen automatisch zuerst."
+      - { name: published, label: Veröffentlicht, type: boolean, default: true }
+
   - name: termine
     label: Kalender
     type: collection
@@ -126,7 +201,8 @@ content:
       - { name: name, label: Name, type: string, required: true }
       - { name: role, label: Beruf, type: string, required: true }
       - { name: location, label: Ort, type: string }
-      - { name: intro, label: Text auf der Startseite, type: text, required: true }
+      - { name: intro, label: Zitat auf der Startseite, type: text, required: true }
+      - { name: quoteSource, label: Quelle des Zitats, type: string }
       - { name: email, label: E Mail, type: string, required: true }
       - { name: phone, label: Telefon, type: string }
       - { name: management, label: Management, type: string }
@@ -167,8 +243,47 @@ content:
               media: images
           - { name: alt, label: Bildbeschreibung, type: string, required: true }
           - { name: credit, label: Fotocredit, type: string, required: true }
-      - name: pagePortrait
-        label: Porträt für Vita, Kontakt und Medien
+      - name: vitaPortrait
+        label: Foto auf der Vitaseite
+        type: object
+        required: true
+        fields:
+          - name: src
+            label: Bild
+            type: image
+            required: true
+            options:
+              media: images
+          - { name: alt, label: Bildbeschreibung, type: string, required: true }
+          - { name: credit, label: Fotocredit, type: string, required: true }
+      - name: mediaPortrait
+        label: Foto auf der Medienübersicht
+        type: object
+        required: true
+        fields:
+          - name: src
+            label: Bild
+            type: image
+            required: true
+            options:
+              media: images
+          - { name: alt, label: Bildbeschreibung, type: string, required: true }
+          - { name: credit, label: Fotocredit, type: string, required: true }
+      - name: homeMedia
+        label: Bild beim Medienlink auf der Startseite
+        type: object
+        required: true
+        fields:
+          - name: src
+            label: Bild
+            type: image
+            required: true
+            options:
+              media: images
+          - { name: alt, label: Bildbeschreibung, type: string, required: true }
+          - { name: credit, label: Fotocredit, type: string, required: true }
+      - name: homeContact
+        label: Bild beim Kontaktlink auf der Startseite
         type: object
         required: true
         fields:
@@ -181,42 +296,67 @@ content:
           - { name: alt, label: Bildbeschreibung, type: string, required: true }
           - { name: credit, label: Fotocredit, type: string, required: true }
       - name: gallery
-        label: Bilder in der Fotogalerie
+        label: Porträts in der Fotogalerie
         type: object
         list:
-          min: 1
-          max: 20
           collapsible:
             collapsed: true
-            summary: "{credit}, Bild {index}"
+            summary: "{alt}"
         fields:
           - name: src
-            label: Bild
+            label: Bild für die Webseite
             type: image
             required: true
             options:
               media: images
           - { name: alt, label: Bildbeschreibung, type: string, required: true }
           - { name: credit, label: Fotocredit, type: string, required: true }
+          - name: download
+            label: Original zum Herunterladen
+            type: image
+            description: "Optional. Nur mit einer hier ausgewählten Datei wird ein Download angeboten. Für die Anzeige oben eine kleinere Webversion verwenden."
+            options:
+              media: photoDownloads
+
+      - name: concertPhotos
+        label: Konzertfotos
+        type: object
+        list:
+          collapsible:
+            collapsed: true
+            summary: "{caption}"
+        fields:
+          - name: src
+            label: Bild für die Webseite
+            type: image
+            required: true
+            options:
+              media: images
+          - { name: alt, label: Bildbeschreibung, type: string, required: true }
+          - { name: credit, label: Fotocredit, type: string, required: true }
+          - { name: caption, label: Konzert und Ort, type: string, required: true }
       - name: pressPhotos
         label: Pressefotos im Downloadbereich
         type: object
         list:
-          min: 1
-          max: 10
           collapsible:
             collapsed: true
-            summary: "{label}, Foto {credit}"
+            summary: "{alt}"
         fields:
-          - { name: label, label: Bezeichnung, type: string, required: true }
           - name: src
-            label: Bild
+            label: Bild für die Webseite
             type: image
             required: true
             options:
               media: images
           - { name: alt, label: Bildbeschreibung, type: string, required: true }
           - { name: credit, label: Fotocredit, type: string, required: true }
+          - name: download
+            label: Original zum Herunterladen
+            type: image
+            description: "Optional. Nur mit einer hier ausgewählten Datei wird ein Download angeboten. Für die Anzeige oben eine kleinere Webversion verwenden."
+            options:
+              media: photoDownloads
 
 settings:
   commit:

@@ -1,0 +1,15 @@
+---
+import downloads from '../data/downloads.json';
+import { withBase } from '../utils/paths';
+interface Props { shortFirst?: boolean }
+const items = [
+  { key: 'long', label: 'Vita lang', src: downloads.vitaLong },
+  { key: 'short', label: 'Vita kurz', src: downloads.vitaShort },
+];
+if (Astro.props.shortFirst) items.reverse();
+---
+<div class="button-row vita-buttons">
+  {items.map(item => item.src
+    ? <a class="button" href={withBase(item.src)} download>{item.label}</a>
+    : <span class="download-status">{item.label}: in Kürze verfügbar</span>)}
+</div>

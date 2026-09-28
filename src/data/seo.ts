@@ -8,7 +8,7 @@ export const pageMeta: Record<string, PageMeta> = {
   },
   '/vita/': {
     title: 'Vita und Biografie | Hanna Zumsande, Sopran',
-    description: 'Hanna Zumsandes künstlerischer Weg: Ausbildung in Hamburg, internationale Konzerttätigkeit, Opernrollen, Aufnahmen und Auszeichnungen.',
+    description: 'Hanna Zumsandes künstlerischer Weg: internationale Konzerttätigkeit, Opernrollen und Aufnahmen sowie ihre Lehre an der Hochschule für Musik und Theater Hamburg.',
     type: 'ProfilePage',
   },
   '/termine/': {
@@ -27,8 +27,8 @@ export const pageMeta: Record<string, PageMeta> = {
     type: 'CollectionPage',
   },
   '/medien/fotos/': {
-    title: 'Porträts und Pressefotos | Hanna Zumsande',
-    description: 'Porträts und Pressefotos von Hanna Zumsande, Sopran. Bilder ansehen und herunterladen, mit den jeweiligen Angaben zur Fotografie.',
+    title: 'Porträts und Konzertfotos | Hanna Zumsande',
+    description: 'Hanna Zumsande im Porträt und auf der Bühne. Fotografien von Christian Palm, Simon Redel und Klaus Landry sowie ausgewählte Pressebilder zum Download.',
     type: 'CollectionPage',
   },
   '/medien/diskografie/': {

@@ -1,34 +1,23 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 import PageIntro from '../components/PageIntro.astro';
-import { imageSettings } from '../data/images';
 import settings from '../data/settings.json';
-
 const phoneHref = settings.phone.replace(/\s/g, '');
 const managementPhoneHref = settings.managementPhone.replace(/\s/g, '');
 ---
-
-<BaseLayout title="Kontakt" description="Kontakt zu Hanna Zumsande und ihrem Management für Konzertanfragen und Zusammenarbeit.">
-  <PageIntro
-    label="Anfragen"
-    title="Kontakt"
-    intro="Für Konzertanfragen, Programme, Presseinformationen und weitere Zusammenarbeit."
-    image={imageSettings.pagePortrait.src}
-    imageAlt={imageSettings.pagePortrait.alt}
-  />
-
-  <div class="contact-grid">
-    <section class="contact-card">
-      <small>Direktkontakt</small>
-      <h2>{settings.name}</h2>
-      <a href={`mailto:${settings.email}`}>{settings.email}</a>
-      <a href={`tel:${phoneHref}`}>{settings.phone}</a>
+<BaseLayout title="Kontakt" description="Kontakt zu Hanna Zumsande und ihrer Agentur für Konzertanfragen und Zusammenarbeit." bodyClass="contact-page">
+  <PageIntro title="Kontakt" compact />
+  <div class="contact-details">
+    <section aria-label="Hanna Zumsande">
+      <p class="contact-name">{settings.name}</p>
+      <a href={'mailto:' + settings.email}>{settings.email}</a>
+      {settings.phone && <a href={'tel:' + phoneHref}>{settings.phone}</a>}
     </section>
-    <section class="contact-card">
-      <small>Management</small>
-      <h2>{settings.management}</h2>
-      <a href={`mailto:${settings.managementEmail}`}>{settings.managementEmail}</a>
-      <a href={`tel:${managementPhoneHref}`}>{settings.managementPhone}</a>
+    <section aria-labelledby="agentur">
+      <h2 id="agentur">Agentur</h2>
+      <p class="contact-name">{settings.management}</p>
+      <a href={'mailto:' + settings.managementEmail}>{settings.managementEmail}</a>
+      {settings.managementPhone && <a href={'tel:' + managementPhoneHref}>{settings.managementPhone}</a>}
     </section>
   </div>
 </BaseLayout>

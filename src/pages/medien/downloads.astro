@@ -2,44 +2,21 @@
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import PageIntro from '../../components/PageIntro.astro';
 import SiteImage from '../../components/SiteImage.astro';
+import VitaDownloads from '../../components/VitaDownloads.astro';
 import { pressPhotos } from '../../data/images';
-import downloads from '../../data/downloads.json';
 import { withBase } from '../../utils/paths';
-
-const biographies = [
-  { id: 'vita-long', label: 'Vita lang', src: downloads.vitaLong },
-  { id: 'vita-short', label: 'Vita kurz', src: downloads.vitaShort },
-];
 ---
-
-<BaseLayout title="Downloads" description="Vita und Pressefotos von Hanna Zumsande, Sopran, zum Download.">
-  <PageIntro
-    label="Medien"
-    title="Downloads"
-    intro="Material für Veranstalter, Agenturen und Presse."
-  />
-
+<BaseLayout title="Downloads" description="Vita und Pressefotos von Hanna Zumsande, Sopran, zum Download." bodyClass="downloads-page">
+  <PageIntro title="Downloads" compact />
+  <div class="download-vita"><VitaDownloads shortFirst /></div>
   <div class="download-list">
-    {pressPhotos.map((photo) => (
-      <article class="download-card">
-        <SiteImage src={photo.src} alt={photo.alt} />
-        <h2>{photo.label}</h2>
-        <p>Foto {photo.credit}</p>
-        <a class="quiet-link" href={photo.src} download>Foto herunterladen</a>
-      </article>
+    {pressPhotos.map(photo => (
+      <figure class="download-card">
+        <a href={withBase(photo.download || photo.src)} download aria-label={photo.alt + ', in hoher Auflösung herunterladen'}>
+          <SiteImage src={photo.src} alt={photo.alt} />
+        </a>
+        <figcaption>Foto {photo.credit}<span>Zum Download auf das Bild klicken</span></figcaption>
+      </figure>
     ))}
-    <article class="download-card download-card--vita">
-      <h2>Vita als PDF</h2>
-      <div class="vita-downloads">
-        {biographies.map((biography) => biography.src ? (
-          <a class="button" href={withBase(biography.src)} download>{biography.label}</a>
-        ) : (
-          <div>
-            <button class="button" type="button" disabled aria-describedby={biography.id + '-status'}>{biography.label}</button>
-            <p id={biography.id + '-status'} class="download-status">In Kürze verfügbar</p>
-          </div>
-        ))}
-      </div>
-    </article>
   </div>
 </BaseLayout>

@@ -2,22 +2,32 @@
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import PageIntro from '../../components/PageIntro.astro';
 import SiteImage from '../../components/SiteImage.astro';
-import { gallery } from '../../data/images';
+import { gallery, concertPhotos } from '../../data/images';
+import { withBase } from '../../utils/paths';
 ---
-
-<BaseLayout title="Fotos" description="Ausgewählte Presse und Porträtfotos von Hanna Zumsande, Sopran.">
-  <PageIntro
-    label="Medien"
-    title="Fotos"
-    intro="Porträts und Pressefotos von Hanna Zumsande. Bitte bei Verwendung die jeweiligen Fotocredits angeben."
-  />
-
-  <div class="gallery-grid">
-    {gallery.map((image) => (
-      <figure>
-        <a href={image.src} download><SiteImage src={image.src} alt={image.alt} /></a>
-        <figcaption>Foto {image.credit}, zum Download auf das Bild klicken</figcaption>
-      </figure>
-    ))}
-  </div>
+<BaseLayout title="Fotos" description="Porträts und Konzertfotos von Hanna Zumsande, Sopran." bodyClass="photos-page">
+  <PageIntro title="Fotos" compact />
+  <section class="photo-gallery" aria-label="Porträts">
+    <div class="gallery-grid">
+      {gallery.map(photo => (
+        <figure>
+          {photo.download
+            ? <a href={withBase(photo.download)} download aria-label={photo.alt + ', in hoher Auflösung herunterladen'}><SiteImage src={photo.src} alt={photo.alt} /></a>
+            : <SiteImage src={photo.src} alt={photo.alt} />}
+          <figcaption>Foto {photo.credit}{photo.download && <span>Zum Download auf das Bild klicken</span>}</figcaption>
+        </figure>
+      ))}
+    </div>
+  </section>
+  {concertPhotos.length > 0 && <section class="photo-gallery concert-gallery" aria-labelledby="konzertfotos">
+    <h2 id="konzertfotos">Auf der Bühne</h2>
+    <div class="gallery-grid">
+      {concertPhotos.map(photo => (
+        <figure>
+          <SiteImage src={photo.src} alt={photo.alt} />
+          <figcaption>{photo.caption}<span>Foto {photo.credit}</span></figcaption>
+        </figure>
+      ))}
+    </div>
+  </section>}
 </BaseLayout>

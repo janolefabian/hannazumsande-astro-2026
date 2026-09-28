@@ -1,25 +1,23 @@
 ---
+import { getCollection } from 'astro:content';
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import PageIntro from '../../components/PageIntro.astro';
 import SiteImage from '../../components/SiteImage.astro';
-import { discography } from '../../data/site';
+const discs = (await getCollection('cds', ({ data }) => data.published))
+  .sort((a, b) => (b.data.year ?? 0) - (a.data.year ?? 0) || a.data.order - b.data.order || a.data.title.localeCompare(b.data.title, 'de'));
 ---
-
-<BaseLayout title="Diskografie" description="Diskografie von Hanna Zumsande mit Aufnahmen bei cpo, harmonia mundi, carus, DHM, Aparte und weiteren Labels.">
-  <PageIntro
-    label="Medien"
-    title="Diskografie"
-    intro="Einspielungen von Händel, Telemann, Monteverdi, C. P. E. Bach und weiteren Komponisten."
-  />
-
+<BaseLayout title="Diskografie" description="Diskografie von Hanna Zumsande mit Aufnahmen bei cpo, harmonia mundi, carus, DHM, Aparte und weiteren Labels." bodyClass="discography-page">
+  <PageIntro title="Diskografie" compact />
   <div class="disc-grid">
-    {discography.map((disc) => (
+    {discs.map(({ data: disc }) => (
       <article class="disc-card">
-        <SiteImage src={disc.cover} alt={`Cover ${disc.title}`} />
+        <SiteImage src={disc.cover} alt={'Cover: ' + disc.title} />
         <h2>{disc.title}</h2>
         {disc.subtitle && <p>{disc.subtitle}</p>}
-        <p>{disc.artists}</p>
-        {disc.label && <p>{disc.label}</p>}
+        {disc.artists && <p>{disc.artists}</p>}
+        {disc.conductor && <p>Leitung: {disc.conductor}</p>}
+        {(disc.label || disc.year) && <p>{[disc.label, disc.year].filter(Boolean).join(', ')}</p>}
+        {disc.link && <a class="quiet-link" href={disc.link} target="_blank" rel="noopener noreferrer">Zur Aufnahme <span aria-hidden="true">↗</span></a>}
       </article>
     ))}
   </div>

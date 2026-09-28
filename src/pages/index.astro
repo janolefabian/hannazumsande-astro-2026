@@ -4,6 +4,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 import EventList from '../components/EventList.astro';
 import SiteImage from '../components/SiteImage.astro';
 import settings from '../data/settings.json';
+import { biographyIntro, biographyHeading } from '../data/biography';
 import { imageSettings } from '../data/images';
 import { withBase } from '../utils/paths';
 
@@ -20,7 +21,10 @@ const events = (await getCollection('termine', ({ data }) => data.published))
       <span class="hero-monogram" aria-hidden="true">HZ</span>
       <p class="section-label">{settings.role}</p>
       <h1><span>Hanna</span>{' '}<span>Zumsande</span></h1>
-      <p class="lead">{settings.intro}</p>
+      <blockquote class="hero-quote">
+        <p class="lead">„{settings.intro}“</p>
+        {settings.quoteSource && <cite>{settings.quoteSource}</cite>}
+      </blockquote>
       <div class="button-row">
         <a class="button" href={withBase('/termine/')}>Kalender ansehen</a>
       </div>
@@ -43,10 +47,9 @@ const events = (await getCollection('termine', ({ data }) => data.published))
     <SiteImage src={imageSettings.homePortrait.src} alt={imageSettings.homePortrait.alt} />
     <div class="home-profile__copy">
       <p class="section-label">Vita</p>
-      <h2>Von der Alten Musik bis in die Moderne</h2>
-      <p class="large-copy">Als Konzertsolistin arbeitet Hanna Zumsande mit Orchestern, Ensembles und Dirigenten im In und Ausland zusammen.</p>
-      <p class="home-profile__engagements">Engagements führten sie zu Festivals und in Konzertsäle wie das Concertgebouw Amsterdam, die Tonhalle Zürich, das Konzerthaus Berlin und die Hamburger Laeiszhalle.</p>
-      <a class="quiet-link" href={withBase('/vita/')}>Vollständige Vita lesen</a>
+      <h2>{biographyHeading}</h2>
+      <p class="large-copy">{biographyIntro}</p>
+      <a class="button" href={withBase('/vita/')}>Vollständige Vita lesen</a>
     </div>
   </section>
 
@@ -54,16 +57,14 @@ const events = (await getCollection('termine', ({ data }) => data.published))
     <div class="home-block__head">
       <h2 id="bereiche">Mehr entdecken</h2>
     </div>
-    <div class="route-list route-list--pair">
-      <a href={withBase('/medien/')}>
-        <span>01</span>
-        <h3>Medien</h3>
-        <p>Audio und Video, Fotos, Diskografie, Downloads</p>
+    <div class="home-discover">
+      <a class="discover-row" href={withBase('/medien/')}>
+        <SiteImage src={imageSettings.homeMedia.src} alt={imageSettings.homeMedia.alt} />
+        <div><h3>Medien</h3><p>Audio und Video, Fotos, Diskografie, Downloads</p><span>Ansehen <span aria-hidden="true">↗</span></span></div>
       </a>
-      <a href={withBase('/kontakt/')}>
-        <span>02</span>
-        <h3>Kontakt</h3>
-        <p>Anfragen und Management</p>
+      <a class="discover-row" href={withBase('/kontakt/')}>
+        <SiteImage src={imageSettings.homeContact.src} alt={imageSettings.homeContact.alt} />
+        <div><h3>Kontakt</h3><p>Konzertanfragen und Agentur</p><span>Kontakt aufnehmen <span aria-hidden="true">↗</span></span></div>
       </a>
     </div>
   </section>

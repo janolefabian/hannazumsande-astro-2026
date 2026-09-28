@@ -29,7 +29,10 @@ for (const file of htmlFiles) {
   titles.add(title);
   assert.equal([...html.matchAll(/<h1\b/g)].length, 1, `${file}: one main heading`);
   assert.match(html, /<html[^>]+lang="de"/, file);
-  assert.doesNotMatch(html, /sopranistin|paper-grain|paper-preview/i, file);
+  assert.doesNotMatch(html, /paper-grain|paper-preview/i, file);
+  // Hanna's approved biography uses Sopranistin in prose; the brand remains Sopran.
+  const header = html.match(/<header class="site-header"[\s\S]*?<\/header>/)?.[0] ?? '';
+  assert.doesNotMatch(header, /sopranistin/i, file);
   const meta = [...html.matchAll(/<meta\b([^>]*)>/g)].map(match => attributes(match[1]));
   const getMeta = name => meta.filter(item => item.name === name || item.property === name);
   assert.equal(getMeta('description').length, 1, file);

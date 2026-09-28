@@ -5,64 +5,142 @@
     "credit": "Christian Palm"
   },
   "homePortrait": {
-    "src": "/media/portrait-palm-004.jpg",
-    "alt": "Porträt von Hanna Zumsande",
+    "src": "/media/2026/hanna-palm-006.webp",
+    "alt": "Hanna Zumsande im schwarzen Kleid, mit dem Kinn auf den Händen",
     "credit": "Christian Palm"
   },
-  "pagePortrait": {
-    "src": "/media/portrait-palm-022.jpg",
-    "alt": "Porträt von Hanna Zumsande",
+  "vitaPortrait": {
+    "src": "/media/2026/hanna-palm-032.webp",
+    "alt": "Hanna Zumsande wirft einen gelben Schal in der Heidelandschaft in die Luft",
+    "credit": "Christian Palm"
+  },
+  "mediaPortrait": {
+    "src": "/media/2026/hanna-palm-036.webp",
+    "alt": "Hanna Zumsande mit gelbem Schal unter herbstlichen Blättern",
+    "credit": "Christian Palm"
+  },
+  "homeMedia": {
+    "src": "/media/2026/hanna-palm-036.webp",
+    "alt": "Hanna Zumsande im Herbstlicht",
+    "credit": "Christian Palm"
+  },
+  "homeContact": {
+    "src": "/media/2026/hanna-palm-010.webp",
+    "alt": "Porträt von Hanna Zumsande im schwarzen Kleid",
     "credit": "Christian Palm"
   },
   "gallery": [
     {
-      "src": "/media/gallery/palm-006.jpg",
-      "alt": "Porträt von Hanna Zumsande",
-      "credit": "Christian Palm"
+      "src": "/media/2026/hanna-palm-006.webp",
+      "alt": "Hanna Zumsande im schwarzen Kleid, mit dem Kinn auf den Händen",
+      "credit": "Christian Palm",
+      "download": "/downloads/2026/hanna-zumsande-christian-palm-006.jpg"
     },
     {
-      "src": "/media/gallery/palm-012.jpg",
-      "alt": "Hanna Zumsande im Freien",
-      "credit": "Christian Palm"
+      "src": "/media/2026/hanna-palm-010.webp",
+      "alt": "Porträt von Hanna Zumsande im schwarzen Kleid",
+      "credit": "Christian Palm",
+      "download": "/downloads/2026/hanna-zumsande-christian-palm-010.jpg"
     },
     {
-      "src": "/media/gallery/palm-020.jpg",
-      "alt": "Porträt von Hanna Zumsande in der Natur",
-      "credit": "Christian Palm"
+      "src": "/media/2026/hanna-palm-014.webp",
+      "alt": "Hanna Zumsande lächelt in die Kamera",
+      "credit": "Christian Palm",
+      "download": "/downloads/2026/hanna-zumsande-christian-palm-014.jpg"
     },
     {
-      "src": "/media/gallery/palm-028.jpg",
-      "alt": "Hanna Zumsande, Sopran",
-      "credit": "Christian Palm"
+      "src": "/media/2026/hanna-palm-016.webp",
+      "alt": "Hanna Zumsande blickt über die Schulter",
+      "credit": "Christian Palm",
+      "download": "/downloads/2026/hanna-zumsande-christian-palm-016.jpg"
     },
     {
-      "src": "/media/gallery/palm-037.jpg",
-      "alt": "Künstlerporträt von Hanna Zumsande",
-      "credit": "Christian Palm"
+      "src": "/media/2026/hanna-palm-022.webp",
+      "alt": "Hanna Zumsande bei einem Fotoshooting im Wald",
+      "credit": "Christian Palm",
+      "download": ""
     },
     {
-      "src": "/media/gallery/taake-1336.jpg",
-      "alt": "Porträt von Hanna Zumsande",
-      "credit": "Annemone Taake"
+      "src": "/media/2026/hanna-palm-028.webp",
+      "alt": "Hanna Zumsande mit gelbem Schal in der Heidelandschaft",
+      "credit": "Christian Palm",
+      "download": ""
+    },
+    {
+      "src": "/media/2026/hanna-palm-038.webp",
+      "alt": "Hanna Zumsande trägt eine Hintergrundrolle durch die Heide",
+      "credit": "Christian Palm",
+      "download": ""
+    },
+    {
+      "src": "/media/2026/hanna-palm-041.webp",
+      "alt": "Schwarzweißporträt von Hanna Zumsande zwischen Birken",
+      "credit": "Christian Palm",
+      "download": ""
+    }
+  ],
+  "concertPhotos": [
+    {
+      "src": "/media/2026/beethoven-hamburg-2022.webp",
+      "alt": "Beethoven: Missa solemnis, Hamburg 2022",
+      "caption": "Beethoven: Missa solemnis, Hamburg 2022",
+      "credit": "Simon Redel"
+    },
+    {
+      "src": "/media/2026/burggrabe-speyer-2023.webp",
+      "alt": "Burggrabe: Lux in tenebris, Speyer 2023",
+      "caption": "Burggrabe: Lux in tenebris, Speyer 2023",
+      "credit": "Klaus Landry"
+    },
+    {
+      "src": "/media/2026/franck-hamburg-2020.webp",
+      "alt": "Franck: Les Béatitudes, Hamburg 2020",
+      "caption": "Franck: Les Béatitudes, Hamburg 2020",
+      "credit": "Simon Redel"
+    },
+    {
+      "src": "/media/2026/mendelssohn-hamburg-2025.webp",
+      "alt": "Mendelssohn: Elias, Hamburg 2025",
+      "caption": "Mendelssohn: Elias, Hamburg 2025",
+      "credit": "Simon Redel"
+    },
+    {
+      "src": "/media/2026/mendelssohn-speyer-2025.webp",
+      "alt": "Mendelssohn: Elias, Speyer 2025",
+      "caption": "Mendelssohn: Elias, Speyer 2025",
+      "credit": "Klaus Landry"
+    },
+    {
+      "src": "/media/2026/weihnachtsoratorium-hamburg-2025.webp",
+      "alt": "Weihnachtsoratorium, Hamburg 2025",
+      "caption": "Weihnachtsoratorium, Hamburg 2025",
+      "credit": "Simon Redel"
     }
   ],
   "pressPhotos": [
     {
-      "label": "Porträt",
-      "src": "/media/portrait-palm-004.jpg",
-      "alt": "Porträt Hanna Zumsande",
-      "credit": "Christian Palm"
+      "src": "/media/2026/hanna-palm-006.webp",
+      "alt": "Hanna Zumsande im schwarzen Kleid, mit dem Kinn auf den Händen",
+      "credit": "Christian Palm",
+      "download": "/downloads/2026/hanna-zumsande-christian-palm-006.jpg"
     },
     {
-      "label": "Porträt",
-      "src": "/media/portrait-kuehl.jpg",
-      "alt": "Porträt Hanna Zumsande",
-      "credit": "Katharina Kühl"
+      "src": "/media/2026/hanna-palm-010.webp",
+      "alt": "Porträt von Hanna Zumsande im schwarzen Kleid",
+      "credit": "Christian Palm",
+      "download": "/downloads/2026/hanna-zumsande-christian-palm-010.jpg"
+    },
+    {
+      "src": "/media/2026/hanna-palm-012.webp",
+      "alt": "Pressefoto von Hanna Zumsande, Aufnahme 012",
+      "credit": "Christian Palm",
+      "download": "/downloads/2026/hanna-zumsande-christian-palm-012.jpg"
+    },
+    {
+      "src": "/media/2026/hanna-palm-018.webp",
+      "alt": "Pressefoto von Hanna Zumsande, Aufnahme 018",
+      "credit": "Christian Palm",
+      "download": "/downloads/2026/hanna-zumsande-christian-palm-018.jpg"
     }
-  ],
-  "documentPreview": {
-    "src": "/media/portrait-018.jpg",
-    "alt": "Porträt Hanna Zumsande",
-    "credit": ""
-  }
+  ]
 }
