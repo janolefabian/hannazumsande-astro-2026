@@ -2,6 +2,8 @@ import assert from 'node:assert/strict';
 import { existsSync, readFileSync, readdirSync } from 'node:fs';
 import { resolve, join } from 'node:path';
 import sharp from 'sharp';
+import yaml from 'js-yaml';
+import { draftNoticePattern, isFinalDomain } from '../src/utils/legal.mjs';
 
 const args = process.argv.slice(2);
 const option = (name, fallback) => args.includes(name) ? args[args.indexOf(name) + 1] : fallback;
@@ -30,6 +32,12 @@ const sectionTitles = {
 };
 const descriptions = new Set();
 const indexed = [];
+const examplePaths = new Set(readdirSync('src/content/termine').filter(name => /\.mdx?$/.test(name)).flatMap(name => {
+  const source = readFileSync(join('src/content/termine', name), 'utf8');
+  const frontmatter = source.match(/^---\r?\n([\s\S]*?)\r?\n---(?:\r?\n|$)/);
+  const data = frontmatter ? yaml.load(frontmatter[1]) : {};
+  return data.example ? ['/termine/' + name.replace(/\.mdx?$/, '') + '/'] : [];
+}));
 let imageCount = 0;
 let localLinks = 0;
 
@@ -46,6 +54,7 @@ for (const file of htmlFiles) {
   assert.equal([...html.matchAll(/<h1\b/g)].length, 1, `${file}: one main heading`);
   assert.match(html, /<html[^>]+lang="de"/, file);
   assert.doesNotMatch(html, /paper-grain|paper-preview/i, file);
+  if (indexable || (args.includes('--final') && isFinalDomain(origin))) assert.doesNotMatch(html, draftNoticePattern, `${file}: no internal draft notices on final site`);
   // Hanna's approved biography uses Sopranistin in prose; the brand remains Sopran.
   const header = html.match(/<header class="site-header"[\s\S]*?<\/header>/)?.[0] ?? '';
   assert.doesNotMatch(header, /sopranistin/i, file);
@@ -64,7 +73,7 @@ for (const file of htmlFiles) {
   assert.equal(getMeta('og:url')[0]?.content, expectedUrl, file);
   assert.equal(getMeta('robots').length, 1, file);
   const robots = getMeta('robots')[0].content;
-  if (!indexable || ['/404.html', '/impressum/', '/datenschutz/'].includes(path) || html.includes('Beispielinhalt für den Entwurf')) {
+  if (!indexable || ['/404.html', '/impressum/', '/datenschutz/'].includes(path) || examplePaths.has(path)) {
     assert.match(robots, /noindex/, file);
   } else {
     assert.match(robots, /^index, follow/, file);

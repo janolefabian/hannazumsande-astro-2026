@@ -46,6 +46,18 @@ for (const entry of Object.values(photos)) {
 const downloads = json('src/data/downloads.json');
 Object.values(downloads).forEach(localAsset);
 const biography = json('src/data/biography.json');
+const legal = json('src/data/legal.json');
+const legalConfig = config.content.find(item => item.name === 'legal');
+assert.equal(legalConfig?.label, 'Rechtliches');
+assert.equal(legalConfig.path, 'src/data/legal.json');
+for (const key of ['imprintBody', 'privacyBody']) {
+  assert.ok(legal[key]?.trim(), key + ' must contain text');
+  const field = legalConfig.fields.find(field => field.name === key);
+  assert.equal(field.type, 'rich-text');
+  assert.equal(field.options.format, 'html');
+  assert.equal(field.options.media, false);
+}
+for (const key of ['imprintReviewed', 'privacyReviewed']) assert.equal(typeof legal[key], 'boolean');
 assert.ok(biography.body.split(/\n\s*\n/).filter(Boolean).length > 1, 'Keep readable biography paragraphs');
 const cdPaths = readdirSync('src/content/cds').filter(name => name.endsWith('.json'));
 for (const path of cdPaths) {

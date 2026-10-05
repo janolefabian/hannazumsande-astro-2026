@@ -7,18 +7,23 @@
   },
   "scripts": {
     "dev": "astro dev",
+    "prebuild": "node scripts/check-launch.mjs",
     "build": "astro build",
     "preview": "astro preview",
     "astro": "astro",
     "icons": "node scripts/generate-icons.mjs",
     "test:seo": "node scripts/check-seo.mjs",
-    "test:content": "node scripts/check-content.mjs"
+    "test:content": "node scripts/check-content.mjs",
+    "test:legal": "node --test scripts/legal.test.mjs",
+    "test:launch": "node scripts/check-launch.mjs --final"
   },
   "dependencies": {
     "astro": "^7.2.4",
+    "sanitize-html": "2.18.0",
     "sharp": "0.35.3"
   },
   "devDependencies": {
+    "@types/sanitize-html": "2.16.2",
     "js-yaml": "4.3.1"
   }
 }

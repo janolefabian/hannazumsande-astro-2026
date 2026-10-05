@@ -1,0 +1,19 @@
+---
+import legal from '../data/legal.json';
+import settings from '../data/settings.json';
+import { legalAddressLines } from '../utils/legal.mjs';
+interface Props { privacy?: boolean }
+const { privacy = false } = Astro.props;
+const name = legal.provider.name.trim();
+const lines = legalAddressLines(legal.provider);
+---
+<h2>{privacy ? 'Verantwortliche Stelle' : name}</h2>
+<p class="legal-address">
+  {privacy && <span>{name}</span>}
+  {lines.map(line => <span>{line}</span>)}
+</p>
+<p>E Mail: <a href={`mailto:${settings.email}`}>{settings.email}</a></p>
+
+<style>
+  .legal-address span { display: block; }
+</style>

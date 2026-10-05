@@ -1,32 +1,25 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 import PageIntro from '../components/PageIntro.astro';
-import settings from '../data/settings.json';
+import LegalContact from '../components/LegalContact.astro';
+import legal from '../data/legal.json';
+import { isFinalDomain, missingLegalAddressFields, renderLegalBody } from '../utils/legal.mjs';
+import { withBase } from '../utils/paths';
+const body = renderLegalBody(legal.imprintBody, { withBase });
+const incompleteAddress = missingLegalAddressFields(legal.provider).length > 0;
+const showDraftStatus = !(import.meta.env.PROD && isFinalDomain(process.env.SITE_URL)) && (incompleteAddress || !legal.imprintReviewed);
 ---
 
 <BaseLayout title="Impressum" description="Impressum der Website von Hanna Zumsande.">
   <PageIntro label="Rechtliches" title="Impressum" />
 
-  <p class="notice"><strong>Noch zu ergänzen:</strong> Die vollständige Anschrift fehlt. Postleitzahl und Ort allein genügen nicht. Die Anbieterangaben und Rechtstexte müssen noch abschließend geprüft werden.</p>
+  {showDraftStatus && <p class="notice"><strong>Vorläufiger Stand:</strong> {incompleteAddress && 'Die vollständige Anschrift fehlt noch. '}Die Anbieterangaben und Rechtstexte müssen noch abschließend geprüft werden.</p>}
 
   <div class="content-grid">
     <aside class="content-aside">Angaben zum Anbieter</aside>
-    <article class="prose">
-      <h2>Hanna Zumsande</h2>
-      <p>22297 Hamburg<br />Deutschland</p>
-      <p>E Mail: <a href={`mailto:${settings.email}`}>{settings.email}</a></p>
-
-      <h2>Bildnachweise</h2>
-      <p>Christian Palm<br />Simon Redel<br />Klaus Landry</p>
-
-      <h2>Webdesign und technische Betreuung</h2>
-      <p><a href="https://janolefabian.de">janolefabian.de</a></p>
-
-      <h2>Haftung für Inhalte und Links</h2>
-      <p>Die Inhalte dieser Website wurden mit Sorgfalt erstellt. Für externe Websites, auf die verlinkt wird, sind ausschließlich deren jeweilige Betreiber verantwortlich.</p>
-
-      <h2>Urheberrecht</h2>
-      <p>Die auf dieser Website veröffentlichten Inhalte und Werke unterliegen dem deutschen Urheberrecht. Downloads und Kopien sind nur im jeweils angegebenen Umfang gestattet.</p>
+    <article class="prose legal-prose">
+      <LegalContact />
+      <Fragment set:html={body} />
     </article>
   </div>
 </BaseLayout>

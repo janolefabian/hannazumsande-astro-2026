@@ -209,6 +209,58 @@ content:
       - { name: managementEmail, label: E Mail Management, type: string }
       - { name: managementPhone, label: Telefon Management, type: string }
 
+  - name: legal
+    label: Rechtliches
+    type: file
+    path: src/data/legal.json
+    format: json
+    operations:
+      delete: false
+    fields:
+      - name: provider
+        label: Gemeinsame Angaben für Impressum und Datenschutz
+        type: object
+        required: true
+        description: "Diese Angaben erscheinen auf beiden Seiten. Die E-Mail-Adresse wird aus Grunddaten übernommen. Eine leere Straße bleibt ein offener Punkt für die finale Veröffentlichung."
+        fields:
+          - { name: name, label: Vollständiger Anbietername, type: string, required: true }
+          - name: street
+            label: Straße und Hausnummer
+            type: string
+            description: "Hier die vollständige, für das Impressum geeignete Anschrift eintragen. Postleitzahl und Ort allein reichen nicht."
+          - { name: addressExtra, label: Adresszusatz (optional), type: string }
+          - { name: postalCode, label: Postleitzahl, type: string, required: true }
+          - { name: city, label: Ort, type: string, required: true }
+          - { name: country, label: Land, type: string, required: true }
+      - name: imprintBody
+        label: Impressumtext
+        type: rich-text
+        required: true
+        description: "Weitere Angaben, Bildnachweise und Texte unterhalb der Anschrift. Name, Adresse und E-Mail nicht erneut eintragen, sie werden automatisch darüber angezeigt."
+        options:
+          format: html
+          media: false
+          switcher: false
+      - name: privacyBody
+        label: Datenschutzerklärung
+        type: rich-text
+        required: true
+        description: "Text unterhalb der automatisch eingefügten verantwortlichen Stelle. Vor Freigabe mit dem tatsächlichen Hosting und allen eingebundenen Diensten abgleichen."
+        options:
+          format: html
+          media: false
+          switcher: false
+      - name: imprintReviewed
+        label: Impressum abschließend geprüft
+        type: boolean
+        default: false
+        description: "Interner Prüfstatus, nicht auf der Webseite sichtbar. Erst nach Prüfung aller erforderlichen Angaben aktivieren. Nach wesentlichen Änderungen erneut prüfen. Der Schalter führt keine rechtliche Prüfung durch."
+      - name: privacyReviewed
+        label: Datenschutzerklärung abschließend geprüft
+        type: boolean
+        default: false
+        description: "Interner Prüfstatus, nicht auf der Webseite sichtbar. Erst nach Abgleich mit Hosting und eingebundenen Diensten aktivieren. Nach wesentlichen Änderungen erneut prüfen."
+
   - name: websiteImages
     label: Fotos auf der Webseite
     type: file

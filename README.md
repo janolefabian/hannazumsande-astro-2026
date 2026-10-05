@@ -36,13 +36,22 @@ Die drei YouTube-Videos verwenden lokal gespeicherte Vorschaubilder. Erst „Vid
 
 ## Veröffentlichung
 
+Unter „Rechtliches“ werden der vollständige Anbietername und die Anschrift einmalig für Impressum und Datenschutz gepflegt. Die E-Mail-Adresse bleibt zentral unter „Grunddaten“. Der Anbietername darf vom künstlerischen Namen der Website abweichen. Die beiden weiteren Rechtstexte sind getrennte formatierte Textfelder. HTML wird beim Bauen bereinigt; Skripte, Bilder, eingebettete Inhalte und fremde Formatierungen werden nicht übernommen. Die Verlinkung zum YouTube-Datenschutzhinweis bleibt auch nach Änderungen im Editor erhalten.
+
+Die internen Schalter „Impressum abschließend geprüft“ und „Datenschutzerklärung abschließend geprüft“ sind keine automatische Rechtsprüfung. Beide stehen zunächst auf `false`; die Straßenanschrift ist noch offen. Nach wesentlichen Änderungen ist erneut zu prüfen. Die Vorschau zeigt den vorläufigen Stand bis zur Freigabe. Beim Bauen für Hannas endgültige Domain werden diese Hinweise automatisch ausgeblendet; die vorgeschaltete Freigabeprüfung verhindert einen verfrühten normalen Build. Auch die GitHub-Vorschau ist öffentlich zugänglich, deshalb die fehlende Anschrift zeitnah klären.
+
+Vor jedem `npm run build` wird geprüft, ob ausdrücklich Hannas Domain als `SITE_URL` eingestellt ist. In diesem Fall blockieren fehlende Anbieterangaben, leere Rechtstexte, ausstehende Freigaben oder veröffentlichte Kalender-Beispiele den Build. `npm run test:launch` zeigt diese offenen Punkte jederzeit an. Der normale GitHub-Vorschaubuild bleibt möglich. `npm run test:legal` prüft die gemeinsame Anschrift, die Bereinigung von Editorinhalten und die Freigabeprüfung.
+
+
 Der Ablauf in `.github/workflows/deploy.yml` baut die Website bei jeder Änderung am Hauptzweig und veröffentlicht sie auf GitHub Pages. In den Einstellungen des GitHub Repositorys muss unter Pages einmalig GitHub Actions als Quelle gewählt werden.
 
 ## Vor der echten Veröffentlichung
 
 1. Vita, Termine, Kontaktangaben und Management bestätigen lassen.
 2. Vollständige Anschrift sowie Impressum und Datenschutz prüfen.
-3. GitHub Repository verbinden und die Domain umstellen.
+3. Kalender-Beispiele fertigstellen und im Backend bestätigen oder ausblenden.
+4. Mit `npm run test:launch` die offenen Punkte prüfen. Beim finalen Build mit `npm run test:seo -- --indexable` oder `--final` sicherstellen, dass keine öffentlichen Entwurfs- oder Bearbeitungshinweise mehr vorhanden sind. Gemeint ist die Veröffentlichung unter Hannas Domain, nicht das Hochladen der Vorschau zu GitHub.
+5. Domainumstellung einschließlich HTTPS und Weiterleitungen vorbereiten; E-Mail-Einstellungen unverändert lassen.
 
 ## Suchmaschinen und Favicon
 
@@ -67,6 +76,8 @@ Danach neu bauen und veröffentlichen. Nur mit allen passenden Angaben wird die 
 `npm run build` und `npm run test:seo` prüfen die normale, gesperrte Vorschau. Ein freigegebener Build wird mit `PUBLIC_ALLOW_INDEXING=true SITE_URL=https://www.hannazumsande.de SITE_BASE=/ npm run build` erstellt; danach `npm run test:seo -- --indexable` ausführen. Für einen GitHub-Build nimmt der Test `--site https://janolefabian.github.io --base /hannazumsande-astro-2026` entgegen. Die Prüfungen kontrollieren Titel, Beschreibungen, Canonicals, strukturierte Daten, Indexierung, Sitemap, interne Links, Bildmaße und Icons.
 
 ### Zum Start noch erforderlich
+
+- Sicherheitsupdates für die bestehenden Abhängigkeiten prüfen und einspielen. Stand 6. Oktober 2026 meldet `npm audit` sieben betroffene Pakete, darunter Astro, sharp und js-yaml. Die neue HTML-Bereinigung selbst ist in diesem Bericht nicht betroffen. Updates sind noch nicht Teil der Rechtliches-Erweiterung.
 
 - Bestehende URLs der alten Website erfassen und bei geänderten Adressen echte 301-Weiterleitungen einrichten. GitHub Pages bietet keine frei konfigurierbaren serverseitigen 301-Regeln. Den Domainwechsel erst nach Wahl der passenden Weiterleitungslösung abschließen.
 - HTTPS sowie die Zusammenführung von www und Nicht-www auf eine bevorzugte Adresse prüfen.
