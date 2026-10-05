@@ -27,7 +27,7 @@ const dateFormatter = new Intl.DateTimeFormat('de-DE', { day: '2-digit', month: 
         </h2>
         <p>{event.data.venue}{event.data.city ? `, ${event.data.city}` : ''}</p>
       </div>
-      {hasEventDetails(event) && <span class="event-more" aria-hidden="true">Mehr erfahren <span>↗</span></span>}
+      {hasEventDetails(event) && <span class="event-more" aria-hidden="true">Mehr erfahren</span>}
     </article>
   ))}
 </div>

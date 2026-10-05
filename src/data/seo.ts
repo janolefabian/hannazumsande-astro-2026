@@ -3,71 +3,71 @@ import settings from './settings.json';
 type PageMeta = { title: string; description: string; index?: boolean; type?: string };
 export const pageMeta: Record<string, PageMeta> = {
   '/': {
-    title: `${settings.name} | ${settings.role} für Konzert, Oper und Lied`,
+    title: `${settings.name} | ${settings.role}`,
     description: `${settings.name}, ${settings.role} aus Hamburg: Konzert, Oper und Lied von der Alten Musik bis zur Moderne. Auftritte, Biografie, Hörbeispiele und Kontakt.`,
   },
   '/vita/': {
-    title: 'Vita und Biografie | Hanna Zumsande, Sopran',
+    title: 'Vita | Hanna Zumsande',
     description: 'Hanna Zumsandes künstlerischer Weg: internationale Konzerttätigkeit, Opernrollen und Aufnahmen sowie ihre Lehre an der Hochschule für Musik und Theater Hamburg.',
     type: 'ProfilePage',
   },
   '/termine/': {
-    title: 'Kalender und Konzerttermine | Hanna Zumsande',
+    title: 'Kalender | Hanna Zumsande',
     description: 'Auftritte von Hanna Zumsande: kommende Konzerte mit Datum und Veranstaltungsort sowie ein Rückblick auf vergangene Auftritte.',
     type: 'CollectionPage',
   },
   '/medien/': {
-    title: 'Musik, Fotos und Presseunterlagen | Hanna Zumsande',
+    title: 'Medien | Hanna Zumsande',
     description: 'Hanna Zumsande hören und entdecken: Audio und Video, Porträts, Diskografie sowie Vita und Pressefotos zum Herunterladen.',
     type: 'CollectionPage',
   },
   '/medien/audio/': {
-    title: 'Hörbeispiele: Audio und Video | Hanna Zumsande',
+    title: 'Audio und Video | Hanna Zumsande',
     description: 'Hörbeispiele und Videos mit Hanna Zumsande, Sopran: Arien und Liveaufnahmen mit Musik von Bach, Haydn, Telemann, Graun und Ravel.',
     type: 'CollectionPage',
   },
   '/medien/fotos/': {
-    title: 'Porträts und Konzertfotos | Hanna Zumsande',
+    title: 'Fotos | Hanna Zumsande',
     description: 'Hanna Zumsande im Porträt und auf der Bühne. Fotografien von Christian Palm, Simon Redel und Klaus Landry sowie ausgewählte Pressebilder zum Download.',
     type: 'CollectionPage',
   },
   '/medien/diskografie/': {
-    title: 'Diskografie und CD-Aufnahmen | Hanna Zumsande',
+    title: 'Diskografie | Hanna Zumsande',
     description: 'Aufnahmen mit Hanna Zumsande: Musik von Händel, Telemann, Monteverdi und weiteren Komponisten, mit Ensembles und Informationen zu den Veröffentlichungen.',
     type: 'CollectionPage',
   },
   '/medien/downloads/': {
-    title: 'Vita und Pressefotos zum Download | Hanna Zumsande',
+    title: 'Downloads | Hanna Zumsande',
     description: 'Unterlagen für Veranstalter, Agenturen und Presse: die Vita von Hanna Zumsande als PDF sowie ausgewählte Pressefotos mit Fotocredits.',
     type: 'CollectionPage',
   },
   '/kontakt/': {
-    title: 'Kontakt und Konzertanfragen | Hanna Zumsande',
+    title: 'Kontakt | Hanna Zumsande',
     description: 'Kontakt zu Hanna Zumsande und Weiler Artists Management Berlin für Konzerte, Programme, Presseinformationen und künstlerische Zusammenarbeit.',
     type: 'ContactPage',
   },
   '/repertoire/': {
-    title: 'Repertoire: Konzert, Oper und Lied | Hanna Zumsande',
+    title: 'Repertoire | Hanna Zumsande',
     description: 'Das Repertoire von Hanna Zumsande, Sopran: Oratorien, Passionen, Messen, Opernpartien und Lieder von der Alten Musik bis zur Moderne.',
     type: 'CollectionPage',
   },
   '/repertoire/konzert/': {
-    title: 'Konzertrepertoire und Oratorien | Hanna Zumsande',
+    title: 'Konzertrepertoire | Hanna Zumsande',
     description: 'Konzertrepertoire von Hanna Zumsande: Oratorien, Passionen, Messen und sinfonische Werke von Bach, Händel, Haydn, Mendelssohn und weiteren Komponisten.',
     type: 'CollectionPage',
   },
   '/repertoire/oper/': {
-    title: 'Opernrepertoire und Partien | Hanna Zumsande',
+    title: 'Opernrepertoire | Hanna Zumsande',
     description: 'Opernpartien im Repertoire von Hanna Zumsande, Sopran, mit Werken von Monteverdi und Händel bis zu Strauss, Strawinsky, Verdi und Wagner.',
     type: 'CollectionPage',
   },
   '/repertoire/lied/': {
-    title: 'Liedrepertoire | Hanna Zumsande, Sopran',
+    title: 'Liedrepertoire | Hanna Zumsande',
     description: 'Liedrepertoire von Hanna Zumsande mit Werken von Brahms, Debussy, Mahler, Ravel, Schubert, Schumann, Strauss und Wolf.',
     type: 'CollectionPage',
   },
   '/links/': {
-    title: 'Künstlerische Partner | Hanna Zumsande',
+    title: 'Links | Hanna Zumsande',
     description: 'Ausgewählte künstlerische Partner von Hanna Zumsande mit Links zu Ensembles und zur Fotografie.',
     type: 'CollectionPage',
   },

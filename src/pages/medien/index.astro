@@ -10,27 +10,29 @@ import { withBase } from '../../utils/paths';
   <PageIntro title="Medien" compact />
 
   <section class="media-overview" aria-label="Medienbereiche">
-    <a class="media-feature" href={withBase('/medien/audio/')}>
+    <figure class="media-portrait">
       <SiteImage src={imageSettings.mediaPortrait.src} alt={imageSettings.mediaPortrait.alt} loading="eager" />
-      <div class="media-feature__copy">
-        <h2>Audio und Video</h2>
-        <span>Anhören und ansehen</span>
-      </div>
-    </a>
+    </figure>
 
-    <nav class="media-paths" aria-label="Weitere Medienbereiche">
-      <a href={withBase('/medien/fotos/')}>
-        <div><h2>Fotos</h2></div>
-        <span>Ansehen</span>
-      </a>
-      <a href={withBase('/medien/diskografie/')}>
-        <div><h2>Diskografie</h2></div>
-        <span>Entdecken</span>
-      </a>
-      <a href={withBase('/medien/downloads/')}>
-        <div><h2>Downloads</h2></div>
-        <span>Herunterladen</span>
-      </a>
+    <nav class="media-paths" aria-label="Medienbereiche">
+      <ul>
+        <li>
+          <h2>Audio und Video</h2>
+          <a class="button" href={withBase('/medien/audio/')} aria-label="Audio und Video anhören und ansehen">Anhören und ansehen</a>
+        </li>
+        <li>
+          <h2>Fotos</h2>
+          <a class="button" href={withBase('/medien/fotos/')} aria-label="Fotos ansehen">Ansehen</a>
+        </li>
+        <li>
+          <h2>Diskografie</h2>
+          <a class="button" href={withBase('/medien/diskografie/')} aria-label="Diskografie entdecken">Entdecken</a>
+        </li>
+        <li>
+          <h2>Downloads</h2>
+          <a class="button" href={withBase('/medien/downloads/')} aria-label="Vita und Pressefotos herunterladen">Herunterladen</a>
+        </li>
+      </ul>
     </nav>
   </section>
 </BaseLayout>

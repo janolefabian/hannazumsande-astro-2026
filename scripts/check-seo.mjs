@@ -13,6 +13,21 @@ const decode = value => value.replace(/&amp;/g, '&').replace(/&quot;/g, '"').rep
 const attributes = text => Object.fromEntries([...text.matchAll(/([\w:-]+)="([^"]*)"/g)].map(match => [match[1], decode(match[2])]));
 const htmlFiles = readdirSync(directory, { recursive: true }).filter(file => file.endsWith('.html'));
 const titles = new Set();
+const sectionTitles = {
+  '/vita/': 'Vita',
+  '/termine/': 'Kalender',
+  '/medien/': 'Medien',
+  '/medien/audio/': 'Audio und Video',
+  '/medien/fotos/': 'Fotos',
+  '/medien/diskografie/': 'Diskografie',
+  '/medien/downloads/': 'Downloads',
+  '/kontakt/': 'Kontakt',
+  '/repertoire/': 'Repertoire',
+  '/repertoire/konzert/': 'Konzertrepertoire',
+  '/repertoire/oper/': 'Opernrepertoire',
+  '/repertoire/lied/': 'Liedrepertoire',
+  '/links/': 'Links',
+};
 const descriptions = new Set();
 const indexed = [];
 let imageCount = 0;
@@ -25,6 +40,7 @@ for (const file of htmlFiles) {
   const titleMatches = [...html.matchAll(/<title>([^<]+)<\/title>/g)];
   assert.equal(titleMatches.length, 1, `${file}: one title`);
   const title = decode(titleMatches[0][1]);
+  if (sectionTitles[path]) assert.equal(title, `${sectionTitles[path]} | Hanna Zumsande`, `${file}: concise section title`);
   assert.ok(!titles.has(title), `${file}: duplicate title`);
   titles.add(title);
   assert.equal([...html.matchAll(/<h1\b/g)].length, 1, `${file}: one main heading`);

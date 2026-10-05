@@ -58,14 +58,14 @@ const events = (await getCollection('termine', ({ data }) => data.published))
       <h2 id="bereiche">Mehr entdecken</h2>
     </div>
     <div class="home-discover">
-      <a class="discover-row" href={withBase('/medien/')}>
+      <article class="discover-row">
         <SiteImage src={imageSettings.homeMedia.src} alt={imageSettings.homeMedia.alt} />
-        <div><h3>Medien</h3><p>Audio und Video, Fotos, Diskografie, Downloads</p><span>Ansehen <span aria-hidden="true">↗</span></span></div>
-      </a>
-      <a class="discover-row" href={withBase('/kontakt/')}>
+        <div><h3>Medien</h3><p>Audio und Video, Fotos, Diskografie, Downloads</p><a class="button" href={withBase('/medien/')} aria-label="Medien ansehen">Ansehen</a></div>
+      </article>
+      <article class="discover-row">
         <SiteImage src={imageSettings.homeContact.src} alt={imageSettings.homeContact.alt} />
-        <div><h3>Kontakt</h3><p>Konzertanfragen und Agentur</p><span>Kontakt aufnehmen <span aria-hidden="true">↗</span></span></div>
-      </a>
+        <div><h3>Kontakt</h3><p>Konzertanfragen und Agentur</p><a class="button" href={withBase('/kontakt/')}>Kontakt aufnehmen</a></div>
+      </article>
     </div>
   </section>
 </BaseLayout>
