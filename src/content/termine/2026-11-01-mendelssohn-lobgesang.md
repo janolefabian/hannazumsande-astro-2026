@@ -16,5 +16,3 @@ Andreas Post, Tenor
 Kantorei der Emmaus-Gemeinde  
 Großes Sinfonieorchester  
 Leitung: Paul Fasang  
-  
-Weitere Informationen: [https://www.emmaus-norderstedt.de/b/mendelssohns-lobgesang-fur-chor-solisten-und-orchester-41454123?utm_source=Widget+on+www.emmaus-norderstedt.de%2Fveranstaltungen--und-gruppen%2Fkonzert-veranstaltungen&utm_medium=Widgets](https://www.emmaus-norderstedt.de/b/mendelssohns-lobgesang-fur-chor-solisten-und-orchester-41454123?utm_source=Widget+on+www.emmaus-norderstedt.de%2Fveranstaltungen--und-gruppen%2Fkonzert-veranstaltungen&utm_medium=Widgets)
