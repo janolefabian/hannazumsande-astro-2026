@@ -6,4 +6,14 @@ venue: St. Nikolai am Klosterstern
 city: Hamburg
 featured: false
 published: true
+example: false
 ---
+Weihnachtsoratorium im Gottesdienst  
+  
+Hanna Zumsande, Sopran  
+SolistInnen  
+  
+  
+Kantorei St. Nikolai  
+Hamburger Camerata  
+Leitung: Anne Michael
