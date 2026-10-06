@@ -1,8 +1,7 @@
 {
   "provider": {
     "name": "Hanna Zumsande",
-    "street": "",
-    "addressExtra": "",
+    "street": "Alsterdorfer Damm 19",
     "postalCode": "22297",
     "city": "Hamburg",
     "country": "Deutschland"
