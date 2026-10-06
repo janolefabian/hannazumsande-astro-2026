@@ -2,6 +2,7 @@ import assert from 'node:assert/strict';
 import { existsSync, readFileSync, readdirSync } from 'node:fs';
 import { join } from 'node:path';
 import yaml from 'js-yaml';
+import { draftNoticePattern } from '../src/utils/legal.mjs';
 const config = yaml.load(readFileSync('.pages.yml', 'utf8'));
 const json = path => JSON.parse(readFileSync(path, 'utf8'));
 const media = new Set(config.media.map(item => item.name));
@@ -28,7 +29,30 @@ for (const item of config.content) {
   if (item.type === 'collection' && item.format === 'json') {
     for (const name of readdirSync(item.path).filter(name => name.endsWith('.json'))) checkFields(item.fields, json(join(item.path, name)), item.name + '/' + name);
   }
+  if (item.type === 'collection' && item.format === 'yaml-frontmatter') {
+    for (const name of readdirSync(item.path).filter(name => name.endsWith('.md'))) {
+      assert.match(name, /^\d{4}-\d{2}-\d{2}-.+\.md$/, 'Meaningful event filename required: ' + name);
+      const source = readFileSync(join(item.path, name), 'utf8');
+      const frontmatter = source.match(/^---\r?\n([\s\S]*?)\r?\n---(?:\r?\n|$)/);
+      assert.ok(frontmatter, 'Missing event frontmatter: ' + name);
+      const data = yaml.load(frontmatter[1]);
+      checkFields(item.fields, data, item.name + '/' + name);
+      assert.ok(!Number.isNaN(new Date(data.date).getTime()), 'Invalid event date: ' + name);
+      if (data.published !== false) {
+        assert.notEqual(data.example, true, 'Published example content: ' + name);
+        assert.doesNotMatch(source.slice(frontmatter[0].length), draftNoticePattern, 'Draft text in event: ' + name);
+      }
+    }
+  }
 }
+// Pages CMS must generate from submitted values, not the initially empty form.
+for (const name of ['termine', 'cds']) {
+  const collection = config.content.find(item => item.name === name);
+  assert.equal(collection.filename.field, false, name + ': generate filenames on save');
+  assert.ok(collection.filename.template.includes('{primary}'), name + ': meaningful filename');
+}
+const calendar = config.content.find(item => item.name === 'termine');
+assert.equal(calendar.filename.template, '{fields.date}-{fields.time}-{primary}.md', 'Separate performances on the same day');
 const localAsset = src => {
   if (!src || /^https?:\/\//.test(src)) return;
   assert.ok(src.startsWith('/'), 'Expected root-relative asset path: ' + src);
@@ -45,6 +69,11 @@ for (const entry of Object.values(photos)) {
 }
 const downloads = json('src/data/downloads.json');
 Object.values(downloads).forEach(localAsset);
+for (const name of readdirSync('src/content/termine').filter(name => name.endsWith('.md'))) {
+  const source = readFileSync(join('src/content/termine', name), 'utf8');
+  const data = yaml.load(source.match(/^---\r?\n([\s\S]*?)\r?\n---/)[1]);
+  localAsset(data.photo);
+}
 const biography = json('src/data/biography.json');
 const legal = json('src/data/legal.json');
 const legalConfig = config.content.find(item => item.name === 'legal');
@@ -66,4 +95,4 @@ for (const path of cdPaths) {
   assert.ok(!cd.conductor || !/^Leitung\s*:/i.test(cd.conductor), 'Store only the conductor name');
   if (cd.year != null) assert.ok(Number.isInteger(cd.year) && cd.year >= 1900 && cd.year <= 2100);
 }
-console.log('Content checks passed: ' + config.content.length + ' CMS sections, ' + cdPaths.length + ' CDs, all photo and PDF paths valid.');
+console.log('Content checks passed: ' + config.content.length + ' CMS sections, ' + cdPaths.length + ' CDs, all events and local media valid.');

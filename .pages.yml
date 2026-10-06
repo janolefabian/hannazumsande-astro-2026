@@ -50,8 +50,8 @@ content:
     path: src/content/cds
     format: json
     filename:
-      template: "{title}.json"
-      field: create
+      template: "{primary}.json"
+      field: false
     view:
       primary: title
       fields: [title, year, label, published]
@@ -100,8 +100,8 @@ content:
     path: src/content/termine
     format: yaml-frontmatter
     filename:
-      template: "{date}-{title}.md"
-      field: create
+      template: "{fields.date}-{fields.time}-{primary}.md"
+      field: false
     view:
       fields: [title, date, time, venue, city, published]
       primary: title
@@ -134,7 +134,10 @@ content:
       - name: link
         label: Link zum Veranstalter oder zu Tickets
         type: string
-        description: "Optional. Bitte die vollständige Adresse mit https:// eintragen."
+        description: "Optional. Vollständige Adresse mit https:// eintragen. Der Link öffnet sich in einem neuen Tab."
+        pattern:
+          regex: '^https?://[^ ]+$'
+          message: "Bitte einen vollständigen Link mit https:// eintragen."
       - name: photo
         label: Foto
         type: image
@@ -156,6 +159,7 @@ content:
         label: Veröffentlicht
         type: boolean
         required: true
+        default: true
       - name: body
         label: Weitere Informationen
         type: rich-text
@@ -221,7 +225,7 @@ content:
         label: Gemeinsame Angaben für Impressum und Datenschutz
         type: object
         required: true
-        description: "Diese Angaben erscheinen auf beiden Seiten. Die E-Mail-Adresse wird aus Grunddaten übernommen. Eine leere Straße bleibt ein offener Punkt für die finale Veröffentlichung."
+        description: "Diese Angaben erscheinen auf beiden Seiten. E-Mail und Telefon werden aus Grunddaten übernommen."
         fields:
           - { name: name, label: Vollständiger Anbietername, type: string, required: true }
           - name: street
@@ -232,11 +236,19 @@ content:
           - { name: postalCode, label: Postleitzahl, type: string, required: true }
           - { name: city, label: Ort, type: string, required: true }
           - { name: country, label: Land, type: string, required: true }
+      - name: vatId
+        label: Umsatzsteuer-ID (falls vorhanden)
+        type: string
+        description: "Nicht die persönliche Steuernummer. Nur eintragen, wenn eine Umsatzsteuer-ID zugeteilt wurde."
+      - name: businessId
+        label: Wirtschafts-ID (falls vorhanden)
+        type: string
+        description: "Nur eintragen, wenn eine Wirtschafts-Identifikationsnummer zugeteilt wurde."
       - name: imprintBody
         label: Impressumtext
         type: rich-text
         required: true
-        description: "Weitere Angaben, Bildnachweise und Texte unterhalb der Anschrift. Name, Adresse und E-Mail nicht erneut eintragen, sie werden automatisch darüber angezeigt."
+        description: "Weitere Angaben, Bildnachweise und Texte unterhalb der Anschrift. Name, Adresse, Kontaktdaten und eingetragene Identifikationsnummern erscheinen automatisch darüber."
         options:
           format: html
           media: false

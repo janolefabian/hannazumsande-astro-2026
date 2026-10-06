@@ -29,6 +29,11 @@ jobs:
         uses: actions/checkout@v7
       - name: Astro bauen und hochladen
         uses: withastro/action@v6
+      - name: Inhalte und Veröffentlichung prüfen
+        run: |
+          npm run test:legal
+          npm run test:content
+          npm run test:built
 
   deploy:
     needs: build

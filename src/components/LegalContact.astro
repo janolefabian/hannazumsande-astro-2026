@@ -12,7 +12,12 @@ const lines = legalAddressLines(legal.provider);
   {privacy && <span>{name}</span>}
   {lines.map(line => <span>{line}</span>)}
 </p>
-<p>E Mail: <a href={`mailto:${settings.email}`}>{settings.email}</a></p>
+<p>E-Mail: <a href={`mailto:${settings.email}`}>{settings.email}</a>
+  {settings.phone && <><br />Telefon: <a href={`tel:${settings.phone.replace(/[^\d+]/g, '')}`}>{settings.phone}</a></>}
+</p>
+
+{!privacy && legal.vatId?.trim() && <p>Umsatzsteuer-Identifikationsnummer gemäß § 27a UStG: {legal.vatId.trim()}</p>}
+{!privacy && legal.businessId?.trim() && <p>Wirtschafts-Identifikationsnummer gemäß § 139c AO: {legal.businessId.trim()}</p>}
 
 <style>
   .legal-address span { display: block; }

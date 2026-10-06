@@ -17,8 +17,12 @@ const playerId = 'video-' + id;
   <h2>{video.title}</h2>
   <p>{video.details}</p>
   <p class="video-consent">Erst mit „Video laden“ wird eine Verbindung zu YouTube hergestellt. Dabei werden Daten an YouTube übermittelt. <a href={withBase('/datenschutz/#youtube')}>Datenschutzhinweis</a></p>
+  <button type="button" class="quiet-link video-close" data-video-close hidden aria-controls={playerId}>Video schließen</button>
   <a class="quiet-link" href={video.href} target="_blank" rel="noopener noreferrer">Direkt auf YouTube ansehen <span aria-hidden="true">↗</span></a>
 </article>
+<style>
+  .video-close { background: none; border: 0; cursor: pointer; margin-right: 1rem; padding: 0.6rem 0; text-decoration: underline; text-underline-offset: 0.2em; }
+</style>
 <script>
   import { setupVideoPlayers } from '../scripts/video-players';
   setupVideoPlayers();

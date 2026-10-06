@@ -23,6 +23,8 @@ const date = new Intl.DateTimeFormat('de-DE', {
   day: '2-digit', month: 'long', year: 'numeric', timeZone: 'UTC',
 }).format(event.data.date);
 const location = [event.data.venue, event.data.city].filter(Boolean).join(', ');
+const shortDate = new Intl.DateTimeFormat('de-DE', { day: '2-digit', month: '2-digit', year: 'numeric', timeZone: 'UTC' }).format(event.data.date);
+const pageTitle = [event.data.title, shortDate, event.data.time].join(', ');
 const link = eventLink(event);
 const photo = eventPhoto(event);
 const hasDescription = hasEventDescription(event);
@@ -30,7 +32,7 @@ const photoAlt = event.data.photoAlt?.trim() || 'Foto zum Auftritt ' + event.dat
 const photoCredit = event.data.photoCredit?.trim();
 ---
 
-<BaseLayout title={event.data.title} description={event.data.title + ', ' + date + ', ' + location + '. Ein Auftritt von Hanna Zumsande.'} image={photo || null} imageAlt={photoAlt} noindex={event.data.example}>
+<BaseLayout title={pageTitle} description={event.data.title + ', ' + date + ', ' + event.data.time + ', ' + location + '. Ein Auftritt von Hanna Zumsande.'} image={photo || null} imageAlt={photoAlt} noindex={event.data.example}>
   <article class="event-detail">
     <a class="quiet-link event-detail__back" href={withBase('/termine/')}>Zurück zum Kalender</a>
     <header class="event-detail__header">
@@ -44,7 +46,7 @@ const photoCredit = event.data.photoCredit?.trim();
       {(hasDescription || link) && (
         <div>
           {hasDescription && <div class="event-detail__body"><Content /></div>}
-          {link && <div class="button-row"><a class="button" href={link} rel="noopener noreferrer">Zur Veranstaltungsseite</a></div>}
+          {link && <div class="button-row"><a class="button" href={link} target="_blank" rel="noopener noreferrer" aria-label="Zur Veranstaltungsseite (öffnet in einem neuen Tab)">Zur Veranstaltungsseite</a></div>}
         </div>
       )}
       {photo && (

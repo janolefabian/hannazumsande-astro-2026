@@ -94,6 +94,12 @@ for (const file of htmlFiles) {
   // Check published HTML, not only route source, including icons, downloads and hashes.
   for (const match of html.matchAll(/<(?:a|link|img|audio|script)\b([^>]*)>/g)) {
     const attr = attributes(match[1]);
+    if (/aria-label="Zur Veranstaltungsseite/.test(match[1])) {
+      assert.equal(attr.target, '_blank', `${file}: event link opens in a new tab`);
+      assert.match(attr.rel, /noopener/);
+      assert.match(attr.rel, /noreferrer/);
+      assert.match(attr['aria-label'], /neuen Tab/);
+    }
     const target = attr.href ?? attr.src;
     if (!target || /^(?:mailto:|tel:|data:)/i.test(target)) continue;
     const url = new URL(target, expectedUrl);
@@ -117,6 +123,13 @@ assert.doesNotMatch(robots, /Disallow: \/\s/);
 if (indexable) assert.match(robots, /Sitemap: https:\/\/www\.hannazumsande\.de\/sitemap.xml/);
 else assert.doesNotMatch(robots, /Sitemap:/);
 const home = readFileSync(join(directory, 'index.html'), 'utf8');
+const privacy = readFileSync(join(directory, 'datenschutz/index.html'), 'utf8');
+assert.match(privacy, /id="youtube"/);
+assert.match(privacy, /GitHub Pages/);
+assert.match(privacy, /Art\. 6/);
+const audio = readFileSync(join(directory, 'medien/audio/index.html'), 'utf8');
+assert.doesNotMatch(audio, /<iframe\b/, 'YouTube must not load before consent');
+assert.doesNotMatch(audio, /<(?:script|img|link)[^>]+(?:src|href)="https?:\/\/(?:[^/]*\.)?(?:youtube\.com|ytimg\.com|googleapis\.com)\//, 'No third-party video resources before consent');
 assert.match(home, /<img[^>]*loading="eager"[^>]*fetchpriority="high"/);
 for (const [file, size] of [['favicon-96.png', 96], ['apple-touch-icon.png', 180]]) {
   const image = await sharp(join(directory, file)).metadata();

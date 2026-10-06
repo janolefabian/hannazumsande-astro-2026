@@ -2,6 +2,8 @@ export function setupVideoPlayers() {
   document.querySelectorAll<HTMLAnchorElement>('.video-poster[data-video-id]').forEach(link => {
     const id = link.dataset.videoId;
     if (!id || !/^[a-zA-Z0-9_-]{11}$/.test(id)) return;
+    const close = link.closest('.video-card')?.querySelector<HTMLButtonElement>('[data-video-close]');
+    let activeFrame: HTMLIFrameElement | undefined;
     const button = document.createElement('button');
     button.type = 'button';
     button.className = link.className;
@@ -24,8 +26,16 @@ export function setupVideoPlayers() {
       frame.referrerPolicy = 'strict-origin-when-cross-origin';
       frame.tabIndex = 0;
       button.replaceWith(frame);
+      activeFrame = frame;
+      if (close) close.hidden = false;
       frame.focus();
-    }, { once: true });
+    });
+    close?.addEventListener('click', () => {
+      activeFrame?.replaceWith(button);
+      activeFrame = undefined;
+      close.hidden = true;
+      button.focus();
+    });
     link.replaceWith(button);
   });
 }
