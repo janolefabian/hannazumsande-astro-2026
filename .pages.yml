@@ -263,15 +263,15 @@ content:
           media: false
           switcher: false
       - name: imprintReviewed
-        label: Impressum abschließend geprüft
+        label: Impressum zur Veröffentlichung freigegeben
         type: boolean
         default: false
-        description: "Interner Prüfstatus, nicht auf der Webseite sichtbar. Erst nach Prüfung aller erforderlichen Angaben aktivieren. Nach wesentlichen Änderungen erneut prüfen. Der Schalter führt keine rechtliche Prüfung durch."
+        description: "Interne Veröffentlichungsfreigabe, nicht auf der Webseite sichtbar. Angaben vorab auf Vollständigkeit prüfen. Keine Bestätigung einer juristischen Prüfung. Nach wesentlichen Änderungen erneut prüfen."
       - name: privacyReviewed
-        label: Datenschutzerklärung abschließend geprüft
+        label: Datenschutzerklärung zur Veröffentlichung freigegeben
         type: boolean
         default: false
-        description: "Interner Prüfstatus, nicht auf der Webseite sichtbar. Erst nach Abgleich mit Hosting und eingebundenen Diensten aktivieren. Nach wesentlichen Änderungen erneut prüfen."
+        description: "Interne Veröffentlichungsfreigabe, nicht auf der Webseite sichtbar. Vorab mit Hosting und eingebundenen Diensten abgleichen. Keine Bestätigung einer juristischen Prüfung oder eines Vertragsabschlusses. Nach wesentlichen Änderungen erneut prüfen."
 
   - name: websiteImages
     label: Fotos auf der Webseite

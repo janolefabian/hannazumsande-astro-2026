@@ -74,7 +74,7 @@ export function legalLaunchIssues(legal, settings, events = []) {
   if (!text(settings.email)) issues.push('E-Mail-Adresse unter Grunddaten ergänzen.');
   if (!hasBody(legal.imprintBody)) issues.push('Impressumtext ergänzen.');
   if (!hasBody(legal.privacyBody)) issues.push('Datenschutztext ergänzen.');
-  if (legal.imprintReviewed !== true) issues.push('Impressum abschließend prüfen und im Backend freigeben.');
+  if (legal.imprintReviewed !== true) issues.push('Impressum auf Vollständigkeit prüfen und im Backend zur Veröffentlichung freigeben.');
   if (legal.privacyReviewed !== true) issues.push('Datenschutz mit dem tatsächlichen Hosting und den eingebundenen Diensten abgleichen und freigeben.');
   if (draftNoticePattern.test(text(legal.imprintBody)) || draftNoticePattern.test(text(legal.privacyBody))) issues.push('Entwurfshinweise aus den freigegebenen Rechtstexten entfernen.');
   for (const event of events) {
