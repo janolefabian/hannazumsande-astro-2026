@@ -4,6 +4,7 @@ import { resolve, join } from 'node:path';
 import sharp from 'sharp';
 import yaml from 'js-yaml';
 import { draftNoticePattern, isFinalDomain } from '../src/utils/legal.mjs';
+import { legacyPages, legacyEvents, legacyRedirects } from '../src/data/legacy-urls.mjs';
 
 const args = process.argv.slice(2);
 const option = (name, fallback) => args.includes(name) ? args[args.indexOf(name) + 1] : fallback;
@@ -13,7 +14,8 @@ const base = option('--base', '/').replace(/\/$/, '');
 const indexable = args.includes('--indexable');
 const decode = value => value.replace(/&amp;/g, '&').replace(/&quot;/g, '"').replace(/&#39;/g, "'");
 const attributes = text => Object.fromEntries([...text.matchAll(/([\w:-]+)="([^"]*)"/g)].map(match => [match[1], decode(match[2])]));
-const htmlFiles = readdirSync(directory, { recursive: true }).filter(file => file.endsWith('.html'));
+const redirectPaths = new Set(Object.keys(legacyRedirects()));
+const htmlFiles = readdirSync(directory, { recursive: true }).filter(file => file.endsWith('.html') && !redirectPaths.has('/' + file));
 const titles = new Set();
 const sectionTitles = {
   '/vita/': 'Vita',
@@ -115,6 +117,34 @@ for (const file of htmlFiles) {
     localLinks++;
   }
 }
+// Redirect documents have no page metadata or schema, and never enter the sitemap.
+for (const path of redirectPaths) {
+  const file = join(directory, path.slice(1));
+  assert.ok(existsSync(file), `Missing legacy URL: ${path}`);
+  const html = readFileSync(file, 'utf8');
+  assert.doesNotMatch(html, /<script\b/);
+  const target = decode(html.match(/<meta http-equiv="refresh" content="0;url=([^"]+)"/)?.[1] || '');
+  assert.ok(target, `${path}: immediate HTML redirect required`);
+  const url = new URL(target, origin);
+  assert.equal(url.origin, origin, `${path}: redirect stays on deployment origin`);
+  assert.ok(url.pathname.startsWith(base + '/'), `${path}: redirect uses deployment base`);
+  const destination = url.pathname.slice(base.length) + url.hash;
+  if (legacyPages[path]) assert.equal(destination, legacyPages[path]);
+  else {
+    const id = legacyEvents[path];
+    assert.ok(['/termine/', '/termine/' + id + '/', '/termine/#termin-' + id].includes(destination), `${path}: correct concert`);
+  }
+  const localPath = decodeURIComponent(url.pathname.slice(base.length));
+  const targetFile = join(directory, localPath.slice(1), 'index.html');
+  assert.ok(existsSync(targetFile), `${path}: existing redirect destination`);
+  assert.ok(!redirectPaths.has(localPath), `${path}: no redirect chains`);
+  if (url.hash) assert.ok(readFileSync(targetFile, 'utf8').includes(`id="${decodeURIComponent(url.hash.slice(1))}"`), `${path}: existing calendar anchor`);
+  const canonical = decode(html.match(/<link rel="canonical" href="([^"]+)"/)?.[1] || '');
+  assert.equal(canonical, url.origin + url.pathname, `${path}: canonical points to the new destination without a fragment`);
+  assert.ok(html.includes(`<a href="${target}">`), `${path}: accessible fallback link`);
+  if (!indexable) assert.match(html, /name="robots" content="noindex, follow"/);
+  else assert.doesNotMatch(html, /noindex/);
+}
 const sitemap = readFileSync(join(directory, 'sitemap.xml'), 'utf8');
 const sitemapUrls = [...sitemap.matchAll(/<loc>(.*?)<\/loc>/g)].map(match => decode(match[1])).sort();
 assert.deepEqual(sitemapUrls, indexed.sort(), 'Sitemap must match precisely the indexable pages');
@@ -139,4 +169,4 @@ for (const [file, size] of [['favicon-96.png', 96], ['apple-touch-icon.png', 180
 const ico = readFileSync(join(directory, 'favicon.ico'));
 assert.equal(ico.readUInt16LE(2), 1);
 assert.equal(ico.readUInt16LE(4), 3);
-console.log(`SEO checks passed: ${htmlFiles.length} pages, ${indexed.length} sitemap entries, ${imageCount} images, ${localLinks} local links and assets. Mode: ${indexable ? 'production' : 'preview'}.`);
+console.log(`SEO checks passed: ${htmlFiles.length} pages, ${redirectPaths.size} legacy redirects, ${indexed.length} sitemap entries, ${imageCount} images, ${localLinks} local links and assets. Mode: ${indexable ? 'production' : 'preview'}.`);

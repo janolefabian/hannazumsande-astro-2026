@@ -32,6 +32,7 @@ jobs:
       - name: Inhalte und Veröffentlichung prüfen
         run: |
           npm run test:legal
+          npm run test:redirects
           npm run test:content
           npm run test:built
 

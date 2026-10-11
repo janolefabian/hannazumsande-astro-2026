@@ -42,7 +42,7 @@ Die drei YouTube-Videos verwenden lokal gespeicherte Vorschaubilder. Erst „Vid
 
 Unter „Rechtliches“ werden der vollständige Anbietername und die Anschrift einmalig für Impressum und Datenschutz gepflegt. Die E-Mail-Adresse bleibt zentral unter „Grunddaten“. Der Anbietername darf vom künstlerischen Namen der Website abweichen. Die beiden weiteren Rechtstexte sind getrennte formatierte Textfelder. HTML wird beim Bauen bereinigt; Skripte, Bilder, eingebettete Inhalte und fremde Formatierungen werden nicht übernommen. Die Verlinkung zum YouTube-Datenschutzhinweis bleibt auch nach Änderungen im Editor erhalten.
 
-Die internen Schalter „Impressum abschließend geprüft“ und „Datenschutzerklärung abschließend geprüft“ sind keine automatische Rechtsprüfung. Hannas Anschrift wurde von ihr eingetragen und übernommen. Umsatzsteuer-ID und Wirtschafts-ID sind noch zu klären; optionale CMS-Felder sind vorbereitet. Es wurde keine Nummer erfunden. Die Telefonnummer wird wie die E-Mail aus den Grunddaten übernommen.
+Die internen Schalter „Impressum abschließend geprüft“ und „Datenschutzerklärung abschließend geprüft“ sind keine automatische Rechtsprüfung. Hannas Anschrift wurde von ihr eingetragen und übernommen. Hanna hat bestätigt, dass sie keine Umsatzsteuer-ID hat; das optionale Feld bleibt leer und wird nicht angezeigt. Eine gegebenenfalls zugeteilte Wirtschafts-ID ist davon getrennt zu klären. Es wurde keine Nummer erfunden. Die Telefonnummer wird wie die E-Mail aus den Grunddaten übernommen.
 
 Beide Prüfschalter stehen weiterhin auf `false`. Der Datenschutztext beschreibt jetzt das tatsächliche GitHub-Pages-Hosting, die Kontaktaufnahme über Gmail und Telefon, lokale Medien, die YouTube-Einbindung und Betroffenenrechte. Das ist eine sachliche Vorbereitung, keine anwaltliche Freigabe. Vor dem Domainwechsel müssen insbesondere die Rollen und Vertragsgrundlagen bei GitHub und Gmail, die tatsächlichen Löschregeln für Anfragen sowie erforderliche Identifikationsnummern bestätigt werden. Es wird kein nicht nachgewiesener Auftragsverarbeitungsvertrag behauptet und keine feste Protokoll-Löschfrist erfunden.
 
@@ -71,7 +71,7 @@ Die Originalfotos bleiben unangetastet. Die Darstellung bekommt automatisch die 
 
 ### Freigabe unter der eigentlichen Domain
 
-Erst nach Inhaltsfreigabe und Domainumstellung in den GitHub Actions Repository-Variablen setzen:
+Erst im abgestimmten Umschaltfenster nach Inhalts- und Rechtstextfreigabe in den GitHub Actions Repository-Variablen setzen. Nicht schon für die laufende GitHub-Vorschau:
 
 - `SITE_URL`: `https://www.hannazumsande.de`
 - `SITE_BASE`: `/`
@@ -81,13 +81,13 @@ Danach neu bauen und veröffentlichen. Nur mit allen passenden Angaben wird die 
 
 ### Prüfung
 
-`npm run build` und `npm run test:seo` prüfen die normale, gesperrte Vorschau. Ein freigegebener Build wird mit `PUBLIC_ALLOW_INDEXING=true SITE_URL=https://www.hannazumsande.de SITE_BASE=/ npm run build` erstellt; danach `npm run test:seo -- --indexable` ausführen. Für einen GitHub-Build nimmt der Test `--site https://janolefabian.github.io --base /hannazumsande-astro-2026` entgegen. Die Prüfungen kontrollieren Titel, Beschreibungen, Canonicals, strukturierte Daten, Indexierung, Sitemap, interne Links, Bildmaße und Icons.
+`npm run build` und `npm run test:seo` prüfen die normale, gesperrte Vorschau. `npm run build:release` setzt die drei Domain-Variablen nur für den lokalen Prozess, prüft die Freigaben und Inhalte, baut die finale Version und prüft deren SEO einschließlich Entwurfshinweisen. Der Befehl veröffentlicht nichts und ändert weder DNS noch GitHub-Einstellungen. Fehlende Freigaben stoppen ihn vor dem Build. Für einen GitHub-Build nimmt der Test `--site https://janolefabian.github.io --base /hannazumsande-astro-2026` entgegen. Die Prüfungen kontrollieren Titel, Beschreibungen, Canonicals, strukturierte Daten, Indexierung, Sitemap, interne Links, Bildmaße, Icons und alle alten Weiterleitungsadressen.
 
 ### Zum Start noch erforderlich
 
 - Sicherheitsupdates vom 6. Oktober 2026: Astro 7.3.5, sharp 0.35.5, js-yaml 4.3.2 sowie betroffene indirekte Abhängigkeiten aktualisiert. `npm audit` meldet danach keine bekannten Schwachstellen. Vor dem tatsächlichen Start erneut prüfen.
 
-- Bestehende URLs der alten Website erfassen und bei geänderten Adressen echte 301-Weiterleitungen einrichten. GitHub Pages bietet keine frei konfigurierbaren serverseitigen 301-Regeln. Den Domainwechsel erst nach Wahl der passenden Weiterleitungslösung abschließen.
+- 27 bekannte alte URLs sind als sofortige HTML-Weiterleitungen vorbereitet. GitHub Pages liefert dabei HTTP 200 mit Meta-Refresh, nicht HTTP 301. Google behandelt sofortige Meta-Refresh-Weiterleitungen als dauerhaft. Für diese Lösung ist keine zusätzliche Hosting-Schicht nötig.
 - HTTPS sowie die Zusammenführung von www und Nicht-www auf eine bevorzugte Adresse prüfen.
 - Domain in Google Search Console bestätigen, Sitemap einreichen und einige Seiten mit der URL-Prüfung kontrollieren.
 - Reale Ladezeiten und mobile Darstellung auf der endgültigen Domain prüfen.
@@ -97,11 +97,11 @@ Es werden keine Trackingdienste eingebaut und keine Rankings garantiert.
 
 `npm run test:content` prüft zusätzlich die CMS-Konfiguration, Pflichtfelder, CD-Angaben, Termin-Dateinamen, Entwurfstexte und lokale Bild- und PDF-Verweise. Die GitHub-Veröffentlichung führt Inhalts-, Rechtliches- und Build-Prüfungen aus, bevor sie die Seiten freischaltet. `npm run test:built` verwendet dieselben Domain- und Basispfad-Variablen wie der Build. Die SEO-Prüfung kontrolliert auch neue Tabs für Veranstaltungslinks und das Fehlen vorab geladener YouTube-Player.
 
-### Domainwechsel: vorbereiteter Stand vom 6. Oktober 2026
+### Domainwechsel: vorbereiteter Stand vom 11. Oktober 2026
 
 Es wurden noch keine Domain-, DNS-, Mail- oder GitHub-Pages-Einstellungen geändert. Die alte Website antwortet unter HTTP. HTTPS meldet aktuell `ERR_TLS_CERT_ALTNAME_INVALID`; dieser Fehler muss beim Umzug einschließlich www und Nicht-www behoben sein. Der aktuelle A-Eintrag ist `85.13.164.225`, der MX-Eintrag `10 w0141a01.kasserver.com.`. Das sind nur Bestandsdaten, keine einzutragenden Zielwerte. Vor Umstellung aktuelle Einträge einschließlich AAAA, CAA, SPF, DKIM und DMARC sichern. Mail-Einträge nicht durch Website-Zielwerte ersetzen.
 
-Die folgenden alten Navigationsadressen wurden auf der bestehenden Website gelesen. Die Tabelle ist eine Vorlage für die Weiterleitungsregeln, nicht bereits aktiv:
+Die folgenden alten Navigationsadressen wurden auf der bestehenden Website gelesen. Die Weiterleitungen liegen in `src/data/legacy-urls.mjs` und werden beim Build als echte `.html`-Dateien am bisherigen Pfad erzeugt. Sie sind noch nicht auf der alten Domain aktiv:
 
 | Alte Adresse | Neues Ziel |
 | --- | --- |
@@ -119,10 +119,40 @@ Die folgenden alten Navigationsadressen wurden auf der bestehenden Website geles
 | `/calendar/archiv-2/range.listevents/-.html` | `/termine/` |
 | `/calendar/archiv/range.listevents/-.html` | `/termine/#vergangene-auftritte` |
 
-Der Archiv-Anker wurde gegen den Kalender geprüft. Alte `icalrepeat.detail`-Adressen möglichst einzeln passenden Terminen zuordnen, übrige alte Kalenderadressen zum Kalender führen. Joomla-Query-Adressen unter `index.php` getrennt prüfen; keine pauschalen Weiterleitungen aller unbekannten URLs zur Startseite. Der alte Joomla-Login darf nicht zum neuen Administratorzugang umgedeutet werden.
+Zusätzlich sind 14 alte `icalrepeat.detail`-Adressen den übernommenen Terminen zugeordnet. Ein Termin mit Zusatzinformationen führt zur Detailseite, sonst direkt zum betreffenden Kalendereintrag. Diese Anker bleiben erhalten, wenn der Auftritt ins Archiv wechselt. Wird ein zugeordneter Termin im CMS entfernt oder ausgeblendet, führt der alte Link zur Kalenderübersicht. Die zwei Aufführungen vom 16. Dezember wurden nach Uhrzeit mit dem Original abgeglichen. `npm run test:redirects` prüft die Zuordnung; die Build-Prüfung kontrolliert alle tatsächlichen Ziele und Anker, auch im GitHub-Unterordner.
 
-Für echte HTTP-301-Regeln braucht es einen geeigneten Webserver oder eine vorgeschaltete Weiterleitungsschicht. GitHub Pages allein liefert bei Astro-Weiterleitungen statische HTML-Weiterleitungen, keine konfigurierbaren HTTP-301-Antworten. Vor einer Änderung der Hostingarchitektur Rücksprache halten. Den bisherigen Webspace und die alte Website erst nach erfolgreicher Kontrolle und mit Rückfallmöglichkeit stilllegen.
+Nicht übernommene historische Konzertdetailseiten bleiben unbekannte Adressen. Es gibt keine pauschale Umleitung aller Fehlerseiten zur Startseite. Im alten HTML vorhandene Joomla-Query-Links stehen nur in auskommentiertem Code; sie werden nicht als aktuelle Navigation behandelt. Ein selektiver serverseitiger Umgang mit `index.php`-Query-Adressen ist auf GitHub Pages nicht verfügbar. Der alte Joomla-Login wird nicht als neuer Administratorzugang ausgegeben. Das CMS bleibt unverändert unter `app.pagescms.org` erreichbar.
 
-Offene Freigaben: erforderliche Umsatzsteuer-/Wirtschafts-ID bei Hanna klären; Datenschutz einschließlich GitHub-/Gmail-Vertragsgrundlagen und Umgang mit Anfragen bestätigen; danach die beiden Prüfstatus bewusst setzen. Die verbleibenden Vorschauhinweise verschwinden erst im freigegebenen Domain-Build. Nicht nur zur Umgehung der Prüfung die Schalter aktivieren.
+Offene Freigaben: eine gegebenenfalls bereits zugeteilte Wirtschafts-ID klären; Impressum und Datenschutz einschließlich tatsächlicher Dienstnutzung bestätigen; danach die beiden Prüfstatus bewusst setzen. Hannas fehlende Umsatzsteuer-ID ist bestätigt und kein offener Punkt mehr. Die verbleibenden Vorschauhinweise verschwinden erst im freigegebenen Domain-Build. Nicht nur zur Umgehung der Prüfung die Schalter aktivieren.
+
+### Umschaltung in der richtigen Reihenfolge
+
+1. Im bisherigen Hostingkonto ein vollständiges Backup der Joomla-Dateien und Datenbank sowie einen Export der DNS-Zone sichern. Die öffentlich abrufbare Website allein ist kein vollständiges Backup. Zugang zum Hostingkonto wird hierfür noch benötigt. Bestehenden Webspace nicht löschen und Mailbetrieb nicht kündigen.
+2. Domain in den persönlichen GitHub-Pages-Einstellungen per dem dort individuell angezeigten TXT-Eintrag verifizieren. Diese Besitzbestätigung ist noch kein Wechsel des Website-Ziels. Vorab vollständige Mail-DNS-Einträge sichern, einschließlich vorhandener DKIM-Selektoren. Diese lassen sich nicht vollständig aus öffentlichen Abfragen aufzählen.
+3. Direkt vor dem Start Hannas neueste CMS-Commits mit `git pull --ff-only` übernehmen, Inhalte und Freigaben kontrollieren und `npm run build:release` ausführen. Bei Fehlern nicht umschalten. Eine eventuell schon früher gebaute Version nicht ungeprüft verwenden.
+4. Im Umschaltfenster die drei Repository-Variablen wie oben setzen und die Pages-Domain `www.hannazumsande.de` hinterlegen. Anschließend den Workflow manuell starten und den erfolgreichen Build plus Deploy abwarten. Bei unserem Actions-Deployment ist keine `CNAME`-Datei erforderlich. Das Hinterlegen der Domain kann bereits die bisherige GitHub-Adresse weiterleiten, daher nicht beiläufig im Voraus erledigen.
+5. Nur die Website-Einträge beim DNS-Anbieter umstellen: `www` als CNAME auf `janolefabian.github.io.` und die Hauptdomain mit den vier unten genannten A-Einträgen. Vorhandene kollidierende A-/AAAA-/CNAME-Einträge nur für diese beiden Website-Namen ersetzen. Keine Wildcard-Regel anlegen und keine Nameserver wechseln. Mail-Einträge beibehalten.
+6. DNS-Prüfung bei GitHub und Zertifikatsausstellung abwarten, dann HTTPS erzwingen. GitHub nennt für die Verfügbarkeit von HTTPS bis zu 24 Stunden; einen unterbrechungsfreien Wechsel daher nicht versprechen. Die Varianten HTTP/HTTPS sowie mit/ohne www müssen auf `https://www.hannazumsande.de/` zusammenlaufen.
+7. Startseite, Kalender, Konzertdetail, Medien, Downloads, CMS-Veröffentlichung, Impressum, Datenschutz, Weiterleitungen und echte 404-Antwort auf der Domain prüfen. Keine Entwurfshinweise, GitHub-Unterordner oder Indexierungssperre auf den freigegebenen Inhaltsseiten. Sitemap in Search Console einreichen; Impressum, Datenschutz und 404 bleiben bewusst `noindex`.
+
+Geprüfte GitHub-Zielwerte vom 11. Oktober 2026, vor der Umschaltung nochmals mit der offiziellen Dokumentation abgleichen:
+
+| Name | Typ | Ziel |
+| --- | --- | --- |
+| `www` | CNAME | `janolefabian.github.io.` |
+| `@` | A | `185.199.108.153` |
+| `@` | A | `185.199.109.153` |
+| `@` | A | `185.199.110.153` |
+| `@` | A | `185.199.111.153` |
+
+IPv6 ist optional. Bei Einrichtung die vier offiziellen GitHub-AAAA-Adressen nutzen; einen alten, abweichenden AAAA-Eintrag nicht stehen lassen. Am 11. Oktober wurden öffentlich für Hauptdomain und www `85.13.164.225` mit TTL 7200 Sekunden abgefragt. Auf der Hauptdomain wurden kein AAAA und kein CAA gefunden. MX war weiterhin `10 w0141a01.kasserver.com.`. SPF war `v=spf1 a mx include:spf.kasserver.com ~all`; kein DMARC-TXT wurde unter `_dmarc` gefunden. Das ist eine öffentliche Stichprobe, kein vollständiger Zonenexport. Insbesondere die Wirkung von SPF `a` ändert sich mit dem Webserverziel; tatsächliche Absender nach dem Umzug prüfen, nicht den Mailbetrieb als automatisch unverändert annehmen.
+
+### Rückfall bei Problemen
+
+Vorherige DNS-Zone, Pages-Domain-Einstellung und Repository-Variablen sichern. Falls der Umzug abgebrochen werden muss, die Website-DNS-Einträge aus diesem Export zurücksetzen und die alte Installation unverändert erreichbar lassen. In GitHub die eigene Pages-Domain entfernen, die drei Release-Variablen auf den bisherigen Vorschauzustand zurücksetzen und erneut erfolgreich bauen. Dabei keine CMS-Inhalte zurücksetzen. DNS-Caches können bis zum Ablauf ihrer TTL weiter auf das jeweils andere Ziel zeigen. Der alte HTTPS-Zertifikatsfehler wird durch einen Rückfall nicht behoben.
+
+Die Vorbereitung hat keine DNS-, Pages-Domain-, Mail- oder Search-Console-Einstellung geändert. Die technische Prüfung umfasst 24 Inhaltsseiten, 27 Weiterleitungen und 11 automatisierte Rechtliches-/Weiterleitungstests. Der Audit vom 11. Oktober meldete auch einschließlich Entwicklungsabhängigkeiten keine bekannten Schwachstellen. Die manuelle Rechtstextfreigabe ist weiterhin offen, daher noch kein freigegebener Domain-Build.
+
+Die Wahl sofortiger HTML-Weiterleitungen richtet sich nach [Googles Dokumentation zu Weiterleitungen](https://developers.google.com/search/docs/crawling-indexing/301-redirects#metarefresh). Die [Astro-Dokumentation für statische Endpunkte](https://docs.astro.build/en/guides/endpoints/) beschreibt die Erzeugung der Dateien am exakten alten Pfad.
 
 Quellen für diese Vorbereitung: [Pages CMS: Dateinamen](https://pagescms.org/docs/configuration/content/filename/), [GitHub Pages: Datenerhebung](https://docs.github.com/en/pages/getting-started-with-github-pages/what-is-github-pages), [GitHub: Datenschutz](https://docs.github.com/en/site-policy/privacy-policies/github-general-privacy-statement), [GitHub: eigene Domain](https://docs.github.com/en/pages/configuring-a-custom-domain-for-your-github-pages-site/managing-a-custom-domain-for-your-github-pages-site), [Google: Datenschutz](https://policies.google.com/privacy?hl=de), [Google: Datenübermittlungen](https://policies.google.com/privacy/frameworks?hl=de), [§ 5 DDG](https://www.gesetze-im-internet.de/ddg/__5.html), [§ 25 TDDDG](https://www.gesetze-im-internet.de/ttdsg/__25.html).

@@ -9,6 +9,7 @@
     "dev": "astro dev",
     "prebuild": "node scripts/check-launch.mjs",
     "build": "astro build",
+    "build:release": "node scripts/build-release.mjs",
     "preview": "astro preview",
     "astro": "astro",
     "icons": "node scripts/generate-icons.mjs",
@@ -16,6 +17,7 @@
     "test:built": "node scripts/check-built.mjs",
     "test:content": "node scripts/check-content.mjs",
     "test:legal": "node --test scripts/legal.test.mjs",
+    "test:redirects": "node --test scripts/legacy-urls.test.mjs",
     "test:launch": "node scripts/check-launch.mjs --final"
   },
   "dependencies": {
