@@ -1,5 +1,5 @@
 ---
-title: "J. S. Bach: Weihnachtsoratorium, BWV 248, I bis III"
+title: "J. S. Bach: Weihnachtsoratorium BWV 248, I bis III"
 date: 2026-12-16
 time: 18:00 Uhr
 venue: St. Nikolai am Klosterstern
@@ -13,7 +13,7 @@ Hanna Zumsande, Sopran
 Anna-Maria Torkel, Alt  
 Wolfgang Klose, Tenor  
 Sönke Tams Freier, Bass  
-  
+
 Kantorei St. Nikolai  
 Hamburger Camerata  
 Leitung: Anne Michael
