@@ -1,5 +1,5 @@
 ---
-title: "J.S. Bach: Johannes-Passion"
+title: "J. S. Bach: Johannes-Passion"
 date: 2027-03-25
 time: 18:30
 venue: Kreuzkirche
