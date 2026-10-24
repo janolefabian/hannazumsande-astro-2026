@@ -1,5 +1,5 @@
 ---
-title: "J.S. Bach: Johannes Passion"
+title: "J.S. Bach: Johannes-Passion"
 date: 2027-03-26
 time: 16:00
 venue: Kreuzkirche
@@ -15,7 +15,7 @@ Patrick Grahl, Tenor (Evangelist)
 Wolfram Lattke, Tenor  
 Henryk Böhm, Bass (Jesus)  
 Tobias Berndt, Bass (Arien)  
-  
+
 Dresdner Kreuzchor  
 Dresdner Philharmonie  
 Leitung: Kreuzkantor Martin Lehmann
