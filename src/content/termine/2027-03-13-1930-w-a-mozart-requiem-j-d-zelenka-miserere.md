@@ -9,14 +9,11 @@ featured: false
 published: true
 example: false
 ---
-Hanna Zumsande, Sopran
-
-Katja Pieweck,  Alt
-
-Stephan Hinssen, Tenor
-
+Hanna Zumsande, Sopran  
+Katja Pieweck,  Alt  
+Stephan Hinssen, Tenor  
 Marco Vassalli, Bass  
-  
+
 Kammerchor Cantus firmus, Georgsmarienhütte  
 Orchester Musica viva, Ibbenbüren  
 Leitung: Stefan Bruhn
