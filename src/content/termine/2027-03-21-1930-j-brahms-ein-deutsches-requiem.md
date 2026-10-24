@@ -12,8 +12,7 @@ example: false
 Hanna Zumsande, Sopran  
 N.N., Bariton  
 
-
 hamburgVOKAL  
-Camille Lemonnier Klavier  
-Sebastian Breunig Klavier  
+Camille Lemonnier, Klavier  
+Sebastian Breunig, Klavier  
 Leitung: Matthias Mensching
