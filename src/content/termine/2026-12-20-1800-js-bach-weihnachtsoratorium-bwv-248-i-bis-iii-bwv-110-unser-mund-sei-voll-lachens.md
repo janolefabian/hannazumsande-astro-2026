@@ -1,5 +1,5 @@
 ---
-title: 'J.S. Bach: Weihnachtsoratorium BWV 248, I bis III; BWV 110 "Unser Mund
+title: 'J. S. Bach: Weihnachtsoratorium BWV 248, I bis III; BWV 110 "Unser Mund
   sei voll Lachens"'
 date: 2026-12-20
 time: 18:00
@@ -14,7 +14,7 @@ Hanna Zumsande, Sopran
 Anne-Beke Sontag, Alt  
 Christian Georg, Tenor  
 Konstantin Heintel, Bass  
-  
+
 SanktNikolaiChor Kiel  
 Barockorchester Ensemble 158  
 Leitung: Volkmar Zehner
