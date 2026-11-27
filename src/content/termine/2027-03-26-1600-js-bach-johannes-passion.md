@@ -1,7 +1,7 @@
 ---
 title: "J. S. Bach: Johannes-Passion"
 date: 2027-03-26
-time: 16:00
+time: 16:00 Uhr
 venue: Kreuzkirche
 city: Dresden
 link: https://kreuzchor.de/event/bach-johannespassion/
