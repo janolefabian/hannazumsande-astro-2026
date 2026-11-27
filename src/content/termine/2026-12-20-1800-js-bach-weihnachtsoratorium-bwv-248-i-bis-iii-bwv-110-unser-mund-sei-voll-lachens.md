@@ -2,7 +2,7 @@
 title: 'J. S. Bach: Weihnachtsoratorium BWV 248, I bis III; BWV 110 "Unser Mund
   sei voll Lachens"'
 date: 2026-12-20
-time: 18:00
+time: 18:00 Uhr
 venue: St. Nikolai
 city: Kiel
 link: https://www.st-nikolai-kiel.de/termine/1466077-johann-sebastian-bach-weihnachts-oratorium
