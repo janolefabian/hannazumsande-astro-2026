@@ -1,7 +1,7 @@
 ---
 title: "W. A. Mozart: Requiem; J. D. Zelenka: Miserere"
 date: 2027-03-13
-time: 19:30
+time: 19:30 Uhr
 venue: Jesus-Christus-Kirche
 city: Bad Rothenfelde
 link: https://www.evangelisch-in-georgsmarienhuette.de/gemeindeleben/musik/cantus-firmus
