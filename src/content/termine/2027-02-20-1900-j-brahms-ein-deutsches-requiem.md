@@ -10,11 +10,9 @@ published: true
 example: false
 ---
 Hanna Zumsande, Sopran  
+Nicholas Mogg, Bariton
 
-N.N., Bariton  hamburgVOKAL  
-
+hamburgVOKAL    
 Camille Lemonnier, Klavier  
-
-Sebastian Breunig, Klavier  
-
+Sebastian Breunig, Klavier   
 Leitung: Matthias Mensching
