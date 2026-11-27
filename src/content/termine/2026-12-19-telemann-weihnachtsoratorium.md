@@ -1,5 +1,5 @@
 ---
-title: "G. P. Telemann: Weihnachtsoratorium"
+title: "G. Ph. Telemann: Das Hamburger Weihnachtsoratorium"
 date: 2026-12-19
 time: 19:00 Uhr
 venue: St. Johannis Harvestehude
@@ -15,5 +15,5 @@ Johannes Gaubitz, Tenor
 Felix Rumpf, Bass
 
 Chor St. Johannis  
-Elbipolis Barockorchester  
+Elbipolis Barockorchester Hamburg  
 Leitung: Christopher Bender
