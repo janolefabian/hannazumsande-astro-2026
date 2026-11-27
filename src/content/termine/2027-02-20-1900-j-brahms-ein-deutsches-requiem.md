@@ -1,7 +1,7 @@
 ---
 title: "J. Brahms: Ein deutsches Requiem"
 date: 2027-02-20
-time: 19:00
+time: 19:00 Uhr
 venue: Martin-Luther-Kirche
 city: Hamburg Alsterdorf
 link: https://www.hamburgvokal.de/category/konzerte/
@@ -12,7 +12,7 @@ example: false
 Hanna Zumsande, Sopran  
 Nicholas Mogg, Bariton
 
-hamburgVOKAL    
+hamburgVOKAL  
 Camille Lemonnier, Klavier  
-Sebastian Breunig, Klavier   
+Sebastian Breunig, Klavier  
 Leitung: Matthias Mensching
