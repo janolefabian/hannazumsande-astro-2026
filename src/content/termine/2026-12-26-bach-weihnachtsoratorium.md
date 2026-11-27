@@ -4,7 +4,7 @@ date: 2026-12-26
 time: 11:00 Uhr
 venue: St. Nikolai am Klosterstern
 city: Hamburg
-link: https://www.hauptkirche-stnikolai.de/
+link: https://www.hauptkirche-stnikolai.de/termine/1374811-ehre-sei-dir-gott-gesungen-kantatengottesdienst-mit-weihnachtsoratorium-iv-vi-bwv-248
 featured: false
 published: true
 example: false
