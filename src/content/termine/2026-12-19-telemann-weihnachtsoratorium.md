@@ -10,8 +10,10 @@ published: true
 example: false
 ---
 Hanna Zumsande, Sopran  
-SolistInnen  
-  
+Annika Mendrala, Mezzosopran  
+Johannes Gaubitz, Tenor  
+Felix Rumpf, Bass
+
 Chor St. Johannis  
 Elbipolis Barockorchester  
 Leitung: Christopher Bender
