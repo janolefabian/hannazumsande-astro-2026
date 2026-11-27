@@ -10,7 +10,7 @@ published: true
 example: false
 ---
 Hanna Zumsande, Sopran  
-N.N., Bariton  
+Nicholas Mogg, Bariton  
 
 hamburgVOKAL  
 Camille Lemonnier, Klavier  
