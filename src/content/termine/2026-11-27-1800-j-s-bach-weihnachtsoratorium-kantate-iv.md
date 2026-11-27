@@ -2,7 +2,8 @@
 title: "J. S. Bach: Weihnachtsoratorium, Kantate IV"
 date: 2027-01-01
 time: 18:00
-venue: St. Michaelis, Hamburg
+venue: St. Michaelis
+city: Hamburg
 link: https://st-michaelis.de/termine/krippenandacht/
 featured: false
 published: true
