@@ -1,7 +1,7 @@
 ---
 title: "J. Brahms: Ein deutsches Requiem"
 date: 2027-03-21
-time: 19:30
+time: 19:30 Uhr
 venue: Elbphilharmonie, Kleiner Saal
 city: Hamburg
 link: https://www.elbphilharmonie.de/de/programm/brahms-ein-deutsches-requiem/29278
